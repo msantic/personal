@@ -110,10 +110,14 @@ AI often suggests improvements we hadn't considered:
 
 | Aspect | Copilot | Claude Code |
 |--------|---------|-------------|
-| Planning | No native planning | Native planning mode |
-| Model | GPT-4 | Claude Opus 4.5 |
+| Model | Any model | Claude Opus 4.5 (superior) |
+| Planning | No native planning | Native planning mode ✓ |
 | Interface | VS Code integrated | CLI + VS Code extension |
-| Strength | Tight IDE integration | Superior reasoning |
+| Change Review | Accept vs Revert (great UX) ✓ | Weaker IDE integration |
+| Images | Drag & drop ✓ | Needs workarounds |
+| Voice-to-text | Native ✓ | Use OS-level |
+| CLI | Basic | Powerful with system notifications ✓ |
+| Reasoning | Good | Superior ✓ |
 
 ---
 
