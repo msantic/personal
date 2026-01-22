@@ -1,93 +1,93 @@
 ## AI Workshop
 
 - Disclaimer
-    - I’m not an expert just using 10h a day…
-- Current status of the Team on using AI
-    - what AI models, IDE, plugins (Copilot, Claude Code etc.)
+    - I'm not an expert, just using it 10h a day, so these are my best practices
+        - As a non-deterministic system, there is no single best way — you need to adapt it to your process
+- Current status of the team on using AI
+    - What AI models, IDEs, plugins (Copilot, Claude Code, etc.)
 - Intro
-    - Promjena paradigme
-    - Postajemo supervizori
-    - Omogucuje da se fokusiramo na high level arhitekturu
-    - Znacajno smanjuje mentalni zamor
-    - I dalje ima skeptika ali AI je vec pobjedio, treba uzeti najbolje iz dva svijeta i prilagoditi se
-        - nema sanse vise da konkuriramo brzini, akum. znanju, ...
-        - trebamo imati jasnu viziju ali ostaviti otvoren boljoj arhit.
-            - razni patterni
-            - naming
-            - ostatak codebase
-            - puno
-- Agenti
+    - Paradigm shift
+    - We're becoming supervisors
+    - Allows us to focus on high-level architecture
+    - Significantly reduces mental fatigue
+    - There are still skeptics, but AI has already won — we need to take the best from both worlds and adapt
+        - There's no way we can compete with its speed, accumulated knowledge, etc.
+        - We need to have a clear vision but stay open to better architecture
+            - Various patterns
+            - Naming conventions
+            - Consistency with the rest of the codebase
+            - And much more
+- Agents
 - Copilot vs Claude Code
-    - Main diffs
+    - Main differences
     - Planning mode
     - Pricing
-    - VS Code plugins diff
+    - VS Code plugin differences
     - Copilot
         - Pros
             - Accept vs Revert changes
-            - DnD Images
+            - Drag & drop images
             - Better integration with VS Code
             - Native voice-to-text
         - Cons
-            - No planning/no native Claude planning
+            - No planning / no native Claude planning
     - Claude Code
         - Pros
-            - Native Planning !!!
+            - Native planning !!!
             - Far superior coding model, latest Opus 4.5 !!!
             - Powerful CLI
-                - can you system notifications
+                - Can use system notifications
         - Cons
             - Weaker integration
-            - No DnD images, needs workarounds, c&p image
+            - No drag & drop images, needs workarounds (copy & paste image)
             - No native voice-to-text, can use native OS
 - Setup
     - [CLAUDE.md](http://CLAUDE.md)
-    - permissions, .claude/settings.local.json
+    - Permissions, .claude/settings.local.json
     - Custom PROMPTS.md
     - Skills
-        - debuglogs
+        - debugLogs
         - inline docs
         - debug db
         - …
-- Importance of ./docs and to keep thing documented with arch. tech. details and design decisions
-- NAJBITNIJE Feedback loop
-    - debug panel for easy cp
-    - staviti u [CLAUDE.md](http://CLAUDE.md) pozive na sve test procedure
-    - test procedure moraju imati podrsku za filter, e.g. samo poziv jednog file
-    - dedicated debug logs system on platform level, client and server side
-      - the idea is to speed up fetching and re-feeding the prompt with the logs
+- Importance of ./docs and keeping things documented with architectural, technical details, and design decisions
+- MOST IMPORTANT: Feedback loop
+    - Debug panel for easy copy-paste
+    - Put calls to all test procedures in [CLAUDE.md](http://CLAUDE.md)
+    - Test procedures must support filtering, e.g., running only one file
+    - Dedicated debug logs system at platform level, client and server side
+        - The idea is to speed up fetching and re-feeding the prompt with the logs
 - What to be aware of
-    - What model, i always use the latest and most powerful, seems slow for easy task but overall you save time since there is less errors and fighting it
+    - Model choice: I always use the latest and most powerful. It seems slow for easy tasks, but overall you save time since there are fewer errors and less fighting with it
     - Run 2-3 agents in parallel to speed up development
-        - I wouldn’t go over that because of mental overload, we are bottleneck (code review, testing) not AI
-    - Divide a big feature into smaller tasks
-    - Using with Notion, planning and writing tasks,
-    - when writing propmpts important to give context and as much as possible precise instructions
-      - it doesn't always perform as expected, there are always frustrating actions
-        - git commit/checkout/resetting working drafts
-        - ignoring skills commands, e.g. debugLogs and using console.logs instead
-    - its fine to use broken english and shortcuts to speed up prompts
-      - but dictating is in average 3-4x faster specially for longer prompts
-    - you can literally give everything to AI, even its own instructions, config, writing prompts for the next prompt
-    - the key is to automate process pipeline as much as possible
-    - cp ready and context aware planning
-    - Group task logically in project mngt./planning software, like Trello, Notion
-      - SHOW my Notion org
-    
-    - GIT commit message rules
-    - I read most of the generated code or main key decisions, file organization
-        - but not black box algorithms, for them i make vitest, e2e api test
-- Present most complex things AI did
-    - Entire NoCode DataBuilder with multiple layouts, views and filters
+        - I wouldn't go over that because of mental overload — we are the bottleneck (code review, testing), not AI
+    - Divide big features into smaller tasks
+    - Using with Notion for planning and writing tasks
+    - When writing prompts, it's important to give context and provide instructions as precisely as possible
+        - It doesn't always perform as expected; there are always frustrating behaviors
+            - Git commit/checkout/resetting working drafts
+            - Ignoring skill commands, e.g., debugLogs, and using console.logs instead
+    - It's fine to use broken English and shortcuts to speed up prompts
+        - But dictating is on average 3-4x faster, especially for longer prompts
+    - You can literally give everything to AI, even its own instructions, config, and writing prompts for the next prompt
+    - The key is to automate the process pipeline as much as possible
+    - Copy-paste ready and context-aware planning
+    - Group tasks logically in project management/planning software, like Trello or Notion
+        - SHOW my Notion organization
+    - Git commit message rules
+    - I read most of the generated code, especially main key decisions and file organization
+        - But not black-box algorithms — for those, I create Vitest and e2e API tests
+- Present most complex things AI built
+    - Entire NoCode DataBuilder with multiple layouts, views, and filters
         - https://app.bimtly.com/editor/data/3576
     - 3D Studio
         - Explode
-        - XRay
-        - Auto labels with realtime collision detections
+        - X-Ray
+        - Auto labels with real-time collision detection
         - https://app.bimtly.com/editor/3d/4657/epoxy-granite-vmc
     - Refactoring
     - DevOps
-    - SunSimulator
+    - Sun Simulator
         - https://app.bimtly.com/editor/3d/4766/pergolagazebob3-6mx3m-quad
     - Tests & Docs
         - Cypress
@@ -95,5 +95,5 @@
         - Vitest, ~2000
         - e2e API tests
 - Boris Cherny
-    - autor Claude Code, preporuke kako koristiti
+    - Author of Claude Code, recommendations on how to use it
     - https://x.com/bcherny/status/2007179832300581177?lang=en
