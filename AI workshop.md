@@ -3,7 +3,7 @@
 - Disclaimer
     - I'm not an expert, just using it 10h a day, so these are my best practices
         - As a non-deterministic system, there is no single best way — you need to adapt it to your process
-- Current status of the team on using AI
+- Input: Team's current AI usage
     - What AI models, IDEs, plugins (Copilot, Claude Code, etc.)
 - Intro
     - Paradigm shift
@@ -51,7 +51,7 @@
         - inline docs
         - debug db
         - …
-- Importance of ./docs and keeping things documented with architectural, technical details, and design decisions
+- Importance of ./docs — keep things documented with architectural details, technical specs, and design decisions
 - MOST IMPORTANT: Feedback loop
     - Debug panel for easy copy-paste
     - Put calls to all test procedures in [CLAUDE.md](http://CLAUDE.md)
@@ -60,26 +60,26 @@
         - The idea is to speed up fetching and re-feeding the prompt with the logs
 - Example of how I assign a task
 - What to be aware of
-    - Model choice: I always use the latest and most powerful. It seems slow for easy tasks, but overall you save time since there are fewer errors and less fighting with it
+    - Model choice: I always use the latest and most powerful. It may seem slow&overkill for simple tasks, but overall you save time since there are fewer errors and less back-and-forth
     - Run 2-3 agents in parallel to speed up development
         - I wouldn't go over that because of mental overload — we are the bottleneck (code review, testing), not AI
     - Divide big features into smaller tasks
-    - Using with Notion for planning and writing tasks
+    - Use Notion for planning and writing tasks
     - When writing prompts, it's important to give context and provide instructions as precisely as possible
         - It doesn't always perform as expected; there are always frustrating behaviors
             - Git commit/checkout/resetting working drafts
             - Ignoring skill commands, e.g., debugLogs, and using console.logs instead
     - It's fine to use broken English and shortcuts to speed up prompts
         - But dictating is on average 3-4x faster, especially for longer prompts
-    - You can literally give everything to AI, even its own instructions, config, and writing prompts for the next prompt
+    - You can literally give everything to AI — even its own instructions, config, and prompts for the next prompt, CLI debugging, devops infrastructure planning/debugging
     - The key is to automate the process pipeline as much as possible
-    - Copy-paste ready and context-aware planning
+    - Copy-paste-ready, context-aware planning
     - Group tasks logically in project management/planning software, like Trello or Notion
         - SHOW my Notion organization
     - Git commit message rules
-    - I read most of the generated code, especially main key decisions and file organization
+    - I read most of the generated code, especially key decisions and file organization
         - But not black-box algorithms — for those, I create Vitest and e2e API tests
-- Present most complex things AI built
+- Showcase the most complex things AI has built
     - Entire NoCode DataBuilder with multiple layouts, views, and filters
         - https://app.bimtly.com/editor/data/3576
     - 3D Studio
