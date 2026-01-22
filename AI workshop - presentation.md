@@ -278,6 +278,8 @@ AI doesn't always perform as expected:
 - Ignoring skill commands (using console.logs instead of debugLogs)
 - Overengineering simple solutions
 
+> Fun fact: "wtf" is my most used word when coding with AI
+
 ---
 
 ## Give AI Everything
