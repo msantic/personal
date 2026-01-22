@@ -17,6 +17,7 @@
             - Naming conventions
             - Consistency with the rest of the codebase
             - And much more
+    - Good & bad: the field moves incredibly fast — if you don't follow for just 1-2 months, you're already behind
 - Agents
 - Copilot vs Claude Code
     - Main differences
@@ -57,6 +58,7 @@
     - Test procedures must support filtering, e.g., running only one file
     - Dedicated debug logs system at platform level, client and server side
         - The idea is to speed up fetching and re-feeding the prompt with the logs
+- Example of how I assign a task
 - What to be aware of
     - Model choice: I always use the latest and most powerful. It seems slow for easy tasks, but overall you save time since there are fewer errors and less fighting with it
     - Run 2-3 agents in parallel to speed up development
