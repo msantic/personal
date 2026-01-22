@@ -1,0 +1,99 @@
+## AI Workshop
+
+- Disclaimer
+    - I’m not an expert just using 10h a day…
+- Current status of the Team on using AI
+    - what AI models, IDE, plugins (Copilot, Claude Code etc.)
+- Intro
+    - Promjena paradigme
+    - Postajemo supervizori
+    - Omogucuje da se fokusiramo na high level arhitekturu
+    - Znacajno smanjuje mentalni zamor
+    - I dalje ima skeptika ali AI je vec pobjedio, treba uzeti najbolje iz dva svijeta i prilagoditi se
+        - nema sanse vise da konkuriramo brzini, akum. znanju, ...
+        - trebamo imati jasnu viziju ali ostaviti otvoren boljoj arhit.
+            - razni patterni
+            - naming
+            - ostatak codebase
+            - puno
+- Agenti
+- Copilot vs Claude Code
+    - Main diffs
+    - Planning mode
+    - Pricing
+    - VS Code plugins diff
+    - Copilot
+        - Pros
+            - Accept vs Revert changes
+            - DnD Images
+            - Better integration with VS Code
+            - Native voice-to-text
+        - Cons
+            - No planning/no native Claude planning
+    - Claude Code
+        - Pros
+            - Native Planning !!!
+            - Far superior coding model, latest Opus 4.5 !!!
+            - Powerful CLI
+                - can you system notifications
+        - Cons
+            - Weaker integration
+            - No DnD images, needs workarounds, c&p image
+            - No native voice-to-text, can use native OS
+- Setup
+    - [CLAUDE.md](http://CLAUDE.md)
+    - permissions, .claude/settings.local.json
+    - Custom PROMPTS.md
+    - Skills
+        - debuglogs
+        - inline docs
+        - debug db
+        - …
+- Importance of ./docs and to keep thing documented with arch. tech. details and design decisions
+- NAJBITNIJE Feedback loop
+    - debug panel for easy cp
+    - staviti u [CLAUDE.md](http://CLAUDE.md) pozive na sve test procedure
+    - test procedure moraju imati podrsku za filter, e.g. samo poziv jednog file
+    - dedicated debug logs system on platform level, client and server side
+      - the idea is to speed up fetching and re-feeding the prompt with the logs
+- What to be aware of
+    - What model, i always use the latest and most powerful, seems slow for easy task but overall you save time since there is less errors and fighting it
+    - Run 2-3 agents in parallel to speed up development
+        - I wouldn’t go over that because of mental overload, we are bottleneck (code review, testing) not AI
+    - Divide a big feature into smaller tasks
+    - Using with Notion, planning and writing tasks,
+    - when writing propmpts important to give context and as much as possible precise instructions
+      - it doesn't always perform as expected, there are always frustrating actions
+        - git commit/checkout/resetting working drafts
+        - ignoring skills commands, e.g. debugLogs and using console.logs instead
+    - its fine to use broken english and shortcuts to speed up prompts
+      - but dictating is in average 3-4x faster specially for longer prompts
+    - you can literally give everything to AI, even its own instructions, config, writing prompts for the next prompt
+    - the key is to automate process pipeline as much as possible
+    - cp ready and context aware planning
+    - Group task logically in project mngt./planning software, like Trello, Notion
+      - SHOW my Notion org
+    
+    - GIT commit message rules
+    - I read most of the generated code or main key decisions, file organization
+        - but not black box algorithms, for them i make vitest, e2e api test
+- Present most complex things AI did
+    - Entire NoCode DataBuilder with multiple layouts, views and filters
+        - https://app.bimtly.com/editor/data/3576
+    - 3D Studio
+        - Explode
+        - XRay
+        - Auto labels with realtime collision detections
+        - https://app.bimtly.com/editor/3d/4657/epoxy-granite-vmc
+    - Refactoring
+    - DevOps
+    - SunSimulator
+        - https://app.bimtly.com/editor/3d/4766/pergolagazebob3-6mx3m-quad
+    - Tests & Docs
+        - Cypress
+            - SHOW
+        - Vitest, ~2000
+        - e2e API tests
+- Boris Cherny
+    - autor Claude Code, preporuke kako koristiti
+    - https://x.com/bcherny/status/2007179832300581177?lang=en
