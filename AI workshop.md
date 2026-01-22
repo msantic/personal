@@ -19,10 +19,15 @@
             - And much more
     - Good & bad: the field moves incredibly fast — if you don't follow for just 1-2 months, you're already behind
 - Agents
+    - What are AI agents and how they differ from chat-based AI
+    - Autonomous task execution
 - Copilot vs Claude Code
     - Main differences
     - Planning mode
     - Pricing
+        - Subscription tiers
+        - Token usage and API costs
+        - Cost vs productivity trade-off
     - VS Code plugin differences
     - Copilot
         - Pros
@@ -53,10 +58,10 @@
         - …
 - Importance of ./docs — keep things documented with architectural details, technical specs, and design decisions
 - MOST IMPORTANT: Feedback loop
-    - Debug panel for easy copy-paste
     - Put calls to all test procedures in [CLAUDE.md](http://CLAUDE.md)
     - Test procedures must support filtering, e.g., running only one file
     - Dedicated debug logs system at platform level, client and server side
+        - for easy copy-paste
         - The idea is to speed up fetching and re-feeding the prompt with the logs
 - Example of how I assign a task
 - What to be aware of
@@ -96,6 +101,24 @@
             - SHOW
         - Vitest, ~2000
         - e2e API tests
-- Boris Cherny
+- Security & Privacy
+    - Never share API keys, secrets, or credentials
+    - Be cautious with sensitive customer data
+    - AI can introduce security vulnerabilities — always review security-critical code
+    - Establish a company policy on AI usage
+- When NOT to use AI
+    - Very small/obvious changes — faster to do yourself
+    - When you need deep understanding (learning a new framework)
+    - When explaining context would take longer than doing it
+- Common mistakes / Anti-patterns
+    - Blindly accepting code without understanding
+    - Not verifying output compiles/runs before moving on
+    - Giving too little context
+    - Giving too much conflicting context
+- Code review with AI
+    - Use AI to review PRs and catch issues
+    - Have AI explain legacy or unfamiliar code
+- Worth following: Boris Cherny
     - Author of Claude Code, recommendations on how to use it
     - https://x.com/bcherny/status/2007179832300581177?lang=en
+- Q&A / Discussion
