@@ -6,8 +6,7 @@ export default function Header() {
   return (
     <div className="header">
       <div className="logo">
-        <div className="logo-icon">B</div>
-        <div className="logo-text">{t('header.logoText')}</div>
+        <img src="/assets/LOGO + BIMTLY - white.svg" alt="BIMTLY" className="logo-img" />
       </div>
       <div className="tagline">{t('header.tagline')}</div>
     </div>

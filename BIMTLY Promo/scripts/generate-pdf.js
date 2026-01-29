@@ -15,12 +15,13 @@ if (!existsSync(outputDir)) {
 
 const routes = {
   flyer: { path: '/flyer', filename: 'flyer-en.pdf' },
+  'flyer-v2': { path: '/flyer-v2', filename: 'flyer-v2-en.pdf' },
   deck: { path: '/pitch-deck', filename: 'pitch-deck-en.pdf' }
 }
 
 async function startDevServer() {
   return new Promise((resolve, reject) => {
-    const server = spawn('npm', ['run', 'dev', '--', '--port', '5199'], {
+    const server = spawn('npm', ['run', 'dev', '--', '--port', '5173'], {
       cwd: rootDir,
       stdio: ['pipe', 'pipe', 'pipe'],
       shell: true
@@ -55,7 +56,7 @@ async function startDevServer() {
 async function generatePDF(browser, route, filename) {
   const page = await browser.newPage()
 
-  await page.goto(`http://localhost:5199${route}`, {
+  await page.goto(`http://localhost:5173${route}`, {
     waitUntil: 'networkidle0'
   })
 
@@ -81,7 +82,7 @@ async function main() {
 
   console.log('Starting dev server...')
   const server = await startDevServer()
-  console.log('Dev server started on port 5199')
+  console.log('Dev server started on port 5173')
 
   try {
     const browser = await puppeteer.launch({

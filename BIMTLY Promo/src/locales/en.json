@@ -15,7 +15,7 @@
     "subtitle": "Bridge the gap between physical products and their digital information—making products easier to sell, assets easier to manage, and projects easier to document."
   },
   "pillars": {
-    "sectionLabel": "Five Unified Pillars",
+    "sectionLabel": "Four Unified Pillars",
     "items": [
       { "icon": "D", "title": "Drive", "desc": "Cloud file management" },
       { "icon": "DB", "title": "Data Builder", "desc": "Structured collections" },

@@ -73,27 +73,11 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
-.logo-icon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 20px;
-  color: white;
-}
-
-.logo-text {
-  font-size: 28px;
-  font-weight: 800;
-  color: white;
-  letter-spacing: -0.5px;
+.logo-img {
+  height: 40px;
+  width: auto;
 }
 
 .tagline {
