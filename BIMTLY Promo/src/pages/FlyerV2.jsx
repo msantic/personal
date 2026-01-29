@@ -4,6 +4,7 @@ export default function FlyerV2() {
   return (
     <div className="flyer-v2">
       <div className="accent-line" />
+      <div className="grid-pattern" />
 
       <div className="content">
         {/* Header */}
@@ -85,7 +86,7 @@ export default function FlyerV2() {
         </section>
 
         {/* Social Proof */}
-        <section className="proof">
+        {/* <section className="proof">
           <div className="proof-item">
             <span className="proof-number">€50-500</span>
             <span className="proof-label">/month vs €50k+ custom dev</span>
@@ -98,7 +99,7 @@ export default function FlyerV2() {
             <span className="proof-number">No Code</span>
             <span className="proof-label">Your team manages it</span>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA */}
         <section className="cta">
