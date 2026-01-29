@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Mail, Globe } from 'lucide-react'
 
 export default function CTASection() {
   const { t } = useTranslation()
@@ -12,11 +13,11 @@ export default function CTASection() {
       </div>
       <div className="contact-info">
         <div className="contact-item">
-          <span>✉</span>
+          <Mail size={14} />
           <strong>{t('contact.email')}</strong>
         </div>
         <div className="contact-item">
-          <span>🌐</span>
+          <Globe size={14} />
           <strong>{t('contact.website')}</strong>
         </div>
       </div>

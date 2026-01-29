@@ -256,7 +256,7 @@
 
 .feature {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
   padding: 12px;
   background: rgba(255,255,255,0.03);
@@ -352,5 +352,5 @@
   margin-top: 20px;
   text-align: center;
   font-size: 10px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.4);
 }
