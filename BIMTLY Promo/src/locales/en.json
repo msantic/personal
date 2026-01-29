@@ -20,8 +20,7 @@
       { "icon": "D", "title": "Drive", "desc": "Cloud file management" },
       { "icon": "DB", "title": "Data Builder", "desc": "Structured collections" },
       { "icon": "WB", "title": "Web Builder", "desc": "No-code websites" },
-      { "icon": "3D", "title": "3D Studio", "desc": "Browser visualization" },
-      { "icon": "DE", "title": "Doc Editor", "desc": "Annotations & markup" }
+      { "icon": "3D", "title": "3D Studio", "desc": "Browser visualization" }
     ]
   },
   "benefits": {
@@ -44,10 +43,10 @@
   "cta": {
     "title": "Ready to Transform Your Business?",
     "primaryButton": "Schedule a Demo",
-    "secondaryButton": "Learn More"
+    "secondaryButton": "+385 569 604"
   },
   "contact": {
-    "email": "hello@bimtly.com",
+    "email": "info@bimtly.com",
     "website": "bimtly.com"
   },
   "footer": {

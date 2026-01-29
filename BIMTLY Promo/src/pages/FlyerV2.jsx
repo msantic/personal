@@ -85,22 +85,6 @@ export default function FlyerV2() {
           </div>
         </section>
 
-        {/* Social Proof */}
-        {/* <section className="proof">
-          <div className="proof-item">
-            <span className="proof-number">€50-500</span>
-            <span className="proof-label">/month vs €50k+ custom dev</span>
-          </div>
-          <div className="proof-item">
-            <span className="proof-number">3000+</span>
-            <span className="proof-label">integrations (Slack, SAP, CMS...)</span>
-          </div>
-          <div className="proof-item">
-            <span className="proof-number">No Code</span>
-            <span className="proof-label">Your team manages it</span>
-          </div>
-        </section> */}
-
         {/* CTA */}
         <section className="cta">
           <h2 className="cta-title">See It In Action</h2>
