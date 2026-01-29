@@ -192,12 +192,13 @@ Designed to connect your online catalog, technical documentation and sales chann
 
 ## Brand Guidelines
 
-### Visual Identity
-- **Primary colors:** Indigo (#6366f1), Purple (#8b5cf6), Violet (#a855f7)
-- **Background:** Dark gradients (#0a0a0f → #1a1a2e → #16213e)
-- **Accent:** Green for checkmarks/success (#10b981)
-- **Typography:** Inter font family (weights 300-800)
-- **Style:** Modern, premium, tech-forward with subtle glassmorphism effects
+See **[context/design-rules.md](context/design-rules.md)** for detailed design specifications including:
+- Logo assets and usage
+- Color system (primary: `#2563EB`)
+- Dark/light theme modes
+- Typography (Inter font)
+- Component patterns
+- Do's and Don'ts
 
 ### Tone of Voice
 - **Professional but approachable** — not corporate stiff
