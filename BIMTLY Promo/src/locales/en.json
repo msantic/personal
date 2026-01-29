@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "lang": "en",
+    "dir": "ltr"
+  },
+  "header": {
+    "logoText": "BIMTLY",
+    "tagline": "Unified Platform"
+  },
+  "hero": {
+    "badge": "PIM + 3D + Web",
+    "titlePrefix": "The",
+    "titleHighlight": "Unified Platform",
+    "titleSuffix": "for Managing Physical Products & Assets",
+    "subtitle": "Bridge the gap between physical products and their digital information—making products easier to sell, assets easier to manage, and projects easier to document."
+  },
+  "pillars": {
+    "sectionLabel": "Five Unified Pillars",
+    "items": [
+      { "icon": "D", "title": "Drive", "desc": "Cloud file management" },
+      { "icon": "DB", "title": "Data Builder", "desc": "Structured collections" },
+      { "icon": "WB", "title": "Web Builder", "desc": "No-code websites" },
+      { "icon": "3D", "title": "3D Studio", "desc": "Browser visualization" },
+      { "icon": "DE", "title": "Doc Editor", "desc": "Annotations & markup" }
+    ]
+  },
+  "benefits": {
+    "items": [
+      { "emoji": "💼", "title": "Products", "action": "Easier to SELL" },
+      { "emoji": "🛠️", "title": "Assets", "action": "Easier to MANAGE" },
+      { "emoji": "📝", "title": "Projects", "action": "Easier to DOCUMENT" }
+    ]
+  },
+  "features": {
+    "items": [
+      "Interactive 3D product configurators",
+      "Real-time data synchronization",
+      "No-code website builder",
+      "Asset management & tracking",
+      "Document annotation & markup",
+      "Construction documentation"
+    ]
+  },
+  "cta": {
+    "title": "Ready to Transform Your Business?",
+    "primaryButton": "Schedule a Demo",
+    "secondaryButton": "Learn More"
+  },
+  "contact": {
+    "email": "hello@bimtly.com",
+    "website": "bimtly.com"
+  },
+  "footer": {
+    "copyright": "© 2025 BIMTLY. All rights reserved."
+  }
+}
