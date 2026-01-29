@@ -8,6 +8,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = join(__dirname, '..')
 const outputDir = join(rootDir, 'output')
 
+// Use different port than npm run dev (5173)
+const PDF_PORT = 5174
+
 // Ensure output directory exists
 if (!existsSync(outputDir)) {
   mkdirSync(outputDir, { recursive: true })
@@ -21,10 +24,12 @@ const routes = {
 
 async function startDevServer() {
   return new Promise((resolve, reject) => {
-    const server = spawn('npm', ['run', 'dev', '--', '--port', '5173'], {
+    const server = spawn('npx', ['vite', 'dev', '--port', String(PDF_PORT)], {
+      env: { ...process.env, BROWSER: 'none' },
       cwd: rootDir,
       stdio: ['pipe', 'pipe', 'pipe'],
-      shell: true
+      shell: true,
+      detached: false
     })
 
     let started = false
@@ -33,17 +38,16 @@ async function startDevServer() {
       const output = data.toString()
       if (output.includes('Local:') && !started) {
         started = true
-        setTimeout(() => resolve(server), 1000) // Give it a moment to stabilize
+        setTimeout(() => resolve(server), 500)
       }
     })
 
-    server.stderr.on('data', (data) => {
-      console.error('Server error:', data.toString())
+    server.stderr.on('data', () => {
+      // Ignore stderr
     })
 
     server.on('error', reject)
 
-    // Timeout after 30 seconds
     setTimeout(() => {
       if (!started) {
         server.kill()
@@ -56,11 +60,10 @@ async function startDevServer() {
 async function generatePDF(browser, route, filename) {
   const page = await browser.newPage()
 
-  await page.goto(`http://localhost:5173${route}`, {
+  await page.goto(`http://localhost:${PDF_PORT}${route}`, {
     waitUntil: 'networkidle0'
   })
 
-  // Wait for fonts to load
   await page.evaluateHandle('document.fonts.ready')
 
   const outputPath = join(outputDir, filename)
@@ -80,9 +83,9 @@ async function main() {
   const args = process.argv.slice(2)
   const target = args[0] || 'all'
 
-  console.log('Starting dev server...')
+  console.log(`Starting dev server on port ${PDF_PORT}...`)
   const server = await startDevServer()
-  console.log('Dev server started on port 5173')
+  console.log(`Dev server ready`)
 
   try {
     const browser = await puppeteer.launch({
@@ -98,12 +101,12 @@ async function main() {
       await generatePDF(browser, routes[target].path, routes[target].filename)
     } else {
       console.error(`Unknown target: ${target}`)
-      console.log('Available targets: flyer, deck, all')
+      console.log('Available targets: flyer, flyer-v2, deck, all')
     }
 
     await browser.close()
   } finally {
-    server.kill()
+    server.kill('SIGTERM')
     console.log('Done!')
   }
 }
