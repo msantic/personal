@@ -45,8 +45,10 @@ const features = [
 ]
 
 export default function PlatformDiagram() {
-  const centerX = 250
-  const centerY = 250
+  // Coordinate system - viewSize includes margin for labels
+  const viewSize = 550
+  const centerX = viewSize / 2
+  const centerY = viewSize / 2
   const orbitRadius = 145
   const labelRadius = 235 // Labels positioned further out
 
@@ -60,7 +62,7 @@ export default function PlatformDiagram() {
 
   return (
     <div className="platform-diagram">
-      <svg className="diagram-svg" viewBox="0 0 500 500">
+      <svg className="diagram-svg" viewBox={`0 0 ${viewSize} ${viewSize}`}>
         {/* Radiating pulse wave from center */}
         <circle cx={centerX} cy={centerY} r="65" className="pulse-wave" />
 
@@ -123,8 +125,8 @@ export default function PlatformDiagram() {
             <div
               className="feature-icon-wrapper"
               style={{
-                left: `${(iconPos.x / 500) * 100}%`,
-                top: `${(iconPos.y / 500) * 100}%`,
+                left: `${(iconPos.x / viewSize) * 100}%`,
+                top: `${(iconPos.y / viewSize) * 100}%`,
                 animationDelay: `${1.4 + index * 0.15}s, ${3 + index * 4}s`,
               }}
             >
@@ -135,8 +137,8 @@ export default function PlatformDiagram() {
             <div
               className="feature-label"
               style={{
-                left: `${(labelPos.x / 500) * 100}%`,
-                top: `${(labelPos.y / 500) * 100}%`,
+                left: `${(labelPos.x / viewSize) * 100}%`,
+                top: `${(labelPos.y / viewSize) * 100}%`,
                 animationDelay: `${1.7 + index * 0.15}s`,
               }}
             >

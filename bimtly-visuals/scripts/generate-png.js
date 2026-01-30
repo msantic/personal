@@ -95,7 +95,13 @@ async function generatePNG(browser, config) {
         animation-fill-mode: forwards !important;
         transition-duration: 0s !important;
       }
+      /* Digital Connectivity elements */
       .connection-path, .connection-dot, .corner-3d-image {
+        opacity: 1 !important;
+      }
+      /* Platform Diagram elements */
+      .pulse-wave, .orbit-ring, .connection-line, .connector-dot,
+      .center-node, .feature-icon-wrapper, .feature-label {
         opacity: 1 !important;
       }
     `
