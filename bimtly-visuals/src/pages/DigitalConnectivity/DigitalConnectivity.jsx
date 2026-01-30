@@ -14,6 +14,7 @@ import {
   Layout,
 } from 'lucide-react'
 import houseImage from './assets/drive.png'
+import house3dImage from './assets/house3d.png'
 
 const inputs = [
   { id: '3d', label: '3D models', icon: Box, highlighted: true },
@@ -244,6 +245,13 @@ export default function DigitalConnectivity({ centerImage = null }) {
             </div>
           ))}
         </div>
+
+        {/* 3D house image - bottom right */}
+        <img
+          src={house3dImage}
+          alt="3D house visualization"
+          className="corner-3d-image"
+        />
       </div>
     </div>
   )

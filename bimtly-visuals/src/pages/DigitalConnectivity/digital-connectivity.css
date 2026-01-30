@@ -277,6 +277,36 @@
   }
 }
 
+/* Radiant wave effect */
+.platform-circle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 99, 235, 0.4);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  animation: platformWave 5s ease-out 2s infinite;
+}
+
+@keyframes platformWave {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
 .platform-title {
   font-size: 17px;
   font-weight: 700;
@@ -484,6 +514,39 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+/* 3D house image - bottom right corner */
+.corner-3d-image {
+  position: absolute;
+  right: 30%;
+  bottom: 23%;
+  width: 320px;
+  height: auto;
+  z-index: 5;
+  animation: corner3dFadeIn 0.5s ease-out 1.2s backwards, corner3dPulse 4s ease-in-out 1.7s infinite;
+}
+
+@keyframes corner3dFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes corner3dPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+  }
+}
+
 /* Responsive: Tablet */
 @media (max-width: 1024px) {
   .connectivity-title {
@@ -602,6 +665,10 @@
 
   .tool-letter {
     font-size: 10px;
+  }
+
+  .corner-3d-image {
+    display: none;
   }
 }
 
