@@ -206,6 +206,13 @@ See **[context/design-rules.md](context/design-rules.md)** for detailed design s
 - Component patterns
 - Do's and Don'ts
 
+See **[context/VISUAL MANIFESTO.md](context/VISUAL%20MANIFESTO.md)** for AI image generation and visual style guide:
+- Core visual philosophy (documentary-style, professional)
+- Global prompt base for all image generation
+- Prompt packs by use case (website, features, sales, social)
+- Vertical modifiers (manufacturing, construction, asset management)
+- Hard no list (what to avoid)
+
 ### Tone of Voice
 - **Professional but approachable** — not corporate stiff
 - **Confident, not aggressive** — we solve problems, not hype
