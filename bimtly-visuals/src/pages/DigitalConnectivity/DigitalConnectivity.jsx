@@ -47,14 +47,14 @@ const toolLogos = [
 export default function DigitalConnectivity({ centerImage = null }) {
   // Fixed viewBox dimensions for consistent positioning
   const viewWidth = 1000
-  const viewHeight = 600
+  const viewHeight = 500
 
   // Center point (where platform circle is)
   const centerX = viewWidth / 2
   const centerY = viewHeight / 2
 
   // Input positions (left side) - tighter spacing
-  const inputX = 160 // X position for dots (right of input boxes)
+  const inputX = 180 // X position for dots (right of input boxes)
   const inputItemSpacing = 48 // Pixels between items
   const inputTotalHeight = (inputs.length - 1) * inputItemSpacing
   const inputStartY = (viewHeight - inputTotalHeight) / 2
