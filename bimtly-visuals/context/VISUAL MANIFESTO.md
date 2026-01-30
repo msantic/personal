@@ -1,198 +1,221 @@
-BIMTLY
-Unified Visual & Prompt System
+# BIMTLY Visual Manifesto
 
-(Internal brand + AI generation guide)
+**Unified Visual & Prompt System** — Internal brand + AI generation guide
 
-You can literally drop this into Notion / Google Docs as-is.
+---
 
-PART 1 — BIMTLY CORE VISUAL MANIFESTO (1-page)
-The BIMTLY Visual Truth
+## Part 1: Core Visual Manifesto
 
-BIMTLY visualizes clarity in complex physical systems.
+### The BIMTLY Visual Truth
+
+> BIMTLY visualizes clarity in complex physical systems.
 
 Everything we generate must feel:
+- Grounded in reality
+- Calm under complexity
+- Built for professionals, not hype
 
-grounded in reality
+**We are not selling software. We are selling control over physical complexity.**
 
-calm under complexity
+### Brand Energy
 
-built for professionals, not hype
+| Axis | Where BIMTLY Lives |
+|------|-------------------|
+| Loud ← → Quiet | Quiet confidence |
+| Abstract ← → Concrete | Concrete, real-world |
+| Flashy ← → Useful | Useful, functional |
+| Marketing ← → Documentary | Documentary |
 
-We are not selling software.
-We are selling control over physical complexity.
+- If an image feels like marketing → **NO**
+- If it feels like real work → **YES**
 
-Brand Energy
-Axis	Where BIMTLY Lives
-Loud ← → Quiet	Quiet confidence
-Abstract ← → Concrete	Concrete, real-world
-Flashy ← → Useful	Useful, functional
-Marketing ← → Documentary	Documentary
-
-If an image feels like marketing → ❌
-If it feels like real work → ✅
-
-Human Role
+### Human Role
 
 Humans are:
+- Users, not models
+- Thinking, not posing
+- Collaborating, not performing
 
-users, not models
+**The product is always the hero.** Humans give scale, trust, and context.
 
-thinking, not posing
-
-collaborating, not performing
-
-The product is always the hero.
-Humans give scale, trust, and context.
-
-Visual Rule of Three
+### Visual Rule of Three
 
 Every BIMTLY image should clearly show at least 2 of 3:
 
-People (professional, focused)
-
-Product (screens, 3D, data)
-
-Physical context (materials, space, industry)
+1. **People** — professional, focused
+2. **Product** — screens, 3D, data
+3. **Physical context** — materials, space, industry
 
 If it shows only 1 → too abstract.
 
-PART 2 — GLOBAL PROMPT BASE (ALWAYS INCLUDED)
+---
 
-This block goes into every prompt, always.
+## Part 2: Global Prompt Base
 
-Candid, documentary-style photography. Calm, confident professionals working with real digital tools to manage complex physical products or assets. Modern industrial workspace, natural daylight, exposed materials, neutral color palette. The mood is focused, human, and quietly powerful—technical but approachable. No corporate clichés, no staged poses, no hype.
+**Always include this block in every prompt:**
 
-You build everything on top of this.
+```
+Candid, documentary-style photography. Calm, confident professionals working
+with real digital tools to manage complex physical products or assets. Modern
+industrial workspace, natural daylight, exposed materials, neutral color palette.
+The mood is focused, human, and quietly powerful—technical but approachable.
+No corporate clichés, no staged poses, no hype.
+```
 
-PART 3 — PROMPT PACKS BY USE CASE
-A) WEBSITE HERO IMAGES
-Hero Prompt 01 — “Control the Complexity”
+Build everything on top of this.
 
-A wide, calm shot of professionals in a modern industrial workspace reviewing a complex physical product through a 3D interface on a large screen. One person points at a detailed model while others discuss options. The interface shows structured data, parts, and configuration logic. Natural daylight, exposed brick and concrete, neutral tones, realistic materials. Documentary-style, confident, composed.
+---
 
-Use for:
-Homepage hero, platform overview
+## Part 3: Prompt Packs by Use Case
 
-Hero Prompt 02 — “From Physical to Digital”
+### A) Website Hero Images
 
-A professional workspace where physical product samples sit on a table next to a screen displaying their digital twin in a structured 3D interface. People are calmly discussing how physical components connect to digital data. Muted colors, industrial textures, natural light, editorial photography style.
+#### Hero 01 — "Control the Complexity"
 
-Use for:
-Vision pages, “What is BIMTLY?”
+```
+A wide, calm shot of professionals in a modern industrial workspace reviewing
+a complex physical product through a 3D interface on a large screen. One person
+points at a detailed model while others discuss options. The interface shows
+structured data, parts, and configuration logic. Natural daylight, exposed brick
+and concrete, neutral tones, realistic materials. Documentary-style, confident, composed.
+```
 
-B) PRODUCT / FEATURE PAGES
-3D Studio Feature
+**Use for:** Homepage hero, platform overview
 
-A focused moment showing a professional using a browser-based 3D editor to inspect a real industrial component. Cross-sections, measurements, and data panels are visible on screen. The environment is calm and modern, with natural daylight and minimal distractions. The person is concentrated, not posing.
+#### Hero 02 — "From Physical to Digital"
 
-Data Builder / Structured Data
+```
+A professional workspace where physical product samples sit on a table next to
+a screen displaying their digital twin in a structured 3D interface. People are
+calmly discussing how physical components connect to digital data. Muted colors,
+industrial textures, natural light, editorial photography style.
+```
 
-A professional reviewing structured product data connected to a 3D model on a large monitor. Tables, attributes, and linked assets are visible. The space feels architectural and organized. The mood is clarity, order, and control.
+**Use for:** Vision pages, "What is BIMTLY?"
 
-Web Builder / Publishing
+### B) Product / Feature Pages
 
-A calm collaborative moment where professionals review a published product portal on screen—showing interactive 3D, pricing, and documentation. The focus is on how data becomes presentation. Documentary style, neutral palette.
+#### 3D Studio Feature
 
-C) SALES & PITCH DECK VISUALS
-Sales Slide — “Old Way vs New Way”
+```
+A focused moment showing a professional using a browser-based 3D editor to inspect
+a real industrial component. Cross-sections, measurements, and data panels are
+visible on screen. The environment is calm and modern, with natural daylight and
+minimal distractions. The person is concentrated, not posing.
+```
 
-A subtle contrast scene: one side shows printed drawings and scattered documents on a table, the other shows a single screen with a clean, connected 3D platform. Professionals naturally gravitate toward the digital solution. No dramatization, calm realism.
+#### Data Builder / Structured Data
 
-Decision Maker Focus
+```
+A professional reviewing structured product data connected to a 3D model on a
+large monitor. Tables, attributes, and linked assets are visible. The space feels
+architectural and organized. The mood is clarity, order, and control.
+```
 
-A composed professional reviewing a complex product configuration on a screen, alone or with one colleague. The mood is thoughtful and decisive. The environment feels executive but practical—no luxury, no corporate flash.
+#### Web Builder / Publishing
 
-D) SOCIAL / CONTENT MARKETING
-Behind-the-Scenes
+```
+A calm collaborative moment where professionals review a published product portal
+on screen—showing interactive 3D, pricing, and documentation. The focus is on how
+data becomes presentation. Documentary style, neutral palette.
+```
 
-A candid behind-the-scenes moment of professionals discussing product data and 3D models in a relaxed industrial workspace. Coffee cups, sketches, screens visible. Feels real, unstaged, human.
+### C) Sales & Pitch Deck Visuals
 
-Thought Leadership Visual
+#### "Old Way vs New Way"
 
-A calm workspace with a professional reviewing a complex digital model alone. Quiet focus, no interaction. Emphasizes expertise and depth.
+```
+A subtle contrast scene: one side shows printed drawings and scattered documents
+on a table, the other shows a single screen with a clean, connected 3D platform.
+Professionals naturally gravitate toward the digital solution. No dramatization,
+calm realism.
+```
 
-PART 4 — SUB-VIBES BY VERTICAL
+#### Decision Maker Focus
+
+```
+A composed professional reviewing a complex product configuration on a screen,
+alone or with one colleague. The mood is thoughtful and decisive. The environment
+feels executive but practical—no luxury, no corporate flash.
+```
+
+### D) Social / Content Marketing
+
+#### Behind-the-Scenes
+
+```
+A candid behind-the-scenes moment of professionals discussing product data and
+3D models in a relaxed industrial workspace. Coffee cups, sketches, screens visible.
+Feels real, unstaged, human.
+```
+
+#### Thought Leadership Visual
+
+```
+A calm workspace with a professional reviewing a complex digital model alone.
+Quiet focus, no interaction. Emphasizes expertise and depth.
+```
+
+---
+
+## Part 4: Sub-Vibes by Vertical
 
 Use these add-on modifiers depending on the target audience.
 
-1️⃣ Manufacturing / Product Visualization
+### 1. Manufacturing / Product Visualization
 
-Add to prompt:
+**Add to prompt:**
+- "precision-engineered components"
+- "manufactured systems"
+- "product variants and options"
+- "industrial materials"
 
-“precision-engineered components”
+**Emotional tone:** Precision, reliability, scalability
 
-“manufactured systems”
+### 2. Construction / BIM / Documentation
 
-“product variants and options”
+**Add to prompt:**
+- "drawings and site documentation"
+- "construction context"
+- "field photos and annotations"
+- "project coordination"
 
-“industrial materials”
+**Emotional tone:** Trust, accountability, traceability
 
-Emotional tone:
-Precision, reliability, scalability
+### 3. Asset & Facility Management
 
-2️⃣ Construction / BIM / Documentation
+**Add to prompt:**
+- "equipment tracking"
+- "maintenance records"
+- "facility dashboards"
+- "long-term asset lifecycle"
 
-Add to prompt:
+**Emotional tone:** Stability, continuity, control over time
 
-“drawings and site documentation”
+---
 
-“construction context”
+## Part 5: Hard No List
 
-“field photos and annotations”
+**Never allow prompts that include:**
+- "celebrating success"
+- "high energy startup"
+- "futuristic glowing UI"
+- "diverse smiling team stock photo"
+- "corporate boardroom"
+- "marketing hero pose"
 
-“project coordination”
+| If it feels like... | Result |
+|---------------------|--------|
+| "We're selling software" | **Wrong** |
+| "We're solving real operational problems" | **Right** |
 
-Emotional tone:
-Trust, accountability, traceability
+---
 
-3️⃣ Asset & Facility Management
+## Part 6: Quality Check
 
-Add to prompt:
+Before approving any image, ask:
 
-“equipment tracking”
+> **Does this look like something a serious manufacturer, architect, or facility manager would trust?**
 
-“maintenance records”
-
-“facility dashboards”
-
-“long-term asset lifecycle”
-
-Emotional tone:
-Stability, continuity, control over time
-
-PART 5 — HARD NO LIST (IMPORTANT)
-
-Never allow prompts that include:
-
-“celebrating success”
-
-“high energy startup”
-
-“futuristic glowing UI”
-
-“diverse smiling team stock photo”
-
-“corporate boardroom”
-
-“marketing hero pose”
-
-If it feels like:
-
-“We’re selling software”
-
-It’s wrong.
-
-If it feels like:
-
-“We’re solving real operational problems”
-
-It’s right.
-
-PART 6 — ONE-LINE INTERNAL CHECK
-
-Before approving any image:
-
-Does this look like something a serious manufacturer, architect, or facility manager would trust?
-
-If yes → ship it
-If no → regenerate
+- If yes → ship it
+- If no → regenerate

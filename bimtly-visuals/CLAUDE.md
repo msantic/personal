@@ -240,10 +240,11 @@ See **[context/design-rules.md](context/design-rules.md)** for detailed design s
 ```
 src/
 ├── pages/              # Self-contained page folders
-│   ├── Flyer/          # Flyer page with components
-│   ├── FlyerV2/        # FlyerV2 page (self-contained)
-│   ├── PitchDeck/      # Pitch deck placeholder
-│   └── PlatformDiagram/ # Platform diagram with docs
+│   ├── Home/           # Index page with route listing (/)
+│   ├── Flyer/          # Flyer page with components (/flyer)
+│   ├── FlyerV2/        # FlyerV2 page (/flyer-v2)
+│   ├── PitchDeck/      # Pitch deck placeholder (/pitch-deck)
+│   └── PlatformDiagram/ # Platform diagram with docs (/platform)
 ├── locales/            # Translation files (en.json, etc.)
 ├── global.css          # Global styles
 scripts/
