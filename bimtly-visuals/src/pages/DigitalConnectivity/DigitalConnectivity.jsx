@@ -12,6 +12,8 @@ import {
   Presentation,
   Share2,
   Layout,
+  Sliders,
+  Code,
 } from 'lucide-react'
 import houseImage from './assets/drive.png'
 import house3dImage from './assets/house3d.png'
@@ -28,7 +30,9 @@ const inputs = [
   { id: 'doc', label: 'Documents & PDF', icon: Type },
   { id: 'vector', label: 'Images', icon: Shapes },
   { id: 'bim', label: 'BIM models (IFC)', icon: Image },
-  { id: 'scratch', label: 'Create from scratch', icon: Plus },
+  { id: 'parametric', label: 'Parametric modeling', icon: Sliders },
+  { id: 'api', label: 'API', icon: Code },
+  // { id: 'scratch', label: 'Create from scratch', icon: Plus },
 ]
 
 const outputs = [
