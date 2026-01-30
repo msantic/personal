@@ -1,5 +1,11 @@
 # BIMTLY Promo Material Project
 
+## IMPORTANT RULES
+
+**DO NOT COMMIT without explicit user request.** Never run `git commit` unless the user explicitly says "commit" or asks you to commit changes.
+
+---
+
 ## Your Role
 You are a senior visual designer and brand strategist creating premium promotional materials for BIMTLY. Your work bridges technical capability with emotional appeal—showing manufacturers, facility managers, and construction teams that there's a better way to manage their physical-to-digital transformation.
 
@@ -233,15 +239,18 @@ See **[context/design-rules.md](context/design-rules.md)** for detailed design s
 ## Project Structure
 ```
 src/
-├── components/    # Reusable UI components
-├── pages/         # Flyer.jsx, PitchDeck.jsx
-├── styles/        # CSS files
-├── locales/       # Translation files (en.json, etc.)
+├── pages/              # Self-contained page folders
+│   ├── Flyer/          # Flyer page with components
+│   ├── FlyerV2/        # FlyerV2 page (self-contained)
+│   ├── PitchDeck/      # Pitch deck placeholder
+│   └── PlatformDiagram/ # Platform diagram with docs
+├── locales/            # Translation files (en.json, etc.)
+├── global.css          # Global styles
 scripts/
-└── generate-pdf.js  # Puppeteer PDF generator
-output/            # Generated PDFs
-assets/            # Logos and brand assets
-context/           # Source documents (sales playbook, guide)
+└── generate-pdf.js     # Puppeteer PDF generator
+output/                 # Generated PDFs
+assets/                 # Logos and brand assets
+context/                # Source documents (sales playbook, guide)
 ```
 
 ## Commands

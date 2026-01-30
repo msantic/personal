@@ -1,5 +1,3 @@
-import '../styles/flyer.css'
-
 export default function PitchDeck() {
   return (
     <div style={{ padding: '40px', color: 'white', textAlign: 'center' }}>

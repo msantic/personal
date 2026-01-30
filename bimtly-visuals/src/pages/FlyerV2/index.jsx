@@ -1,4 +1,4 @@
-import '../styles/flyer-v2.css'
+import './flyer-v2.css'
 
 export default function FlyerV2() {
   return (

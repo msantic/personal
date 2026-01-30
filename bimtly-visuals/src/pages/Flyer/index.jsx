@@ -1,11 +1,11 @@
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import Pillars from '../components/Pillars'
-import Benefits from '../components/Benefits'
-import Features from '../components/Features'
-import CTASection from '../components/CTASection'
-import Footer from '../components/Footer'
-import '../styles/flyer.css'
+import Header from './Header'
+import Hero from './Hero'
+import Pillars from './Pillars'
+import Benefits from './Benefits'
+import Features from './Features'
+import CTASection from './CTASection'
+import Footer from './Footer'
+import './flyer.css'
 
 export default function Flyer() {
   return (
