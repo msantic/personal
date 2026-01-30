@@ -18,9 +18,9 @@ import houseImage from './assets/drive.png'
 const inputs = [
   { id: '3d', label: '3D models', icon: Box, highlighted: true },
   { id: 'cad', label: 'Technical drawings', icon: FileText },
+  { id: 'doc', label: 'Documents & PDF', icon: Type },
   { id: 'vector', label: 'Images', icon: Shapes },
   { id: 'bim', label: 'BIM models (IFC)', icon: Image },
-  { id: 'doc', label: 'Documents & PDF', icon: Type },
   { id: 'scratch', label: 'Create from scratch', icon: Plus },
 ]
 
