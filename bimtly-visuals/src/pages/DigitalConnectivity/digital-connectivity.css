@@ -141,11 +141,9 @@
 @keyframes dotFadeIn {
   0% {
     opacity: 0;
-    transform: scale(0);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -277,14 +275,14 @@
   max-width: 380px;
 }
 
-/* Platform circle - absolutely centered over diagram */
+/* Platform circle - positioned relative to mockup */
 .platform-circle {
   position: absolute;
-  left: 44%;
-  top: 30%;
-  transform: translate(-50%, -50%);
-  width: 110px;
-  height: 110px;
+  left: 18%;
+  top: -25%;
+  transform: translate(0, 0);
+  width: 90px;
+  height: 90px;
   background: linear-gradient(180deg, #2563EB 0%, #1d4ed8 100%);
   border-radius: 50%;
   display: flex;
@@ -300,25 +298,25 @@
 @keyframes platformAppear {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: scale(0.5);
   }
   60% {
-    transform: translate(-50%, -50%) scale(1.05);
+    transform: scale(1.05);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes platformPulse {
   0%, 100% {
     box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
   50% {
     box-shadow: 0 12px 40px rgba(37, 99, 235, 0.4), 0 0 0 8px rgba(37, 99, 235, 0.08);
-    transform: translate(-50%, -50%) scale(1.02);
+    transform: scale(1.02);
   }
 }
 
@@ -399,6 +397,7 @@
 
 /* Center image placeholder */
 .center-image-container {
+  position: relative;
   width: 100%;
   animation: imageContainerFadeIn 0.5s ease-out 0.4s backwards;
 }
@@ -546,7 +545,7 @@
 /* Tool logos strip - far right, outside diagram */
 .tool-logos {
   position: absolute;
-  right: -7%;
+  right: -4%;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -590,12 +589,12 @@
   object-fit: contain;
 }
 
-/* 3D house image - bottom right corner */
+/* 3D house image - positioned relative to mockup container */
 .corner-3d-image {
   position: absolute;
-  right: 30%;
-  bottom: 18%;
-  width: 320px;
+  right: -10%;
+  bottom: -20%;
+  width: 60%;
   height: auto;
   z-index: 5;
   animation: corner3dFadeIn 0.5s ease-out 1.2s backwards, corner3dPulse 4s ease-in-out 1.7s infinite;
@@ -627,6 +626,10 @@
 @media (max-width: 1024px) {
   .connectivity-title {
     font-size: 32px;
+  }
+
+  .tool-logos {
+    display: none;
   }
 
   .item-card {

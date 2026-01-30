@@ -60,7 +60,7 @@ export default function DigitalConnectivity({ centerImage = null }) {
   const centerY = viewHeight / 2
 
   // Input positions (left side) - tighter spacing
-  const inputX = 180 // X position for dots (right of input boxes)
+  const inputX = 210 // X position for dots (right of input boxes)
   const inputItemSpacing = 48 // Pixels between items
   const inputTotalHeight = (inputs.length - 1) * inputItemSpacing
   const inputStartY = (viewHeight - inputTotalHeight) / 2
@@ -100,15 +100,16 @@ export default function DigitalConnectivity({ centerImage = null }) {
   }
 
   return (
-    <div className="digital-connectivity">
+    <>
       {/* Header */}
-      <header className="connectivity-header">
+      {/* <header className="connectivity-header">
         <h1 className="connectivity-title">Enhances Digital Connectivity</h1>
         <span className="connectivity-tagline">Connects with everything you already use</span>
-      </header>
+      </header> */}
 
-      {/* Main diagram container with fixed aspect ratio */}
-      <div className="connectivity-diagram">
+      <div className="digital-connectivity">
+        {/* Main diagram container with fixed aspect ratio */}
+        <div className="connectivity-diagram">
         {/* SVG layer for connection paths - using viewBox for consistent coordinates */}
         <svg
           className="connections-svg"
@@ -186,16 +187,15 @@ export default function DigitalConnectivity({ centerImage = null }) {
           })}
         </div>
 
-        {/* Platform circle - absolutely centered */}
-        <div className="platform-circle">
-          <span className="platform-title">BIMTLY</span>
-          <span className="platform-subtitle">Platform</span>
-        </div>
-
         {/* Center: Browser mockup */}
         <div className="center-column">
           {/* Center image in browser mockup */}
           <div className="center-image-container">
+            {/* Platform circle - positioned relative to mockup */}
+            <div className="platform-circle">
+              <span className="platform-title">BIMTLY</span>
+              <span className="platform-subtitle">Platform</span>
+            </div>
             <div className="browser-mockup">
               <div className="browser-header">
                 <div className="browser-dots">
@@ -213,6 +213,12 @@ export default function DigitalConnectivity({ centerImage = null }) {
                 />
               </div>
             </div>
+            {/* 3D house image - positioned relative to mockup */}
+            <img
+              src={house3dImage}
+              alt="3D house visualization"
+              className="corner-3d-image"
+            />
           </div>
         </div>
 
@@ -250,14 +256,8 @@ export default function DigitalConnectivity({ centerImage = null }) {
             </div>
           ))}
         </div>
-
-        {/* 3D house image - bottom right */}
-        <img
-          src={house3dImage}
-          alt="3D house visualization"
-          className="corner-3d-image"
-        />
       </div>
     </div>
+    </>
   )
 }
