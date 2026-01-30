@@ -23,7 +23,7 @@
   stroke: #2563EB;
   stroke-width: 1;
   opacity: 0;
-  animation: radiateOut 12s ease-out infinite;
+  animation: radiateOut 12s ease-out 3s infinite;
 }
 
 @keyframes radiateOut {
@@ -51,7 +51,18 @@
   stroke: #2563EB;
   stroke-width: 1;
   opacity: 0.25;
-  animation: orbitPulse 4s ease-in-out infinite;
+  animation: orbitAppear 1s ease-out 0.5s backwards, orbitPulse 4s ease-in-out 1.5s infinite;
+}
+
+@keyframes orbitAppear {
+  0% {
+    opacity: 0;
+    stroke-dasharray: 0 1000;
+  }
+  100% {
+    opacity: 0.25;
+    stroke-dasharray: 1000 0;
+  }
 }
 
 @keyframes orbitPulse {
@@ -63,7 +74,18 @@
   stroke: #2563EB;
   stroke-width: 1;
   stroke-dasharray: 4 4;
-  animation: flowDash 20s linear infinite;
+  animation: lineAppear 0.6s ease-out backwards, flowDash 20s linear 1.5s infinite;
+}
+
+@keyframes lineAppear {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 100;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
 }
 
 @keyframes flowDash {
@@ -75,7 +97,18 @@
   fill: white;
   stroke: #2563EB;
   stroke-width: 1.5;
-  animation: dotPulse 3s ease-in-out infinite;
+  animation: dotAppear 0.4s ease-out backwards, dotPulse 3s ease-in-out 2s infinite;
+}
+
+@keyframes dotAppear {
+  0% {
+    opacity: 0;
+    r: 0;
+  }
+  100% {
+    opacity: 1;
+    r: 4;
+  }
 }
 
 @keyframes dotPulse {
@@ -102,7 +135,21 @@
     0 4px 20px rgba(37, 99, 235, 0.3),
     inset 0 -2px 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  animation: centerPulse 8s ease-in-out infinite;
+  animation: centerAppear 0.8s ease-out backwards, centerPulse 8s ease-in-out 0.8s infinite;
+}
+
+@keyframes centerAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 @keyframes centerPulse {

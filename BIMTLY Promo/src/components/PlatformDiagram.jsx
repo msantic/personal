@@ -83,6 +83,7 @@ export default function PlatformDiagram() {
               x2={pos.x}
               y2={pos.y}
               className="connection-line"
+              style={{ animationDelay: `${0.8 + index * 0.1}s, ${1.5 + index * 0.1}s` }}
             />
           )
         })}
@@ -97,6 +98,7 @@ export default function PlatformDiagram() {
               cy={pos.y}
               r={4}
               className="connector-dot"
+              style={{ animationDelay: `${1.2 + index * 0.1}s, ${2 + index * 0.1}s` }}
             />
           )
         })}
@@ -123,7 +125,7 @@ export default function PlatformDiagram() {
               style={{
                 left: `${(iconPos.x / 500) * 100}%`,
                 top: `${(iconPos.y / 500) * 100}%`,
-                animationDelay: `${0.1 + index * 0.1}s, ${index * 4}s`,
+                animationDelay: `${1.4 + index * 0.15}s, ${3 + index * 4}s`,
               }}
             >
               <Icon className="feature-icon" size={22} strokeWidth={1.5} />
@@ -135,7 +137,7 @@ export default function PlatformDiagram() {
               style={{
                 left: `${(labelPos.x / 500) * 100}%`,
                 top: `${(labelPos.y / 500) * 100}%`,
-                animationDelay: `${0.2 + index * 0.1}s`,
+                animationDelay: `${1.7 + index * 0.15}s`,
               }}
             >
               <span className="feature-title">
