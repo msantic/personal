@@ -9,7 +9,10 @@
     "preview": "vite preview",
     "build:pdf": "node scripts/generate-pdf.js",
     "build:flyer": "node scripts/generate-pdf.js flyer",
-    "build:deck": "node scripts/generate-pdf.js deck"
+    "build:deck": "node scripts/generate-pdf.js deck",
+    "build:png": "node scripts/generate-png.js all",
+    "build:connectivity": "node scripts/generate-png.js connectivity",
+    "build:platform-png": "node scripts/generate-png.js platform"
   },
   "dependencies": {
     "i18next": "^23.16.0",
@@ -24,6 +27,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "puppeteer": "^23.6.0",
+    "sharp": "^0.34.5",
     "vite": "^5.4.10"
   }
 }
