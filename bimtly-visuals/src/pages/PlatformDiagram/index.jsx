@@ -1,5 +1,5 @@
-import PlatformDiagram from '../components/PlatformDiagram'
-import '../styles/platform-page.css'
+import PlatformDiagram from './PlatformDiagram'
+import './platform-page.css'
 
 export default function PlatformPage() {
   return (

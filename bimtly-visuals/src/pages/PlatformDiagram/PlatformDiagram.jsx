@@ -1,5 +1,5 @@
 import { Book, Box, Wrench, Globe, GraduationCap, ShoppingCart } from 'lucide-react'
-import '../styles/platform-diagram.css'
+import './platform-diagram.css'
 
 const features = [
   {

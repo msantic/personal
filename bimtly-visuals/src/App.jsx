@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Flyer from './pages/Flyer'
 import FlyerV2 from './pages/FlyerV2'
 import PitchDeck from './pages/PitchDeck'
-import PlatformPage from './pages/PlatformPage'
+import PlatformPage from './pages/PlatformDiagram'
 
 function App() {
   return (
