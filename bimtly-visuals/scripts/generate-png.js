@@ -28,7 +28,8 @@ const routes = {
     path: '/platform',
     filename: 'platform-diagram.png',
     selector: '.platform-diagram',
-    scale: 2
+    scale: 1,
+    transparent: true
   }
 }
 
@@ -68,7 +69,7 @@ async function startDevServer() {
 }
 
 async function generatePNG(browser, config) {
-  const { path, filename, selector, scale } = config
+  const { path, filename, selector, scale, transparent = false } = config
   const page = await browser.newPage()
 
   // Set viewport for consistent rendering
@@ -108,6 +109,12 @@ async function generatePNG(browser, config) {
       .pulse-wave {
         display: none !important;
       }
+      ${transparent ? `
+      /* Transparent background for PNG export */
+      html, body, #root, .platform-page, .platform-diagram {
+        background: transparent !important;
+      }
+      ` : ''}
     `
   })
 
@@ -129,7 +136,7 @@ async function generatePNG(browser, config) {
   await element.screenshot({
     path: outputPath,
     type: 'png',
-    omitBackground: false
+    omitBackground: transparent
   })
 
   console.log(`✓ Generated: ${outputPath}`)
@@ -139,7 +146,7 @@ async function generatePNG(browser, config) {
   const webpPath = join(outputDir, webpFilename)
 
   await sharp(outputPath)
-    .webp({ quality: 85 })
+    .webp({ quality: 85, alphaQuality: 100 })
     .toFile(webpPath)
 
   console.log(`✓ Generated: ${webpPath}`)
