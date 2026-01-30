@@ -12,7 +12,8 @@
 /* Main component container */
 .digital-connectivity {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1100px;
+  padding-right: 100px;
   position: relative;
 }
 
@@ -57,7 +58,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1000 / 500;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 16px;
 }
 
@@ -519,16 +520,16 @@
   border-radius: 2px;
 }
 
-/* Tool logos strip - far right */
+/* Tool logos strip - far right, outside diagram */
 .tool-logos {
   position: absolute;
-  right: 1%;
+  right: -7%;
   top: 50%;
   transform: translateY(-50%);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-  width: 7%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 45px;
   z-index: 2;
 }
 
@@ -538,8 +539,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  animation: logoFadeIn 0.4s ease-out backwards;
+  background: #ffffff;
+  padding: 6px;
+  animation: logoFadeIn 0.4s ease-out both;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
@@ -559,11 +561,10 @@
   }
 }
 
-.tool-letter {
-  font-size: 11px;
-  font-weight: 700;
-  color: white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+.tool-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* 3D house image - bottom right corner */
@@ -627,10 +628,6 @@
 
   .platform-subtitle {
     font-size: 11px;
-  }
-
-  .tool-letter {
-    font-size: 9px;
   }
 }
 
@@ -713,10 +710,6 @@
 
   .tool-logo {
     aspect-ratio: 1;
-  }
-
-  .tool-letter {
-    font-size: 10px;
   }
 
   .corner-3d-image {

@@ -15,6 +15,12 @@ import {
 } from 'lucide-react'
 import houseImage from './assets/drive.png'
 import house3dImage from './assets/house3d.png'
+import wordpressLogo from './assets/wordpress.svg'
+import shopifyLogo from './assets/shopify.svg'
+import gmailLogo from './assets/gmail.svg'
+import whatsappLogo from './assets/whatsapp.svg'
+import slackLogo from './assets/slack.svg'
+import sapLogo from './assets/sap.svg'
 
 const inputs = [
   { id: '3d', label: '3D models', icon: Box, highlighted: true },
@@ -36,12 +42,12 @@ const outputs = [
 ]
 
 const toolLogos = [
-  { name: 'Slack', color: '#4A154B', letter: 'S' },
-  { name: 'Notion', color: '#000000', letter: 'N' },
-  { name: 'SAP', color: '#0FAAFF', letter: 'SAP' },
-  { name: 'Figma', color: '#F24E1E', letter: 'F' },
-  { name: 'Miro', color: '#FFD02F', letter: 'M' },
-  { name: 'Teams', color: '#6264A7', letter: 'T' },
+  { name: 'WordPress', logo: wordpressLogo },
+  { name: 'Shopify', logo: shopifyLogo },
+  { name: 'Gmail', logo: gmailLogo },
+  { name: 'WhatsApp', logo: whatsappLogo },
+  { name: 'Slack', logo: slackLogo },
+  { name: 'SAP', logo: sapLogo },
 ]
 
 export default function DigitalConnectivity({ centerImage = null }) {
@@ -235,13 +241,10 @@ export default function DigitalConnectivity({ centerImage = null }) {
             <div
               key={tool.name}
               className="tool-logo"
-              style={{
-                backgroundColor: tool.color,
-                animationDelay: `${1.4 + index * 0.1}s`,
-              }}
+              style={{ animationDelay: `${1.4 + index * 0.1}s` }}
               title={tool.name}
             >
-              <span className="tool-letter">{tool.letter}</span>
+              <img src={tool.logo} alt={tool.name} className="tool-logo-img" />
             </div>
           ))}
         </div>
