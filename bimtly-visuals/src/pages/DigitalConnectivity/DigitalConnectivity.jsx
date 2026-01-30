@@ -145,6 +145,7 @@ export default function DigitalConnectivity({ centerImage = null }) {
                 cy={y}
                 r={4}
                 className="connection-dot"
+                style={{ animationDelay: `${0.8 + index * 0.08}s` }}
               />
             )
           })}
@@ -158,6 +159,7 @@ export default function DigitalConnectivity({ centerImage = null }) {
                 cy={y}
                 r={4}
                 className="connection-dot"
+                style={{ animationDelay: `${0.8 + index * 0.08}s` }}
               />
             )
           })}
