@@ -9,6 +9,7 @@ const features = [
     subtitle: 'Online Catalog &',
     subtitle2: 'Documentation',
     angle: -90, // top
+    labelOffset: 215, // closer to icon
   },
   {
     icon: Box,
@@ -27,7 +28,7 @@ const features = [
     title: 'Unified',
     subtitle: 'Web portal',
     angle: 90, // bottom
-    labelOffset: 175, // closer to icon
+    labelOffset: 200, // closer to icon
   },
   {
     icon: GraduationCap,
@@ -46,8 +47,8 @@ const features = [
 export default function PlatformDiagram() {
   const centerX = 250
   const centerY = 250
-  const orbitRadius = 120
-  const labelRadius = 195 // Labels positioned further out
+  const orbitRadius = 145
+  const labelRadius = 235 // Labels positioned further out
 
   const getPosition = (angleDeg, radius) => {
     const angleRad = (angleDeg * Math.PI) / 180
@@ -60,6 +61,9 @@ export default function PlatformDiagram() {
   return (
     <div className="platform-diagram">
       <svg className="diagram-svg" viewBox="0 0 500 500">
+        {/* Radiating pulse wave from center */}
+        <circle cx={centerX} cy={centerY} r="65" className="pulse-wave" />
+
         {/* Orbit circle */}
         <circle
           cx={centerX}
@@ -112,13 +116,14 @@ export default function PlatformDiagram() {
         const Icon = feature.icon
 
         return (
-          <div key={index}>
+          <div key={index} className="feature-node">
             {/* Icon on the orbit */}
             <div
               className="feature-icon-wrapper"
               style={{
                 left: `${(iconPos.x / 500) * 100}%`,
                 top: `${(iconPos.y / 500) * 100}%`,
+                animationDelay: `${0.1 + index * 0.1}s, ${index * 4}s`,
               }}
             >
               <Icon className="feature-icon" size={22} strokeWidth={1.5} />
@@ -130,6 +135,7 @@ export default function PlatformDiagram() {
               style={{
                 left: `${(labelPos.x / 500) * 100}%`,
                 top: `${(labelPos.y / 500) * 100}%`,
+                animationDelay: `${0.2 + index * 0.1}s`,
               }}
             >
               <span className="feature-title">
