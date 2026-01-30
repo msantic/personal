@@ -6,6 +6,7 @@ const pages = [
   { path: '/flyer-v2', name: 'Flyer V2', description: 'Redesigned marketing flyer' },
   { path: '/pitch-deck', name: 'Pitch Deck', description: 'Investor pitch deck (placeholder)' },
   { path: '/platform', name: 'Platform Diagram', description: 'Interactive platform features diagram' },
+  { path: '/connectivity', name: 'Digital Connectivity', description: 'Input/output integration flow diagram' },
 ]
 
 export default function Home() {
