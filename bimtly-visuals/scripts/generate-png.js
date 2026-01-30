@@ -100,9 +100,13 @@ async function generatePNG(browser, config) {
         opacity: 1 !important;
       }
       /* Platform Diagram elements */
-      .pulse-wave, .orbit-ring, .connection-line, .connector-dot,
+      .orbit-ring, .connection-line, .connector-dot,
       .center-node, .feature-icon-wrapper, .feature-label {
         opacity: 1 !important;
+      }
+      /* Hide radiant wave animation for static export */
+      .pulse-wave {
+        display: none !important;
       }
     `
   })

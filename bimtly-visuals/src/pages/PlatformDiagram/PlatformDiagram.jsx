@@ -38,8 +38,8 @@ const features = [
   },
   {
     icon: ShoppingCart,
-    title: 'Seamless Sales',
-    subtitle: 'Channels',
+    title: 'E-commerce Ready',
+    subtitle: 'Storefront & Integrations',
     angle: 210, // top-left
   },
 ]
