@@ -1,5 +1,5 @@
 node_modules
 dist
-output/*.pdf
+bimtly-visuals/output/*.pdf
 .DS_Store
 .claude/settings.local.json
