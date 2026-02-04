@@ -1,6 +1,4 @@
 node_modules
 dist
-bimtly-visuals/output/*.pdf
-bimtly-visuals/output/*.png
-bimtly-visuals/output/*.webp
+bimtly-visuals/output
 .DS_Store
