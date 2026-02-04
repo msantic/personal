@@ -95,8 +95,11 @@ export default function PlatformDiagram({ mode = 'web' }: PlatformDiagramProps) 
   // CSS class modifier for disabling CSS animations in video/static mode
   const noAnim = mode !== 'web' ? ' no-css-anim' : ''
 
+  // Container class - add mode for video/static sizing
+  const containerClass = mode !== 'web' ? 'platform-diagram platform-diagram--fullsize' : 'platform-diagram'
+
   return (
-    <div className="platform-diagram">
+    <div className={containerClass}>
       <svg className="diagram-svg" viewBox={`0 0 ${viewSize} ${viewSize}`}>
         {/* Radiating pulse wave from center - hidden in video mode */}
         {mode === 'web' && (

@@ -92,6 +92,10 @@ const OpeningTitle: React.FC = () => {
   const titleSize = 42 * scaleFactor;
   const subtitleSize = 24 * scaleFactor;
 
+  // Diagram sizing: maximize while keeping minimal padding
+  // Use 95% of smaller dimension to fill available space
+  const diagramSize = Math.min(width, height) * 0.95;
+
   return (
     <div
       className="opening-title"
@@ -100,8 +104,14 @@ const OpeningTitle: React.FC = () => {
         transform: `translate(-50%, -50%) scale(${scale})`,
       }}
     >
-      {/* TEST: Platform diagram instead of simple logo */}
-      <div style={{ width: 500 * scaleFactor, height: 500 * scaleFactor }}>
+      {/* Platform diagram - sized to fill available space, centered */}
+      <div style={{
+        width: diagramSize,
+        height: diagramSize,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
         <PlatformDiagram mode="video" />
       </div>
 
