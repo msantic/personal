@@ -7,6 +7,7 @@ const pages = [
   { path: '/pitch-deck', name: 'Pitch Deck', description: 'Investor pitch deck (placeholder)' },
   { path: '/platform', name: 'Platform Diagram', description: 'Interactive platform features diagram' },
   { path: '/connectivity', name: 'Digital Connectivity', description: 'Input/output integration flow diagram' },
+  { path: '/hero-bg', name: 'Hero Background', description: 'Test page for reusable hero background component' },
 ]
 
 export default function Home() {

@@ -8,16 +8,8 @@ import {
   Img,
   staticFile,
 } from "remotion";
+import { VIDEO, getScaleFactor } from "../../design";
 import "./styles.css";
-
-// Brand colors
-const COLORS = {
-  primary: "#2563EB",
-  primaryDark: "#1d4ed8",
-  teal: "#14b8a6",
-  dark: "#0f172a",
-  white: "#ffffff",
-};
 
 // Industries to showcase
 const INDUSTRIES = [
@@ -30,11 +22,6 @@ export const HeroVideo: React.FC = () => {
     <AbsoluteFill className="hero-container">
       {/* Background grid */}
       <div className="grid-background" />
-
-      {/* Subtle pulse waves in background */}
-      <Sequence from={0}>
-        <BackgroundPulse />
-      </Sequence>
 
       {/* Opening title */}
       <Sequence from={0} durationInFrames={75}>
@@ -63,15 +50,13 @@ const OpeningTitle: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  // Responsive scaling
-  const aspectRatio = width / height;
-  const isVertical = aspectRatio < 1;
-  const scaleFactor = isVertical ? 0.8 : 1;
+  // Responsive scaling using design tokens
+  const scaleFactor = getScaleFactor(width, height);
 
   const scale = spring({
     frame,
     fps,
-    config: { damping: 12, stiffness: 100 },
+    config: VIDEO.spring.snappy,
   });
 
   const opacity = interpolate(frame, [0, 20], [0, 1], {
@@ -86,11 +71,10 @@ const OpeningTitle: React.FC = () => {
 
   const glowIntensity = 0.3 + Math.sin(frame * 0.08) * 0.1;
 
-  // Responsive sizes
+  // Responsive sizes using design token base values
   const logoSize = 220 * scaleFactor;
   const titleSize = 42 * scaleFactor;
   const subtitleSize = 24 * scaleFactor;
-  const taglineSize = 28 * scaleFactor;
 
   return (
     <div
@@ -127,14 +111,14 @@ const HeroShowcase: React.FC = () => {
 
   // Detect aspect ratio
   const aspectRatio = width / height;
-  const isVertical = aspectRatio < 1; // 9:16, 4:5
-  const isSquare = aspectRatio === 1; // 1:1
+  const isVertical = aspectRatio < 1;
+  const isSquare = aspectRatio === 1;
 
-  // Entry animation
+  // Entry animation using design token spring config
   const entryScale = spring({
     frame,
     fps,
-    config: { damping: 15, stiffness: 60 },
+    config: VIDEO.spring.gentle,
   });
 
   // Linear timeline - no looping
@@ -213,10 +197,9 @@ const IndustryLabels: React.FC = () => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
 
-  // Responsive scaling
-  const aspectRatio = width / height;
-  const isVertical = aspectRatio < 1;
-  const scaleFactor = isVertical ? 0.7 : 1;
+  // Responsive scaling using design tokens
+  const scaleFactor = getScaleFactor(width, height);
+  const isVertical = width / height < 1;
 
   // Label 1 timing: frames 30-120 (appears after image settles, fades with image)
   const label1Opacity = interpolate(
@@ -273,55 +256,21 @@ const IndustryLabels: React.FC = () => {
   );
 };
 
-const BackgroundPulse: React.FC = () => {
-  const frame = useCurrentFrame();
-
-  const waves = [0, 90, 180];
-
-  return (
-    <svg className="pulse-svg" viewBox="0 0 1920 1080">
-      {waves.map((delay, index) => {
-        const waveFrame = (frame + delay) % 270;
-        const progress = waveFrame / 270;
-
-        const radius = 50 + progress * 600;
-        const opacity = Math.max(0, 0.15 * (1 - progress));
-        const strokeWidth = 2 * (1 - progress * 0.5);
-
-        return (
-          <circle
-            key={index}
-            cx="960"
-            cy="540"
-            r={radius}
-            fill="none"
-            stroke={COLORS.primary}
-            strokeWidth={strokeWidth}
-            opacity={opacity}
-          />
-        );
-      })}
-    </svg>
-  );
-};
-
 const Tagline: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  // Responsive scaling
-  const aspectRatio = width / height;
-  const isVertical = aspectRatio < 1;
-  const scaleFactor = isVertical ? 0.7 : 1;
+  // Responsive scaling using design tokens
+  const scaleFactor = getScaleFactor(width, height);
 
-  const opacity = interpolate(frame, [0, 30], [0, 1], {
+  const opacity = interpolate(frame, [0, VIDEO.timing.fadeIn], [0, 1], {
     extrapolateRight: "clamp",
   });
 
   const translateY = spring({
     frame,
     fps,
-    config: { damping: 15, stiffness: 80 },
+    config: VIDEO.spring.gentle,
   });
 
   const y = interpolate(translateY, [0, 1], [40, 0]);

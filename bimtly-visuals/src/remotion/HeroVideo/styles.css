@@ -1,35 +1,31 @@
-/* Hero Video Styles */
+/* Hero Video Styles - BIMTLY Brand System (Light Theme) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* =============================================================================
+   CONTAINER & BACKGROUND
+   ============================================================================= */
 
 .hero-container {
   background: #ffffff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow: hidden;
 }
 
-/* Animated grid background */
+/* Technical grid background */
 .grid-background {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(37, 99, 235, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
   background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 10%, transparent 70%);
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 20%, transparent 70%);
 }
 
-/* Pulse SVG layer */
-.pulse-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
+/* =============================================================================
+   OPENING TITLE / LOGO
+   ============================================================================= */
 
-/* Opening title */
 .opening-title {
   position: absolute;
   top: 50%;
@@ -54,7 +50,7 @@
 .logo-title {
   font-size: 42px;
   font-weight: 700;
-  color: white;
+  color: #ffffff;
   letter-spacing: -1px;
 }
 
@@ -70,10 +66,13 @@
   font-weight: 500;
   color: #374151;
   margin-top: 30px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
-/* Hero showcase */
+/* =============================================================================
+   HERO SHOWCASE (Images)
+   ============================================================================= */
+
 .hero-showcase {
   position: absolute;
   top: 50%;
@@ -103,13 +102,82 @@
   object-position: center;
 }
 
-/* Corner accents */
+/* =============================================================================
+   INDUSTRY LABELS
+   ============================================================================= */
+
+.industry-labels {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 15;
+}
+
+.industry-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 36px;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid #2563EB;
+  border-radius: 50px;
+  backdrop-filter: blur(8px);
+}
+
+.industry-icon {
+  color: #2563EB;
+  font-size: 18px;
+}
+
+.industry-text {
+  font-size: 26px;
+  font-weight: 600;
+  color: #2563EB;
+  letter-spacing: 0.5px;
+}
+
+/* =============================================================================
+   FINAL TAGLINE
+   ============================================================================= */
+
+.tagline-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 20;
+}
+
+.tagline-main {
+  font-size: 38px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 8px;
+}
+
+.website {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2563EB;
+  margin: 24px 0 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* =============================================================================
+   CORNER ACCENTS (unused but kept for future use)
+   ============================================================================= */
+
 .corner-accent {
   position: absolute;
   width: 60px;
   height: 60px;
-  border: 3px solid #2563EB;
-  opacity: 0.6;
+  border: 2px solid #2563EB;
+  opacity: 0.4;
 }
 
 .corner-accent.top-left {
@@ -142,65 +210,4 @@
   border-left: none;
   border-top: none;
   border-radius: 0 0 12px 0;
-}
-
-/* Industry labels */
-.industry-labels {
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  z-index: 15;
-}
-
-.industry-label {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 36px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.1) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.4);
-  border-radius: 50px;
-  backdrop-filter: blur(10px);
-}
-
-.industry-icon {
-  color: #14b8a6;
-  font-size: 18px;
-}
-
-.industry-text {
-  font-size: 26px;
-  font-weight: 600;
-  color: white;
-  letter-spacing: 0.5px;
-}
-
-/* Tagline */
-.tagline-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 20;
-}
-
-.tagline-main {
-  font-size: 38px;
-  font-weight: 600;
-  color: white;
-  margin: 0 0 8px;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-}
-
-.website {
-  font-size: 28px;
-  font-weight: 600;
-  color: #2563EB;
-  margin: 24px 0 0;
-  letter-spacing: 3px;
-  text-transform: uppercase;
 }

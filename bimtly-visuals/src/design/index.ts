@@ -5,3 +5,8 @@
  */
 
 export * from './tokens';
+export { HeroBackground } from './HeroBackground';
+export type { HeroBackgroundProps } from './HeroBackground';
+
+// Import CSS utilities (side effect)
+import './backgrounds.css';

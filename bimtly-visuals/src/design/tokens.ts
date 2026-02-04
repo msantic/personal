@@ -43,6 +43,9 @@ export const COLORS = {
   darkBg: '#0a0a0f',
   darkBgMid: '#1a1a2e',
   darkBgEnd: '#16213e',
+
+  // Grid line color (hero backgrounds)
+  gridLineLight: '#e2e8f0',
 } as const;
 
 // =============================================================================
@@ -206,6 +209,96 @@ export const SHADOWS = {
   // Card
   card: '0 2px 8px rgba(37, 99, 235, 0.1)',
   cardHover: '0 4px 20px rgba(37, 99, 235, 0.25)',
+} as const;
+
+// =============================================================================
+// BACKGROUNDS
+// =============================================================================
+
+/**
+ * Background patterns and gradients for hero sections and page backgrounds.
+ *
+ * Matches the BIMTLY website hero section styling:
+ * - Subtle grid pattern indicates technical/engineering background
+ * - Purple/indigo glow from top adds depth and visual interest
+ * - Warm orange flare creates approachable, modern feel
+ *
+ * @example
+ * ```tsx
+ * // Using the HeroBackground component (recommended)
+ * import { HeroBackground } from '../design';
+ * <HeroBackground flarePosition="80% 80%">
+ *   <YourContent />
+ * </HeroBackground>
+ *
+ * // Using tokens directly
+ * <div style={{ background: BACKGROUNDS.hero.topGlow }} />
+ * ```
+ *
+ * @see HeroBackground component in src/design/HeroBackground.tsx
+ * @see CSS utilities in src/design/backgrounds.css
+ */
+// Hero background colors (single source of truth)
+const HERO_COLORS = {
+  indigo: 'rgba(120, 119, 198, 0.6)',
+  orange: 'rgba(232, 128, 54, 0.9)',
+} as const;
+
+export const BACKGROUNDS = {
+  /**
+   * Grid pattern configurations for technical/engineering aesthetic.
+   * Use `getGridCSS()` helper to generate the CSS properties.
+   */
+  grid: {
+    /** Light gray grid matching website (12px, 60% opacity) */
+    light: { color: COLORS.gridLineLight, size: 12, opacity: 0.6 },
+    /** Blue-tinted grid for brand consistency (20px, full opacity) */
+    brand: { color: 'rgba(37, 99, 235, 0.08)', size: 20, opacity: 1 },
+  },
+
+  /**
+   * Hero section gradient overlays.
+   * Layer order (bottom to top): grid → warmFlare → topGlow
+   */
+  hero: {
+    /** Purple/indigo color for top glow */
+    indigoColor: HERO_COLORS.indigo,
+    /** Warm orange color for flare */
+    orangeColor: HERO_COLORS.orange,
+
+    /**
+     * Purple/indigo radial gradient from top edge.
+     * Positioned at 50% -20% to create glow effect from above.
+     */
+    topGlow: `radial-gradient(ellipse 80% 80% at 50% -20%, ${HERO_COLORS.indigo}, rgba(255,255,255,0))`,
+
+    /**
+     * Warm orange radial flare with configurable position.
+     * @param position - CSS position value, e.g., "50% 50%" (center), "80% 80%" (bottom-right)
+     */
+    warmFlare: (position = '50% 50%') =>
+      `radial-gradient(circle at ${position}, ${HERO_COLORS.orange} 0%, rgba(255, 255, 255, 1) 58%)`,
+
+    /** Default opacity for the warm flare layer (subtle) */
+    flareOpacity: 0.4,
+  },
+
+  /**
+   * Generate CSS properties for a grid background pattern.
+   * @param color - Grid line color (CSS color value)
+   * @param size - Grid cell size in pixels
+   * @returns Object with backgroundImage and backgroundSize properties
+   *
+   * @example
+   * ```tsx
+   * const gridStyles = BACKGROUNDS.getGridCSS('#e2e8f0', 12);
+   * // { backgroundImage: '...', backgroundSize: '12px 12px' }
+   * ```
+   */
+  getGridCSS: (color: string, size: number) => ({
+    backgroundImage: `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`,
+    backgroundSize: `${size}px ${size}px`,
+  }),
 } as const;
 
 // =============================================================================

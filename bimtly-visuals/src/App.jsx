@@ -5,6 +5,7 @@ import FlyerV2 from './pages/FlyerV2'
 import PitchDeck from './pages/PitchDeck'
 import PlatformPage from './pages/PlatformDiagram'
 import ConnectivityPage from './pages/DigitalConnectivity'
+import HeroBackgroundTest from './pages/HeroBackgroundTest'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/pitch-deck" element={<PitchDeck />} />
       <Route path="/platform" element={<PlatformPage />} />
       <Route path="/connectivity" element={<ConnectivityPage />} />
+      <Route path="/hero-bg" element={<HeroBackgroundTest />} />
     </Routes>
   )
 }

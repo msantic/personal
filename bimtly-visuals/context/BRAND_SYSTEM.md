@@ -257,6 +257,73 @@ linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%)
 
 ---
 
+## Hero Background Effect
+
+The hero section background combines multiple layers to create a technical yet approachable aesthetic matching the BIMTLY website.
+
+### Visual Concept
+- **Grid pattern** — Subtle technical/engineering indicator
+- **Purple/indigo glow** — Emanates from top, adds depth
+- **Warm orange flare** — Creates modern, playful feel
+- **Blended together** — Purple on top (fades to transparent), orange below
+
+### Layer Stack (bottom to top)
+1. White background
+2. Grid pattern (12px, 60% opacity)
+3. Orange flare (fades to white, 60% opacity)
+4. Purple glow (fades to transparent)
+5. Content
+
+### Using the HeroBackground Component
+
+```tsx
+import { HeroBackground } from '../design';
+
+// Default (centered flare)
+<HeroBackground>
+  <YourContent />
+</HeroBackground>
+
+// Custom positioning
+<HeroBackground
+  flarePosition="80% 80%"  // bottom-right
+  gridSize={16}
+  showGrid={true}
+  showTopGlow={true}
+  showWarmFlare={true}
+>
+  <YourContent />
+</HeroBackground>
+```
+
+### Using CSS Utility Classes
+
+```html
+<div class="hero-bg">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-warm-flare hero-bg-warm-flare--bottom-right"></div>
+  <div class="hero-bg-top-glow"></div>
+  <div class="hero-bg-content">Your content</div>
+</div>
+```
+
+### Flare Position Presets (CSS)
+| Class | Position |
+|-------|----------|
+| `hero-bg-warm-flare--center` | 50% 50% (default) |
+| `hero-bg-warm-flare--bottom-right` | 80% 80% |
+| `hero-bg-warm-flare--top-right` | 80% 20% |
+| `hero-bg-warm-flare--bottom-left` | 20% 80% |
+
+### Color Values
+| Element | Color | Opacity |
+|---------|-------|---------|
+| Grid lines | `#e2e8f0` | 0.6 |
+| Purple glow | `rgba(120, 119, 198, 0.6)` | 1.0 |
+| Orange flare | `rgba(232, 128, 54, 0.7)` → white | 0.4 (subtle) |
+
+---
+
 ## Shadows & Glows
 
 ```css
@@ -338,8 +405,23 @@ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 Import from `src/design/tokens.ts` for programmatic access to all values:
 
 ```typescript
-import { COLORS, THEME, TYPOGRAPHY, VIDEO, GRADIENTS, SHADOWS } from '@/design';
+import { COLORS, THEME, TYPOGRAPHY, VIDEO, GRADIENTS, SHADOWS, BACKGROUNDS } from '@/design';
+
+// Or import components
+import { HeroBackground } from '@/design';
 ```
+
+### Key Exports
+| Export | Purpose |
+|--------|---------|
+| `COLORS` | Brand colors, neutrals, semantic colors |
+| `THEME` | Light/dark theme configurations |
+| `TYPOGRAPHY` | Font family, weights, scales |
+| `VIDEO` | Dimensions, fps, spring configs, timing |
+| `GRADIENTS` | Pre-built gradient strings |
+| `SHADOWS` | Box shadows and glows |
+| `BACKGROUNDS` | Grid patterns, hero gradients, helpers |
+| `HeroBackground` | React component for hero sections |
 
 ---
 

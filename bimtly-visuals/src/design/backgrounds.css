@@ -1,0 +1,116 @@
+/**
+ * Hero Background CSS Utilities
+ *
+ * CSS classes for hero section background effects.
+ *
+ * SINGLE SOURCE OF TRUTH: src/design/tokens.ts (HERO_COLORS)
+ *
+ * The HeroBackground component injects these CSS variables:
+ * --hero-grid-color, --hero-indigo, --hero-orange, --hero-flare-opacity
+ *
+ * Use CSS classes inside <HeroBackground> or set variables manually.
+ */
+
+/* Container - sets up positioning context */
+.hero-bg {
+  position: relative;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Shared layer positioning */
+.hero-bg-grid,
+.hero-bg-top-glow,
+.hero-bg-warm-flare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Grid pattern layer */
+.hero-bg-grid {
+  background-image:
+    linear-gradient(var(--hero-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hero-grid-color) 1px, transparent 1px);
+  background-size: 12px 12px;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Grid size variants */
+.hero-bg-grid--sm {
+  background-size: 8px 8px;
+}
+
+.hero-bg-grid--lg {
+  background-size: 20px 20px;
+}
+
+/* Warm orange flare - uses CSS custom properties for positioning */
+/* Layer 2: below purple so they blend together */
+.hero-bg-warm-flare {
+  --flare-x: 50%;
+  --flare-y: 50%;
+  background: radial-gradient(
+    circle at var(--flare-x) var(--flare-y),
+    var(--hero-orange) 0%,
+    rgba(255, 255, 255, 1) 58%
+  );
+  opacity: var(--hero-flare-opacity);
+  z-index: 2;
+}
+
+/* Top purple/indigo glow */
+/* Layer 3: on top, fades to transparent so orange shows through */
+.hero-bg-top-glow {
+  background: radial-gradient(
+    ellipse 80% 80% at 50% -20%,
+    var(--hero-indigo),
+    rgba(255, 255, 255, 0)
+  );
+  z-index: 3;
+}
+
+/* Flare position presets */
+.hero-bg-warm-flare--center {
+  --flare-x: 50%;
+  --flare-y: 50%;
+}
+
+.hero-bg-warm-flare--bottom-right {
+  --flare-x: 80%;
+  --flare-y: 80%;
+}
+
+.hero-bg-warm-flare--top-right {
+  --flare-x: 80%;
+  --flare-y: 20%;
+}
+
+.hero-bg-warm-flare--bottom-left {
+  --flare-x: 20%;
+  --flare-y: 80%;
+}
+
+/* Content layer - above all background effects */
+.hero-bg-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Utility: Full height container */
+.hero-bg--full {
+  min-height: 100vh;
+}
+
+/* Utility: Section height */
+.hero-bg--section {
+  min-height: 60vh;
+}
