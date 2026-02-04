@@ -2,7 +2,8 @@
 
 ## IMPORTANT RULES
 
-**DO NOT COMMIT without explicit user request.** Never run `git commit` unless the user explicitly says "commit" or asks you to commit changes.
+### Git Commits
+**NEVER commit unless user explicitly says "commit".** Wait for the exact word. Do not commit after completing work, do not commit proactively, do not assume user wants a commit. Only commit when user types "commit" or explicitly asks to commit.
 
 ---
 
