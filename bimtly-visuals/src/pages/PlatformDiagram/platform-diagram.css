@@ -321,6 +321,45 @@
   margin-top: 2px;
 }
 
+/* =============================================================================
+   NO-CSS-ANIM MODIFIERS
+   Used for video/static modes where animations are controlled via JS/Remotion
+   ============================================================================= */
+
+.no-css-anim.orbit-ring,
+.no-css-anim.connection-line,
+.no-css-anim.connector-dot,
+.no-css-anim.center-node,
+.no-css-anim.feature-icon-wrapper,
+.no-css-anim.feature-label {
+  animation: none !important;
+}
+
+/* Reset transforms that CSS animations would set */
+.no-css-anim.center-node {
+  opacity: 1;
+}
+
+.no-css-anim.feature-icon-wrapper {
+  opacity: 1;
+}
+
+.no-css-anim.feature-label {
+  opacity: 1;
+}
+
+.no-css-anim.orbit-ring {
+  stroke-dasharray: none;
+}
+
+.no-css-anim.connection-line {
+  stroke-dashoffset: 0;
+}
+
+.no-css-anim.connector-dot {
+  opacity: 1;
+}
+
 /* Responsive adjustments */
 @media (max-width: 500px) {
   .center-node {

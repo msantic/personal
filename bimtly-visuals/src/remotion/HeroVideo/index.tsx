@@ -9,6 +9,7 @@ import {
   staticFile,
 } from "remotion";
 import { VIDEO, getScaleFactor, BACKGROUNDS } from "../../design";
+import PlatformDiagram from "../../pages/PlatformDiagram/PlatformDiagram";
 import "./styles.css";
 
 // Industries to showcase
@@ -37,23 +38,23 @@ export const HeroVideo: React.FC = () => {
 
       {/* Content layer - above background */}
       <AbsoluteFill className="hero-bg-content">
-        {/* Opening title */}
-        <Sequence from={0} durationInFrames={75}>
+        {/* Opening title - extended to 150 frames (5s) for diagram animations */}
+        <Sequence from={0} durationInFrames={150}>
           <OpeningTitle />
         </Sequence>
 
-        {/* Hero images showcase - starts after logo fades out */}
-        <Sequence from={75}>
+        {/* Hero images showcase - starts after diagram fades out */}
+        <Sequence from={150}>
           <HeroShowcase />
         </Sequence>
 
         {/* Industry labels - same start as showcase so timing aligns */}
-        <Sequence from={75}>
+        <Sequence from={150}>
           <IndustryLabels />
         </Sequence>
 
         {/* Final tagline - after images fade out */}
-        <Sequence from={290}>
+        <Sequence from={365}>
           <Tagline />
         </Sequence>
       </AbsoluteFill>
@@ -78,8 +79,8 @@ const OpeningTitle: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Fade out at end (within 75 frame duration)
-  const fadeOut = interpolate(frame, [50, 75], [1, 0], {
+  // Fade out at end (within 150 frame duration for diagram test)
+  const fadeOut = interpolate(frame, [120, 150], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -99,6 +100,12 @@ const OpeningTitle: React.FC = () => {
         transform: `translate(-50%, -50%) scale(${scale})`,
       }}
     >
+      {/* TEST: Platform diagram instead of simple logo */}
+      <div style={{ width: 500 * scaleFactor, height: 500 * scaleFactor }}>
+        <PlatformDiagram mode="video" />
+      </div>
+
+      {/* ORIGINAL: Simple logo circle - commented out for testing
       <div
         className="logo-circle"
         style={{
@@ -116,6 +123,7 @@ const OpeningTitle: React.FC = () => {
       <p className="opening-subtitle" style={{ opacity: interpolate(frame, [30, 50], [0, 1], { extrapolateRight: "clamp" }) }}>
         One Platform. Every Industry.
       </p>
+      */}
     </div>
   );
 };
