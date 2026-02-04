@@ -250,8 +250,8 @@ export const BACKGROUNDS = {
    * Use `getGridCSS()` helper to generate the CSS properties.
    */
   grid: {
-    /** Light gray grid matching website (12px, 60% opacity) */
-    light: { color: COLORS.gridLineLight, size: 12, opacity: 0.6 },
+    /** Light gray grid matching website (12px, subtle) */
+    light: { color: COLORS.gridLineLight, size: 12, opacity: 0.3 },
     /** Blue-tinted grid for brand consistency (20px, full opacity) */
     brand: { color: 'rgba(37, 99, 235, 0.08)', size: 20, opacity: 1 },
   },
