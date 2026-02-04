@@ -8,7 +8,7 @@ import {
   Img,
   staticFile,
 } from "remotion";
-import { VIDEO, getScaleFactor } from "../../design";
+import { VIDEO, getScaleFactor, BACKGROUNDS } from "../../design";
 import "./styles.css";
 
 // Industries to showcase
@@ -18,30 +18,45 @@ const INDUSTRIES = [
 ];
 
 export const HeroVideo: React.FC = () => {
+  // CSS variables from design tokens (single source of truth)
+  const heroVars = {
+    '--hero-grid-color': BACKGROUNDS.grid.light.color,
+    '--hero-indigo': BACKGROUNDS.hero.indigoColor,
+    '--hero-orange': BACKGROUNDS.hero.orangeColor,
+    '--hero-flare-opacity': String(BACKGROUNDS.hero.flareOpacity),
+    '--flare-x': '20%',
+    '--flare-y': '80%',
+  } as React.CSSProperties;
+
   return (
-    <AbsoluteFill className="hero-container">
-      {/* Background grid */}
-      <div className="grid-background" />
+    <AbsoluteFill className="hero-container" style={heroVars}>
+      {/* Hero background layers - classes from design/backgrounds.css */}
+      <div className="hero-bg-grid" />
+      <div className="hero-bg-warm-flare" />
+      <div className="hero-bg-top-glow" />
 
-      {/* Opening title */}
-      <Sequence from={0} durationInFrames={75}>
-        <OpeningTitle />
-      </Sequence>
+      {/* Content layer - above background */}
+      <AbsoluteFill className="hero-bg-content">
+        {/* Opening title */}
+        <Sequence from={0} durationInFrames={75}>
+          <OpeningTitle />
+        </Sequence>
 
-      {/* Hero images showcase - starts after logo fades out */}
-      <Sequence from={75}>
-        <HeroShowcase />
-      </Sequence>
+        {/* Hero images showcase - starts after logo fades out */}
+        <Sequence from={75}>
+          <HeroShowcase />
+        </Sequence>
 
-      {/* Industry labels - same start as showcase so timing aligns */}
-      <Sequence from={75}>
-        <IndustryLabels />
-      </Sequence>
+        {/* Industry labels - same start as showcase so timing aligns */}
+        <Sequence from={75}>
+          <IndustryLabels />
+        </Sequence>
 
-      {/* Final tagline - after images fade out */}
-      <Sequence from={290}>
-        <Tagline />
-      </Sequence>
+        {/* Final tagline - after images fade out */}
+        <Sequence from={290}>
+          <Tagline />
+        </Sequence>
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };

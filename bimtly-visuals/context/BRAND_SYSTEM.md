@@ -400,6 +400,25 @@ box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 
 ---
 
+## Code Principles
+
+### DRY - Reuse Design System Primitives
+- **Never duplicate styles** - import from `src/design/`
+- Use `@import '../../design/backgrounds.css'` for shared CSS
+- Use CSS variable overrides for component-specific tweaks
+- Design tokens in `tokens.ts` are the single source of truth
+
+```css
+/* Good: Import + override */
+@import '../../design/backgrounds.css';
+.my-component .hero-bg-grid { opacity: 0.3; }
+
+/* Bad: Copy-paste the same CSS */
+.my-grid { /* duplicated grid styles */ }
+```
+
+---
+
 ## Design Tokens Reference
 
 Import from `src/design/tokens.ts` for programmatic access to all values:

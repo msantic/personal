@@ -282,6 +282,31 @@ npm run build:deck   # Pitch deck only
 
 ---
 
+## Code Principles
+
+### DRY - Reuse Design System Primitives
+- **Never duplicate styles** — import from `src/design/`
+- Use `@import '../../design/backgrounds.css'` for shared CSS
+- Use CSS variable overrides for component-specific tweaks
+- Design tokens in `tokens.ts` are the single source of truth
+
+```css
+/* Good: Import + override */
+@import '../../design/backgrounds.css';
+.my-component .hero-bg-grid { opacity: 0.3; }
+
+/* Bad: Copy-paste the same CSS */
+.my-grid { /* duplicated grid styles */ }
+```
+
+### Design System Location
+- **Tokens:** `src/design/tokens.ts`
+- **Components:** `src/design/` (e.g., `HeroBackground.tsx`)
+- **CSS utilities:** `src/design/backgrounds.css`
+- **Docs:** `context/BRAND_SYSTEM.md`
+
+---
+
 ## Founder & Team
 
 ### Marko Šantić, CEO
