@@ -61,7 +61,7 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const rootDir = join(__dirname, '..')
-const outputDir = join(rootDir, 'public', 'videos')
+const outputDir = join(rootDir, 'output', 'videos')
 
 // Ensure output directory exists
 if (!existsSync(outputDir)) {

@@ -1,5 +1,5 @@
 node_modules
 dist
 bimtly-visuals/output
+output/videos/*.mp4
 .DS_Store
-*.mp4
