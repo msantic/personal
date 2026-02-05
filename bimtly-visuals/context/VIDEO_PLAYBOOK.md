@@ -105,6 +105,11 @@ BIMTLY is a visual product sales platform that helps manufacturers show, configu
 Slogan 
 
 
+Biz session https://chatgpt.com/c/698481b0-1250-838e-8291-f25a7b4372e3
+Hero video https://chatgpt.com/c/6984ed00-b334-8384-a81f-be410a3c6368 
+
+Photo generation https://chatgpt.com/c/6983a77b-7824-8392-93ed-d25ad1838c8f
+
 ## Koraci
 
 1. novi platform diagram 

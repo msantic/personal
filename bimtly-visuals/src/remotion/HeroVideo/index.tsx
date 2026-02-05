@@ -142,15 +142,37 @@ const OpeningTitle: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
+  // Subtitle staggered reveal
+  const subtitleOpacity = interpolate(frame, [15, 35], [0, 1], {
+    extrapolateRight: "clamp",
+  });
+
+  // Responsive text size
+  const subtitleSize = Math.min(width, height) * 0.028;
+
   return (
     <div
       className="opening-title"
       style={{
         opacity: opacity * fadeOut,
         transform: `translate(-50%, -50%) scale(${scale})`,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: height * 0.03,
       }}
     >
       <BimtlyLogo frame={frame} fps={fps} width={width} height={height} />
+      <p style={{
+        opacity: subtitleOpacity,
+        fontSize: subtitleSize,
+        fontWeight: 500,
+        color: '#4b5563',
+        margin: 0,
+        letterSpacing: '0.05em',
+      }}>
+        3D Visualization • E-Catalogues • CPQ
+      </p>
     </div>
   );
 };
@@ -337,9 +359,6 @@ const Tagline: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  // Responsive scaling using design tokens
-  const scaleFactor = getScaleFactor(width, height);
-
   const opacity = interpolate(frame, [0, VIDEO.timing.fadeIn], [0, 1], {
     extrapolateRight: "clamp",
   });
@@ -357,9 +376,10 @@ const Tagline: React.FC = () => {
   const line2Opacity = interpolate(frame, [15, 35], [0, 1], { extrapolateRight: "clamp" });
   const line3Opacity = interpolate(frame, [30, 50], [0, 1], { extrapolateRight: "clamp" });
 
-  // Responsive sizes
-  const mainSize = 38 * scaleFactor;
-  const websiteSize = 28 * scaleFactor;
+  // Responsive sizes - based on smaller dimension for all formats
+  const baseSize = Math.min(width, height);
+  const mainSize = baseSize * 0.06;
+  const websiteSize = baseSize * 0.045;
 
   return (
     <div
@@ -381,6 +401,17 @@ const Tagline: React.FC = () => {
     </div>
   );
 };
+
+// Rotating phrases for dynamic text (see VIDEO_PLAYBOOK.md)
+const ROTATING_PHRASES = [
+  'Right in your browser, on any device',
+  'Create powerful product experiences',
+  'Showcase without limits',
+  'Present live',
+  'Adjust on the spot',
+  'Share instantly',
+  'Close deals anywhere',
+];
 
 const DeviceShowcaseSection: React.FC = () => {
   const frame = useCurrentFrame();
@@ -409,13 +440,30 @@ const DeviceShowcaseSection: React.FC = () => {
   const scaleByHeight = height / cascadeBaseH;
   const deviceScale = Math.min(scaleByWidth, scaleByHeight) * 0.7; // 0.7 for padding + text space
 
-  // Text animation - dramatic reveal
-  const textScale = spring({ frame, fps, config: { damping: 15, mass: 0.8 } });
+  // Text opacity (fade in/out with section)
   const textOpacity = interpolate(frame, [0, 20, 570, 600], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
 
-  // Line 2 staggered
-  const line2Scale = spring({ frame: Math.max(0, frame - 8), fps, config: { damping: 15, mass: 0.8 } });
-  const line2Opacity = interpolate(frame, [8, 28, 570, 600], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  // Rotating text timing - each phrase shows for ~90 frames (3s), with 15 frame transitions
+  const phraseInterval = 90;
+  const transitionDuration = 15;
+  const currentPhraseIndex = Math.floor(frame / phraseInterval) % ROTATING_PHRASES.length;
+  const frameInPhrase = frame % phraseInterval;
+
+  // Calculate opacity for current and next phrase (crossfade)
+  const currentPhraseOpacity = interpolate(
+    frameInPhrase,
+    [0, transitionDuration, phraseInterval - transitionDuration, phraseInterval],
+    [0, 1, 1, 0],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+
+  // Y offset for slide effect
+  const currentPhraseY = interpolate(
+    frameInPhrase,
+    [0, transitionDuration, phraseInterval - transitionDuration, phraseInterval],
+    [20, 0, 0, -20],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
 
   // Responsive text - bigger and bolder for hero
   const textSize = Math.min(width, height) * 0.055;
@@ -433,34 +481,30 @@ const DeviceShowcaseSection: React.FC = () => {
         opacity,
       }}
     >
-      {/* Headline text - centered above devices */}
-      <div
-        style={{
-          textAlign: 'center',
-          marginBottom: height * 0.02,
-        }}
-      >
+      {/* Single rotating headline with gradient */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: height * 0.02,
+        position: 'relative',
+        height: textSize * 1.5,
+        minWidth: width * 0.9,
+      }}>
         <p style={{
           fontSize: textSize,
-          fontWeight: 600,
-          color: '#1a1a2e',
+          fontWeight: 400,
           margin: 0,
-          opacity: textOpacity,
-          transform: `scale(${textScale})`,
+          opacity: currentPhraseOpacity * textOpacity,
+          transform: `translateY(${currentPhraseY}px)`,
           letterSpacing: '-0.02em',
+          position: 'absolute',
+          width: '100%',
+          whiteSpace: 'nowrap',
+          background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
         }}>
-          Right in your browser,
-        </p>
-        <p style={{
-          fontSize: textSize,
-          fontWeight: 600,
-          color: '#1a1a2e',
-          margin: 0,
-          opacity: line2Opacity,
-          transform: `scale(${line2Scale})`,
-          letterSpacing: '-0.02em',
-        }}>
-          on any device
+          {ROTATING_PHRASES[currentPhraseIndex]}
         </p>
       </div>
 
