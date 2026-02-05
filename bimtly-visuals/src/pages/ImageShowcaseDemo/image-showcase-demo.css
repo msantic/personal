@@ -1,0 +1,142 @@
+.showcase-demo-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 20px;
+}
+
+.showcase-demo-controls {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
+}
+
+.showcase-demo-controls h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #1e293b;
+}
+
+.control-group {
+  margin-bottom: 16px;
+}
+
+.control-group label {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.control-group label .time {
+  margin-left: 8px;
+  color: #94a3b8;
+}
+
+.style-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.style-buttons button {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.style-buttons button:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.style-buttons button.active {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #2563eb;
+  cursor: pointer;
+}
+
+.control-group.playback {
+  display: flex;
+  gap: 8px;
+}
+
+.control-group.playback button {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.control-group.playback button:hover {
+  background: #1d4ed8;
+}
+
+.control-group.playback button:first-child {
+  background: #64748b;
+}
+
+.control-group.playback button:first-child:hover {
+  background: #475569;
+}
+
+.shortcuts {
+  font-size: 11px;
+  color: #94a3b8;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.shortcuts strong {
+  color: #64748b;
+}
+
+.showcase-demo-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  height: 675px;
+  background: linear-gradient(180deg,
+    rgba(224, 231, 255, 0.6) 0%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(255, 247, 237, 0.4) 100%
+  );
+  border-radius: 12px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}

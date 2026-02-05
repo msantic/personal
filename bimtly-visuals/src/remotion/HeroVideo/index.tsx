@@ -8,7 +8,7 @@ import {
   Img,
   staticFile,
 } from "remotion";
-import { VIDEO, getScaleFactor, BACKGROUNDS, BimtlyLogo } from "../../design";
+import { VIDEO, getScaleFactor, BACKGROUNDS, BimtlyLogo, ImageShowcase } from "../../design";
 // import PlatformDiagram from "../../pages/PlatformDiagram/PlatformDiagram";
 import "./styles.css";
 
@@ -16,6 +16,32 @@ import "./styles.css";
 const INDUSTRIES = [
   { image: "hero-prefab.png", label: "Prefab & Modular Construction" },
   { image: "hero-window.png", label: "Windows & Building Components" },
+];
+
+// Thumbnail images for showcase - real app screenshots
+const THUMBNAILS = [
+  'thumbnails/1016.png',
+  'thumbnails/3576.png',
+  'thumbnails/4009.png',
+  'thumbnails/4657.png',
+  'thumbnails/467.png',
+  'thumbnails/585.png',
+  'thumbnails/8190.png',
+  'thumbnails/8194.png',
+  'thumbnails/8201.png',
+  'thumbnails/8232.png',
+  'thumbnails/8236.png',
+  'thumbnails/8267.png',
+  'thumbnails/8292.png',
+  'thumbnails/8305.png',
+  'thumbnails/8315.png',
+  'thumbnails/8373.png',
+  'thumbnails/8434.png',
+  'thumbnails/950.png',
+  'thumbnails/978.png',
+  'thumbnails/998.png',
+  'thumbnails/feal.png',
+  'thumbnails/pergola-config.png',
 ];
 
 export const HeroVideo: React.FC = () => {
@@ -43,23 +69,28 @@ export const HeroVideo: React.FC = () => {
 
       {/* Content layer - above background */}
       <AbsoluteFill className="hero-bg-content">
-        {/* Opening title - extended to 150 frames (5s) for diagram animations */}
-        <Sequence from={0} durationInFrames={150}>
+        {/* Opening title - 90 frames (3s) */}
+        <Sequence from={0} durationInFrames={90}>
           <OpeningTitle />
         </Sequence>
 
-        {/* Hero images showcase - starts after diagram fades out */}
-        <Sequence from={150}>
+        {/* Screenshot showcase - animated grid of real app screenshots */}
+        <Sequence from={90} durationInFrames={120}>
+          <ScreenshotShowcase />
+        </Sequence>
+
+        {/* Hero images showcase - starts after screenshot showcase */}
+        <Sequence from={210}>
           <HeroShowcase />
         </Sequence>
 
         {/* Industry labels - same start as showcase so timing aligns */}
-        <Sequence from={150}>
+        <Sequence from={210}>
           <IndustryLabels />
         </Sequence>
 
         {/* Final tagline - after images fade out */}
-        <Sequence from={365}>
+        <Sequence from={425}>
           <Tagline />
         </Sequence>
 
@@ -98,7 +129,7 @@ const OpeningTitle: React.FC = () => {
   });
 
   // Fade out at end
-  const fadeOut = interpolate(frame, [120, 150], [1, 0], {
+  const fadeOut = interpolate(frame, [60, 90], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -112,6 +143,33 @@ const OpeningTitle: React.FC = () => {
       }}
     >
       <BimtlyLogo frame={frame} fps={fps} width={width} height={height} />
+    </div>
+  );
+};
+
+const ScreenshotShowcase: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps, width, height } = useVideoConfig();
+
+  // Fade in/out
+  const opacity = interpolate(
+    frame,
+    [0, 20, 100, 120],
+    [0, 1, 1, 0],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+
+  return (
+    <div style={{ opacity }}>
+      <ImageShowcase
+        images={THUMBNAILS}
+        style="floating-cards"  // Easy to switch: 'scrolling-grid' | 'staggered-reveal' | 'floating-cards' | 'ken-burns'
+        frame={frame}
+        fps={fps}
+        width={width}
+        height={height}
+        durationInFrames={120}
+      />
     </div>
   );
 };

@@ -8,6 +8,7 @@ const pages = [
   { path: '/platform', name: 'Platform Diagram', description: 'Interactive platform features diagram' },
   { path: '/connectivity', name: 'Digital Connectivity', description: 'Input/output integration flow diagram' },
   { path: '/hero-bg', name: 'Hero Background', description: 'Test page for reusable hero background component' },
+  { path: '/showcase', name: 'Image Showcase', description: 'Animated image grid/collage demo with multiple styles' },
 ]
 
 export default function Home() {

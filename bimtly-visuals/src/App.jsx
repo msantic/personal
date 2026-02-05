@@ -6,6 +6,7 @@ import PitchDeck from './pages/PitchDeck'
 import PlatformPage from './pages/PlatformDiagram'
 import ConnectivityPage from './pages/DigitalConnectivity'
 import HeroBackgroundTest from './pages/HeroBackgroundTest'
+import ImageShowcaseDemo from './pages/ImageShowcaseDemo'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/platform" element={<PlatformPage />} />
       <Route path="/connectivity" element={<ConnectivityPage />} />
       <Route path="/hero-bg" element={<HeroBackgroundTest />} />
+      <Route path="/showcase" element={<ImageShowcaseDemo />} />
     </Routes>
   )
 }
