@@ -13,6 +13,7 @@
     "build:png": "node scripts/generate-png.js all",
     "build:connectivity": "node scripts/generate-png.js connectivity",
     "build:platform-png": "node scripts/generate-png.js platform",
+    "capture:thumbnails": "node scripts/capture-demo-thumbnails.js all",
     "remotion:studio": "remotion studio src/remotion/index.ts",
     "remotion:render": "remotion render src/remotion/index.ts HeroVideo output/hero-video.mp4",
     "render:web": "remotion render src/remotion/index.ts HeroVideo output/hero-web-1920x1080.mp4",
