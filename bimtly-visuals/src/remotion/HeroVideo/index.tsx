@@ -401,8 +401,13 @@ const DeviceShowcaseSection: React.FC = () => {
     config: VIDEO.spring.gentle,
   });
 
-  // Scale based on video dimensions
-  const deviceScale = Math.min(width, height) / 1800;
+  // Scale to fit cascade layout within video frame
+  // Cascade base dimensions: 300 + 1842 = 2142w, 1777*0.8 = 1421.6h (at scale=1)
+  const cascadeBaseW = 300 + 1842;
+  const cascadeBaseH = 1777 * 0.8;
+  const scaleByWidth = width / cascadeBaseW;
+  const scaleByHeight = height / cascadeBaseH;
+  const deviceScale = Math.min(scaleByWidth, scaleByHeight) * 0.85; // 0.85 for padding
 
   return (
     <div

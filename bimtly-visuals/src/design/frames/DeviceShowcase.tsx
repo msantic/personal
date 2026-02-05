@@ -141,11 +141,21 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
 
   if (layout === 'cascade') {
     // Marketing hero layout - fixed positions for proper overlap
-    // iMac is 1842x1777, iPad 846x1149, iPhone 436x882
+    // iMac: 1842x1777, iPad: 846x1083, iPhone: 406x791
     const s = scale;
-    const imacH = 1777 * s * 0.9; // with scaleY(0.9)
-    const containerW = 1842 * s + 180 * s; // iMac width + left offset
-    const containerH = imacH;
+
+    // Scale factors for iMac compression
+    const imacScaleX = 0.9;
+    const imacScaleY = 0.8;
+
+    // Actual element dimensions (layout space)
+    const imacW = 1842 * s;
+    const imacH = 1777 * s;
+    const ipadH = 1083 * s * 0.65;
+
+    // Container sized to fit all devices at their layout positions
+    const containerW = 300 * s + imacW; // iMac offset + full width
+    const containerH = Math.max(imacH * imacScaleY, ipadH);
 
     return (
       <div
@@ -154,13 +164,19 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
           position: 'relative',
           width: containerW,
           height: containerH,
-          margin: '0 auto',
           ...style,
         }}
       >
         {/* iMac - back right */}
         {desktopVideo && (
-          <div style={{ position: 'absolute', left: 300 * s, top: 0, zIndex: 1, transform: 'scaleX(0.9) scaleY(0.8)' }}>
+          <div style={{
+            position: 'absolute',
+            left: 300 * s,
+            top: 0,
+            zIndex: 1,
+            transform: `scaleX(${imacScaleX}) scaleY(${imacScaleY})`,
+            transformOrigin: 'top left',
+          }}>
             <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={s} objectFit="cover" />
           </div>
         )}
@@ -172,9 +188,9 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
           </div>
         )}
 
-        {/* iPhone - front center, on iMac stand */}
+        {/* iPhone - front center-right */}
         {mobileVideo && (
-          <div style={{ position: 'absolute', right: -200 * s, bottom: 0, zIndex: 3 }}>
+          <div style={{ position: 'absolute', left: 500 * s, bottom: 0, zIndex: 3 }}>
             <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={s * 0.5} objectFit="cover" />
           </div>
         )}
