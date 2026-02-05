@@ -20,7 +20,7 @@ interface DeviceShowcaseProps {
   /** Gap between devices (default: 40) */
   gap?: number;
   /** Layout arrangement */
-  layout?: 'horizontal' | 'perspective' | 'stacked';
+  layout?: 'horizontal' | 'perspective' | 'stacked' | 'cascade';
   /** Additional styles */
   style?: CSSProperties;
   /** Additional class name */
@@ -126,6 +126,49 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
             }}
           >
             <DeviceMock device="iphone" videoSrc={mobileVideo} scale={scale * 0.7} />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (layout === 'cascade') {
+    // Marketing hero layout - fixed positions for proper overlap
+    // iMac is 1842x1777, iPad 846x1149, iPhone 436x882
+    const s = scale;
+    const imacH = 1777 * s * 0.9; // with scaleY(0.9)
+    const containerW = 1842 * s + 180 * s; // iMac width + left offset
+    const containerH = imacH;
+
+    return (
+      <div
+        className={className}
+        style={{
+          position: 'relative',
+          width: containerW,
+          height: containerH,
+          margin: '0 auto',
+          ...style,
+        }}
+      >
+        {/* iMac - back right */}
+        {desktopVideo && (
+          <div style={{ position: 'absolute', left: 300 * s, top: 0, zIndex: 1, transform: 'scaleX(0.9) scaleY(0.8)' }}>
+            <DeviceMock device="imac" videoSrc={desktopVideo} scale={s} objectFit="cover" />
+          </div>
+        )}
+
+        {/* iPad - front left, overlapping iMac */}
+        {tabletVideo && (
+          <div style={{ position: 'absolute', left: 0, bottom: 30 * s, zIndex: 2 }}>
+            <DeviceMock device="ipad" videoSrc={tabletVideo} scale={s * 0.65} objectFit="cover" />
+          </div>
+        )}
+
+        {/* iPhone - front center, on iMac stand */}
+        {mobileVideo && (
+          <div style={{ position: 'absolute', left: 450 * s, bottom: 0, zIndex: 3 }}>
+            <DeviceMock device="iphone" videoSrc={mobileVideo} scale={s * 0.5} objectFit="cover" />
           </div>
         )}
       </div>

@@ -15,6 +15,20 @@ const DeviceMockDemo = () => {
     <div style={{ padding: 40, background: '#1a1a2e', minHeight: '100vh' }}>
       <h1 style={{ color: '#fff', marginBottom: 40 }}>Device Mockups</h1>
 
+      {/* Section: Cascade Layout (Marketing Hero) */}
+      <section style={{ marginBottom: 80 }}>
+        <h2 style={{ color: '#888', marginBottom: 24 }}>Showcase: Cascade (Marketing Hero)</h2>
+        <div style={{ height: 700, background: 'linear-gradient(135deg, #f5e6e8 0%, #d4c4b0 100%)', borderRadius: 12, padding: 40 }}>
+          <DeviceShowcase
+            desktopVideo={desktopVideo}
+            tabletVideo={tabletVideo}
+            mobileVideo={mobileVideo}
+            layout="cascade"
+            scale={0.5}
+          />
+        </div>
+      </section>
+
       {/* Section: Individual Devices */}
       <section style={{ marginBottom: 80 }}>
         <h2 style={{ color: '#888', marginBottom: 24 }}>Individual Devices</h2>

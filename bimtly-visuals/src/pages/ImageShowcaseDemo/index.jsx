@@ -10,6 +10,8 @@ const THUMBNAILS = [
   'thumbnails/4657.png',
   'thumbnails/467.png',
   'thumbnails/585.png',
+  'thumbnails/4696.png',
+  'thumbnails/4740.png',
   'thumbnails/8190.png',
   'thumbnails/8194.png',
   'thumbnails/8201.png',
@@ -21,6 +23,7 @@ const THUMBNAILS = [
   'thumbnails/8315.png',
   'thumbnails/8373.png',
   'thumbnails/8434.png',
+  'thumbnails/8606.png',
   'thumbnails/950.png',
   'thumbnails/978.png',
   'thumbnails/998.png',
@@ -40,7 +43,7 @@ const STYLES = [
 ];
 
 export default function ImageShowcaseDemo() {
-  const [style, setStyle] = useState('floating-cards');
+  const [style, setStyle] = useState('staggered-reveal');
   const [frame, setFrame] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [speed, setSpeed] = useState(1);

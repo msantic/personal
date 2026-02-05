@@ -70,6 +70,9 @@ export const DEMOS = [
   { id: '8305', path: '/v/8305', name: 'tent-canopy', auth: null },
   { id: '8373', path: '/v/8373/metal-fence-sidewalk', name: 'metal-fence', auth: null },
   { id: '8520', path: '/v/8520', name: '8520', auth: null },
+  { id: '4696', path: '/v/4696/chair', name: 'chair', auth: null },
+  { id: '4740', path: '/v/4740/dorisarmchairshetlandpink-1optimized', name: 'doris-armchair', auth: null },
+  { id: '8606', path: '/v/8606/royalgourmet3grilloptimizedglb', name: 'royal-gourmet-grill', auth: null },
   // Special demo URLs
   { id: 'pergola-config', path: '/demo/pergola', name: 'pergola-configurator', auth: null },
   { id: 'feal', path: '/embed/204', name: 'feal', auth: null }

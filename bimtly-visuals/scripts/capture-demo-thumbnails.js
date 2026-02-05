@@ -248,8 +248,8 @@ async function main() {
     }))
     console.log(`Device mode: ${deviceArg} → ${deviceNames.join(', ')}`)
   } else {
-    // Legacy resolution mode
-    const resArg = args[1] || DEFAULT_RESOLUTION
+    // Legacy resolution mode - skip flags when looking for resolution
+    const resArg = (args[1] && !args[1].startsWith('--')) ? args[1] : DEFAULT_RESOLUTION
     const resolution = RESOLUTIONS[resArg]
     if (!resolution) {
       console.error(`Unknown resolution: ${resArg}`)
