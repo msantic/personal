@@ -33,6 +33,10 @@ const STYLES = [
   { id: 'staggered-reveal', name: 'Staggered Reveal', description: 'Images appear one by one' },
   { id: 'floating-cards', name: 'Floating Cards', description: '3D cards in space' },
   { id: 'ken-burns', name: 'Ken Burns', description: 'Slow zoom and pan' },
+  { id: 'rapid-showcase', name: 'Rapid Showcase', description: 'Quick full-screen slideshow' },
+  { id: 'rapid-browser', name: 'Browser Frame', description: 'Slideshow in macOS browser' },
+  { id: 'rapid-monitor', name: 'Monitor Frame', description: 'Slideshow in Apple monitor' },
+  { id: 'rapid-combined', name: 'Combined', description: 'Browser inside monitor' },
 ];
 
 export default function ImageShowcaseDemo() {
@@ -68,6 +72,10 @@ export default function ImageShowcaseDemo() {
       else if (e.code === 'Digit2') setStyle('staggered-reveal');
       else if (e.code === 'Digit3') setStyle('floating-cards');
       else if (e.code === 'Digit4') setStyle('ken-burns');
+      else if (e.code === 'Digit5') setStyle('rapid-showcase');
+      else if (e.code === 'Digit6') setStyle('rapid-browser');
+      else if (e.code === 'Digit7') setStyle('rapid-monitor');
+      else if (e.code === 'Digit8') setStyle('rapid-combined');
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -81,7 +89,7 @@ export default function ImageShowcaseDemo() {
         <h2>Image Showcase Demo</h2>
 
         <div className="control-group">
-          <label>Animation Style (1-4):</label>
+          <label>Animation Style (1-8):</label>
           <div className="style-buttons">
             {STYLES.map((s, i) => (
               <button
@@ -130,7 +138,7 @@ export default function ImageShowcaseDemo() {
         </div>
 
         <div className="shortcuts">
-          <strong>Shortcuts:</strong> Space = play/pause, 1-4 = styles, ←/→ = frame step
+          <strong>Shortcuts:</strong> Space = play/pause, 1-8 = styles, ←/→ = frame step
         </div>
       </div>
 
@@ -141,8 +149,8 @@ export default function ImageShowcaseDemo() {
           style={style}
           frame={frame}
           fps={fps}
-          width={1200}
-          height={675}
+          width={1000}
+          height={563}
           durationInFrames={durationInFrames}
         />
       </div>

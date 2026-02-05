@@ -11,6 +11,7 @@ export { BimtlyLogo } from './BimtlyLogo';
 export { ImageShowcase } from './ImageShowcase';
 export type { ImageShowcaseStyle } from './ImageShowcase';
 export * from './grids';
+export * from './frames';
 
 // Import CSS utilities (side effect)
 import './backgrounds.css';
