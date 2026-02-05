@@ -407,7 +407,18 @@ const DeviceShowcaseSection: React.FC = () => {
   const cascadeBaseH = 1777 * 0.8;
   const scaleByWidth = width / cascadeBaseW;
   const scaleByHeight = height / cascadeBaseH;
-  const deviceScale = Math.min(scaleByWidth, scaleByHeight) * 0.85; // 0.85 for padding
+  const deviceScale = Math.min(scaleByWidth, scaleByHeight) * 0.7; // 0.7 for padding + text space
+
+  // Text animation - dramatic reveal
+  const textScale = spring({ frame, fps, config: { damping: 15, mass: 0.8 } });
+  const textOpacity = interpolate(frame, [0, 20, 570, 600], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+
+  // Line 2 staggered
+  const line2Scale = spring({ frame: Math.max(0, frame - 8), fps, config: { damping: 15, mass: 0.8 } });
+  const line2Opacity = interpolate(frame, [8, 28, 570, 600], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+
+  // Responsive text - bigger and bolder for hero
+  const textSize = Math.min(width, height) * 0.055;
 
   return (
     <div
@@ -415,11 +426,44 @@ const DeviceShowcaseSection: React.FC = () => {
         position: 'absolute',
         inset: 0,
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+        gap: height * 0.05,
         opacity,
       }}
     >
+      {/* Headline text - centered above devices */}
+      <div
+        style={{
+          textAlign: 'center',
+          marginBottom: height * 0.02,
+        }}
+      >
+        <p style={{
+          fontSize: textSize,
+          fontWeight: 600,
+          color: '#1a1a2e',
+          margin: 0,
+          opacity: textOpacity,
+          transform: `scale(${textScale})`,
+          letterSpacing: '-0.02em',
+        }}>
+          Right in your browser,
+        </p>
+        <p style={{
+          fontSize: textSize,
+          fontWeight: 600,
+          color: '#1a1a2e',
+          margin: 0,
+          opacity: line2Opacity,
+          transform: `scale(${line2Scale})`,
+          letterSpacing: '-0.02em',
+        }}>
+          on any device
+        </p>
+      </div>
+
       <div style={{ transform: `scale(${entryScale})` }}>
       <DeviceShowcase
         desktopVideo={staticFile('videos/8520-macbook-pro-16.mp4')}
