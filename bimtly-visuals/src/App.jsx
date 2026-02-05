@@ -8,6 +8,7 @@ import ConnectivityPage from './pages/DigitalConnectivity'
 import HeroBackgroundTest from './pages/HeroBackgroundTest'
 import ImageShowcaseDemo from './pages/ImageShowcaseDemo'
 import DeviceMockDemo from './pages/DeviceMockDemo'
+import FourPillarsDemo from './pages/FourPillarsDiagram/FourPillarsDemo'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/hero-bg" element={<HeroBackgroundTest />} />
       <Route path="/showcase" element={<ImageShowcaseDemo />} />
       <Route path="/devices" element={<DeviceMockDemo />} />
+      <Route path="/pillars" element={<FourPillarsDemo />} />
     </Routes>
   )
 }

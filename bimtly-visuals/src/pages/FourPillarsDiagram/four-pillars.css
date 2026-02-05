@@ -1,0 +1,291 @@
+/**
+ * Four Pillars Diagram Styles
+ * Show → Configure → Quote → Sell
+ */
+
+.four-pillars {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.four-pillars--video {
+  max-width: none;
+}
+
+/* SVG layer */
+.pillars-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Orbit ring */
+.pillars-orbit {
+  fill: none;
+  stroke: #2563EB;
+  stroke-width: 1.5;
+  opacity: 0.25;
+  animation: pillarsOrbitAppear 1s ease-out 0.5s backwards;
+}
+
+@keyframes pillarsOrbitAppear {
+  0% {
+    opacity: 0;
+    stroke-dasharray: 0 1200;
+  }
+  100% {
+    opacity: 0.25;
+    stroke-dasharray: 1200 0;
+  }
+}
+
+/* Connection lines */
+.pillars-line {
+  stroke: #2563EB;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  animation: pillarsLineAppear 0.6s ease-out backwards;
+}
+
+@keyframes pillarsLineAppear {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 200;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Connector dots */
+.pillars-dot {
+  fill: white;
+  stroke: #2563EB;
+  stroke-width: 2;
+  animation: pillarsDotAppear 0.4s ease-out backwards;
+}
+
+@keyframes pillarsDotAppear {
+  0% {
+    opacity: 0;
+    r: 0;
+  }
+  100% {
+    opacity: 1;
+    r: 5;
+  }
+}
+
+/* Center node */
+.pillars-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(180deg, #2563EB 0%, #1d4ed8 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow:
+    0 4px 30px rgba(37, 99, 235, 0.35),
+    inset 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  animation: pillarsCenterAppear 0.8s ease-out backwards;
+}
+
+@keyframes pillarsCenterAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.pillars-center-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.pillars-center-subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 2px;
+}
+
+/* Pillar icon */
+.pillar-icon {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background: white;
+  border: 2px solid #2563EB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+  z-index: 5;
+  color: #2563EB;
+  animation: pillarsIconAppear 0.6s ease-out backwards;
+}
+
+@keyframes pillarsIconAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Pillar label */
+.pillar-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  z-index: 1;
+  animation: pillarsLabelAppear 0.5s ease-out backwards;
+}
+
+@keyframes pillarsLabelAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+/* Position-specific alignment */
+.pillar-label--show,
+.pillar-label--quote {
+  text-align: center;
+  align-items: center;
+}
+
+.pillar-label--configure {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.pillar-label--sell {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.pillar-stage {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563EB;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.pillar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.pillar-subtitle {
+  font-size: 13px;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* No CSS animation mode (for video/Remotion) */
+.no-css-anim.pillars-orbit,
+.no-css-anim.pillars-line,
+.no-css-anim.pillars-dot,
+.no-css-anim.pillars-center,
+.no-css-anim.pillar-icon,
+.no-css-anim.pillar-label {
+  animation: none !important;
+}
+
+.no-css-anim.pillars-center,
+.no-css-anim.pillar-icon,
+.no-css-anim.pillar-label {
+  opacity: 1;
+}
+
+.no-css-anim.pillars-orbit {
+  stroke-dasharray: none;
+}
+
+.no-css-anim.pillars-line {
+  stroke-dashoffset: 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pillars-center {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pillars-center-title {
+    font-size: 18px;
+  }
+
+  .pillars-center-subtitle {
+    font-size: 12px;
+  }
+
+  .pillar-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .pillar-stage {
+    font-size: 10px;
+  }
+
+  .pillar-title {
+    font-size: 13px;
+  }
+
+  .pillar-subtitle {
+    font-size: 11px;
+  }
+
+  .pillar-label {
+    width: 140px;
+  }
+}

@@ -12,6 +12,108 @@
 
 ---
 
+## BIMTLY Customer Journey
+
+**The core flow our videos should communicate:**
+
+```
+Show → Configure → Quote → Sell
+```
+
+| Stage | What Happens | BIMTLY Enables |
+|-------|--------------|----------------|
+| **Show** | Customer browses products, views 3D models | E-Catalogues, 3D Visualization |
+| **Configure** | Customer customizes options, sees changes live | Interactive Configurators |
+| **Quote** | Instant pricing, generate PDF quotes | CPQ (Configure-Price-Quote) |
+| **Sell** | Complete purchase, data flows to ERP | Ecommerce, Integrations |
+
+This journey should be the backbone of every marketing video.
+
+
+## MY INIT INPUT ZA JACI FOKUS I KOMUNIKACIJU
+
+3D Visualization = the front-end experience layer (why you’re different)
+
+E-Catalogues = the publishing + distribution layer (how it gets to buyers/channels)
+
+CPQ = the “complexity engine” (how buyers configure + you price + you quote)
+
+E-commerce = the transaction layer (how money/orders happen)
+
+
+## ITERACIJA
+Instead of “4 offerings”, present as one platform with modules:
+
+BIMTLY Studio
+3D visualization, product scenes, interactive viewer, AR/VR-ready
+
+BIMTLY Configure (CPQ)
+Rules, options, constraints, pricing, BOM output, quote generation
+
+BIMTLY Publish (E-Catalogues)
+Digital catalogs, embeds, share links, channel exports, multi-language
+
+BIMTLY Commerce (optional)
+Checkout / orders / payments or integrations (Shopify, Woo, SAP/ERP)
+
+
+
+## 1.  VERZIJA
+
+3D Product Experience Interactive 3D experiences that help customers understand products and decide faster. 
+
+Configure Configure & Quote (CPQ) Rules-based configuration with instant, accurate pricing and quotations. 
+
+Publish Digital Product Catalogs Always-up-to-date product catalogs for sales teams, partners, and customers. 
+
+Sell From Quote to Order Close deals and turn configurations into orders
+
+
+## KAO FINALNO
+Show
+
+3D Product Experience
+Help buyers understand products faster and choose with confidence.
+
+Configure
+
+Product Configuration
+Rules-based configuration that prevents errors and invalid combinations.
+
+Quote
+
+Instant Pricing & Quotes
+Accurate, automated quotes generated in minutes, not days.
+
+Sell
+
+From Quote to Order
+Close deals and turn approved quotes into orders.
+
+
+What kind of company BIMTLY is
+The clearest, most defensible definition
+
+BIMTLY is a product sales platform for companies that sell complex physical products.
+
+That’s the core truth. Everything else is detail.
+
+If you want it one level richer (homepage / pitch deck ready):
+
+BIMTLY is a visual product sales platform that helps manufacturers show, configure, quote, and sell complex products digitally.
+
+Slogan 
+
+
+## Koraci
+
+1. novi platform diagram 
+2. Show → Configure → Quote → Sell - new animation sew
+3. Pergola demo animatin as new seq animation
+
+
+---
+
 ## Industry Best Practices
 
 ### The 3-Act Formula
@@ -305,6 +407,27 @@ src/remotion/HeroVideo/
 - Export frame 1 as PNG
 - Use as `poster` attribute for video element
 - Ensure it's compelling standalone
+
+---
+
+## Device Showcase Rotating Text
+
+The DeviceShowcaseSection displays a two-line headline above the devices:
+
+```
+Line 1 (static, dark): "Right in your browser,"
+
+Line 2 (rotating, orange, 3s each):
+- Create powerful product experiences
+- Showcase without limits
+- Present live
+- Adjust on the spot
+- Share instantly
+- Close deals anywhere
+- on any device
+```
+
+The rotating text uses a slide-up animation with fade transitions. Orange color (#ff6b35) draws attention to the changing phrases.
 
 ---
 

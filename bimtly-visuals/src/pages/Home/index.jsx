@@ -10,6 +10,7 @@ const pages = [
   { path: '/hero-bg', name: 'Hero Background', description: 'Test page for reusable hero background component' },
   { path: '/showcase', name: 'Image Showcase', description: 'Animated image grid/collage demo with multiple styles' },
   { path: '/devices', name: 'Device Mocks', description: 'Apple device mockups with video/image content' },
+  { path: '/pillars', name: 'Four Pillars', description: 'Show → Configure → Quote → Sell customer journey' },
 ]
 
 export default function Home() {
