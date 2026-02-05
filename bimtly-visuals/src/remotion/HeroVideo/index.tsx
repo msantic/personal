@@ -8,8 +8,8 @@ import {
   Img,
   staticFile,
 } from "remotion";
-import { VIDEO, getScaleFactor, BACKGROUNDS } from "../../design";
-import PlatformDiagram from "../../pages/PlatformDiagram/PlatformDiagram";
+import { VIDEO, getScaleFactor, BACKGROUNDS, BimtlyLogo } from "../../design";
+// import PlatformDiagram from "../../pages/PlatformDiagram/PlatformDiagram";
 import "./styles.css";
 
 // Industries to showcase
@@ -19,6 +19,8 @@ const INDUSTRIES = [
 ];
 
 export const HeroVideo: React.FC = () => {
+  const { width, height } = useVideoConfig();
+
   // CSS variables from design tokens (single source of truth)
   const heroVars = {
     '--hero-grid-color': BACKGROUNDS.grid.light.color,
@@ -28,6 +30,9 @@ export const HeroVideo: React.FC = () => {
     '--flare-x': '20%',
     '--flare-y': '80%',
   } as React.CSSProperties;
+
+  // Responsive logo sizing
+  const logoHeight = Math.min(width, height) * 0.05;
 
   return (
     <AbsoluteFill className="hero-container" style={heroVars}>
@@ -57,6 +62,22 @@ export const HeroVideo: React.FC = () => {
         <Sequence from={365}>
           <Tagline />
         </Sequence>
+
+        {/* Persistent logo at bottom - always visible */}
+        {/* <div
+          style={{
+            position: 'absolute',
+            bottom: logoHeight * 0.8,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 100,
+          }}
+        >
+          <Img
+            src={staticFile('branding/logo_with_name_black.svg')}
+            style={{ height: logoHeight }}
+          />
+        </div> */}
       </AbsoluteFill>
     </AbsoluteFill>
   );
@@ -65,9 +86,6 @@ export const HeroVideo: React.FC = () => {
 const OpeningTitle: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
-
-  // Responsive scaling using design tokens
-  const scaleFactor = getScaleFactor(width, height);
 
   const scale = spring({
     frame,
@@ -79,22 +97,11 @@ const OpeningTitle: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Fade out at end (within 150 frame duration for diagram test)
+  // Fade out at end
   const fadeOut = interpolate(frame, [120, 150], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-
-  const glowIntensity = 0.3 + Math.sin(frame * 0.08) * 0.1;
-
-  // Responsive sizes using design token base values
-  const logoSize = 220 * scaleFactor;
-  const titleSize = 42 * scaleFactor;
-  const subtitleSize = 24 * scaleFactor;
-
-  // Diagram sizing: maximize while keeping minimal padding
-  // Use 95% of smaller dimension to fill available space
-  const diagramSize = Math.min(width, height) * 0.95;
 
   return (
     <div
@@ -104,36 +111,7 @@ const OpeningTitle: React.FC = () => {
         transform: `translate(-50%, -50%) scale(${scale})`,
       }}
     >
-      {/* Platform diagram - sized to fill available space, centered */}
-      <div style={{
-        width: diagramSize,
-        height: diagramSize,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-        <PlatformDiagram mode="video" />
-      </div>
-
-      {/* ORIGINAL: Simple logo circle - commented out for testing
-      <div
-        className="logo-circle"
-        style={{
-          width: logoSize,
-          height: logoSize,
-          boxShadow: `
-            0 4px 60px rgba(37, 99, 235, ${glowIntensity}),
-            0 0 120px rgba(37, 99, 235, ${glowIntensity * 0.5})
-          `,
-        }}
-      >
-        <span className="logo-title" style={{ fontSize: titleSize }}>BIMTLY</span>
-        <span className="logo-subtitle" style={{ fontSize: subtitleSize }}>Platform</span>
-      </div>
-      <p className="opening-subtitle" style={{ opacity: interpolate(frame, [30, 50], [0, 1], { extrapolateRight: "clamp" }) }}>
-        One Platform. Every Industry.
-      </p>
-      */}
+      <BimtlyLogo frame={frame} fps={fps} width={width} height={height} />
     </div>
   );
 };
