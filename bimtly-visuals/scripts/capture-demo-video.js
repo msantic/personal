@@ -1,31 +1,48 @@
 /**
  * capture-demo-video.js
  *
- * Records video of BIMTLY demos cycling through camera views.
+ * Records video of BIMTLY demos cycling through all camera views.
+ * Creates seamless looping videos by returning to view 1 at the end.
+ *
+ * Features:
+ *   - Auto-detects number of views and cycles through all of them
+ *   - Seamless loop: ends on view 1 (same as start) for smooth looping
+ *   - Device sync: settle time ensures all device videos have identical timing
+ *   - Multi-device capture: record desktop, tablet, mobile in one command
  *
  * Usage:
- *   node scripts/capture-demo-video.js <demo-id|all> [--duration <seconds>] [--device <device>]
+ *   node scripts/capture-demo-video.js <demo-id|all> [options]
  *
  * Arguments:
- *   demo-id    - Demo ID or "all" to record all demos
- *   --duration - Seconds per view (default: 2)
- *   --device   - Apple device preset (desktop|tablet|mobile|all|<device-name>)
+ *   demo-id      - Demo ID (e.g., "8520") or "all" to record all demos
+ *   --duration   - Seconds to hold each view (default: 2)
+ *   --device     - Apple device preset or group (see below)
+ *   --settle     - Milliseconds to wait after view change (default: 1500)
+ *                  Absorbs variable 3D loading times for cross-device sync
+ *
+ * Device options:
+ *   Groups:   desktop, tablet, mobile, all
+ *   Desktop:  macbook-pro-16, macbook-pro-14, imac-24
+ *   Tablet:   ipad-pro-12, ipad-pro-11, ipad-air, ipad-mini
+ *   Mobile:   iphone-15-pro-max, iphone-15-pro, iphone-15, iphone-se
  *
  * Examples:
- *   node scripts/capture-demo-video.js 8520                        # Single demo, desktop
- *   node scripts/capture-demo-video.js 8520 --device mobile        # Mobile size
- *   node scripts/capture-demo-video.js 8520 --device all           # All 3 devices
- *   node scripts/capture-demo-video.js 8520 --duration 3           # 3s per view
- *   node scripts/capture-demo-video.js all --device desktop        # All demos, desktop
- *
- * Available devices:
- *   Desktop: macbook-pro-16, macbook-pro-14, imac-24
- *   Tablet:  ipad-pro-12, ipad-pro-11, ipad-air, ipad-mini
- *   Mobile:  iphone-15-pro-max, iphone-15-pro, iphone-15, iphone-se
+ *   node scripts/capture-demo-video.js 8520                   # Single demo, 1920x1080
+ *   node scripts/capture-demo-video.js 8520 --device mobile   # iPhone 15 Pro size
+ *   node scripts/capture-demo-video.js 8520 --device all      # All 3 devices (synced)
+ *   node scripts/capture-demo-video.js 8520 --duration 3      # 3s per view
+ *   node scripts/capture-demo-video.js 8520 --settle 2000     # 2s settle for slower 3D
+ *   node scripts/capture-demo-video.js all --device desktop   # All demos, MacBook size
  *
  * Output:
  *   Default:      public/videos/{id}.mp4
  *   With device:  public/videos/{id}-{device}.mp4
+ *
+ * Sync behavior:
+ *   When using --device all, videos are synced by:
+ *   1. Same settle time before/after each view change
+ *   2. Identical view duration across all devices
+ *   3. All videos end on view 1 for seamless loop
  */
 
 import puppeteer from 'puppeteer'
@@ -116,8 +133,9 @@ async function countViews(page) {
  * @param {number} durationPerView - Seconds per view
  * @param {Object} viewport - { width, height }
  * @param {string|null} deviceSuffix - Device name for filename suffix
+ * @param {number} settleTime - Milliseconds to wait after view change before recording
  */
-async function recordDemo(demoId, durationPerView = 2, viewport = DEFAULT_VIEWPORT, deviceSuffix = null) {
+async function recordDemo(demoId, durationPerView = 2, viewport = DEFAULT_VIEWPORT, deviceSuffix = null, settleTime = 1500) {
   const url = `${BASE_URL}/v/${demoId}`
   const label = deviceSuffix ? `${demoId} (${deviceSuffix})` : demoId
   console.log(`Recording demo: ${label}`)
@@ -187,31 +205,31 @@ async function recordDemo(demoId, durationPerView = 2, viewport = DEFAULT_VIEWPO
   const filename = deviceSuffix ? `${demoId}-${deviceSuffix}.mp4` : `${demoId}.mp4`
   const outputPath = join(outputDir, filename)
 
-  console.log('\nStarting recording...')
-  await recorder.start(outputPath)
+  console.log(`\nStarting recording (settle: ${settleTime}ms per view)...`)
 
-  // Wait initial frame
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  // Wait for scene to settle before starting recording
+  await new Promise(resolve => setTimeout(resolve, settleTime))
+
+  await recorder.start(outputPath)
 
   // Cycle through all views
   for (let i = 0; i < viewCount; i++) {
     console.log(`  Recording view ${i + 1}/${viewCount}...`)
 
-    // Hold on this view
+    // Hold on this view for exact duration
     await new Promise(resolve => setTimeout(resolve, durationPerView * 1000))
 
-    // Click next (except on last view)
-    if (i < viewCount - 1) {
-      const nextBtn = await page.$('button[title="Next view"]')
-      if (nextBtn) {
-        await nextBtn.click()
-        await new Promise(resolve => setTimeout(resolve, 500))
-      }
+    // Click next to transition to next view
+    const nextBtn = await page.$('button[title="Next view"]')
+    if (nextBtn) {
+      await nextBtn.click()
+      // Settle time: wait for 3D to fully render before recording next view
+      await new Promise(resolve => setTimeout(resolve, settleTime))
     }
   }
 
-  // Hold final view
-  await new Promise(resolve => setTimeout(resolve, 1000))
+  // Video now ends on view 1 (seamless loop)
+  console.log(`  ✓ Returned to view 1 for seamless loop`)
 
   // Stop recording
   await recorder.stop()
@@ -231,6 +249,8 @@ if (!target) {
 
 const durationIdx = args.indexOf('--duration')
 const duration = durationIdx !== -1 ? parseInt(args[durationIdx + 1]) || 2 : 2
+const settleIdx = args.indexOf('--settle')
+const settleTime = settleIdx !== -1 ? parseInt(args[settleIdx + 1]) || 1500 : 1500
 const deviceArg = parseDeviceArg(args)
 
 async function main() {
@@ -260,7 +280,8 @@ async function main() {
   }
 
   const totalRecordings = demosToRecord.length * viewportsToCapture.length
-  console.log(`Recording ${demosToRecord.length} demo(s) × ${viewportsToCapture.length} viewport(s) = ${totalRecordings} videos, ${duration}s per view\n`)
+  console.log(`Recording ${demosToRecord.length} demo(s) × ${viewportsToCapture.length} viewport(s) = ${totalRecordings} videos`)
+  console.log(`Duration: ${duration}s per view, Settle: ${settleTime}ms\n`)
 
   let succeeded = 0
   let failed = 0
@@ -274,7 +295,7 @@ async function main() {
       console.log(`${label}\n`)
 
       try {
-        await recordDemo(demoId, duration, viewport, viewport.suffix)
+        await recordDemo(demoId, duration, viewport, viewport.suffix, settleTime)
         succeeded++
       } catch (err) {
         console.error(`Failed ${label}: ${err.message}`)
