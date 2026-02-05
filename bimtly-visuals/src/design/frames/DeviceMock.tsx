@@ -54,6 +54,8 @@ interface DeviceMockProps {
   videoSrc?: string;
   /** Image source URL (alternative to video) */
   imageSrc?: string;
+  /** Override frame image path (for Remotion staticFile) */
+  frameImage?: string;
   /** Scale factor (default: 1) */
   scale?: number;
   /** Whether video should autoplay (default: true) */
@@ -76,6 +78,7 @@ export const DeviceMock: React.FC<DeviceMockProps> = ({
   device,
   videoSrc,
   imageSrc,
+  frameImage,
   scale = 1,
   autoPlay = true,
   loop = true,
@@ -87,6 +90,7 @@ export const DeviceMock: React.FC<DeviceMockProps> = ({
 }) => {
   const config = DEVICE_CONFIGS[device];
   const { screen } = config;
+  const frameSrc = frameImage || config.image;
 
   const containerWidth = config.width * scale;
   const containerHeight = config.height * scale;
@@ -144,7 +148,7 @@ export const DeviceMock: React.FC<DeviceMockProps> = ({
 
       {/* Device frame (on top) */}
       <img
-        src={config.image}
+        src={frameSrc}
         alt={`${device} frame`}
         style={{
           position: 'absolute',

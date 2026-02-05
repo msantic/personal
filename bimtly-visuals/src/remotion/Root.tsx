@@ -11,23 +11,23 @@ import { HeroVideo } from "./HeroVideo";
 // Platform presets with recommended dimensions
 const PLATFORMS = {
   // 16:9 Landscape
-  web: { width: 1920, height: 1080, fps: 30, duration: 12 },
-  youtube: { width: 1920, height: 1080, fps: 30, duration: 12 },
-  linkedin: { width: 1920, height: 1080, fps: 30, duration: 12 },
-  facebook: { width: 1920, height: 1080, fps: 30, duration: 12 },
+  web: { width: 1920, height: 1080, fps: 30, duration: 38 },
+  youtube: { width: 1920, height: 1080, fps: 30, duration: 38 },
+  linkedin: { width: 1920, height: 1080, fps: 30, duration: 38 },
+  facebook: { width: 1920, height: 1080, fps: 30, duration: 38 },
 
   // 1:1 Square
-  instagramFeed: { width: 1080, height: 1080, fps: 30, duration: 12 },
-  linkedinSquare: { width: 1080, height: 1080, fps: 30, duration: 12 },
-  facebookSquare: { width: 1080, height: 1080, fps: 30, duration: 12 },
+  instagramFeed: { width: 1080, height: 1080, fps: 30, duration: 38 },
+  linkedinSquare: { width: 1080, height: 1080, fps: 30, duration: 38 },
+  facebookSquare: { width: 1080, height: 1080, fps: 30, duration: 38 },
 
   // 9:16 Vertical
-  instagramReels: { width: 1080, height: 1920, fps: 30, duration: 12 },
-  tiktok: { width: 1080, height: 1920, fps: 30, duration: 12 },
-  youtubeShorts: { width: 1080, height: 1920, fps: 30, duration: 12 },
+  instagramReels: { width: 1080, height: 1920, fps: 30, duration: 38 },
+  tiktok: { width: 1080, height: 1920, fps: 30, duration: 38 },
+  youtubeShorts: { width: 1080, height: 1920, fps: 30, duration: 38 },
 
   // 4:5 Portrait (Instagram optimal)
-  instagramPortrait: { width: 1080, height: 1350, fps: 30, duration: 12 },
+  instagramPortrait: { width: 1080, height: 1350, fps: 30, duration: 38 },
 };
 
 export const RemotionRoot: React.FC = () => {

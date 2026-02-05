@@ -8,7 +8,7 @@ import {
   Img,
   staticFile,
 } from "remotion";
-import { VIDEO, getScaleFactor, BACKGROUNDS, BimtlyLogo, ImageShowcase } from "../../design";
+import { VIDEO, getScaleFactor, BACKGROUNDS, BimtlyLogo, ImageShowcase, DeviceShowcase } from "../../design";
 // import PlatformDiagram from "../../pages/PlatformDiagram/PlatformDiagram";
 import "./styles.css";
 
@@ -26,6 +26,8 @@ const THUMBNAILS = [
   'thumbnails/4657.png',
   'thumbnails/467.png',
   'thumbnails/585.png',
+  'thumbnails/4696.png',
+  'thumbnails/4740.png',
   'thumbnails/8190.png',
   'thumbnails/8194.png',
   'thumbnails/8201.png',
@@ -37,6 +39,7 @@ const THUMBNAILS = [
   'thumbnails/8315.png',
   'thumbnails/8373.png',
   'thumbnails/8434.png',
+  'thumbnails/8606.png',
   'thumbnails/950.png',
   'thumbnails/978.png',
   'thumbnails/998.png',
@@ -89,8 +92,13 @@ export const HeroVideo: React.FC = () => {
           <IndustryLabels />
         </Sequence>
 
-        {/* Final tagline - after images fade out */}
-        <Sequence from={425}>
+        {/* Device showcase - multi-device video display (20s = 600 frames) */}
+        <Sequence from={425} durationInFrames={600}>
+          <DeviceShowcaseSection />
+        </Sequence>
+
+        {/* Final tagline - at the end */}
+        <Sequence from={1025}>
           <Tagline />
         </Sequence>
 
@@ -163,7 +171,7 @@ const ScreenshotShowcase: React.FC = () => {
     <div style={{ opacity }}>
       <ImageShowcase
         images={THUMBNAILS}
-        style="floating-cards"  // Easy to switch: 'scrolling-grid' | 'staggered-reveal' | 'floating-cards' | 'ken-burns'
+        style="staggered-reveal"  // Easy to switch: 'scrolling-grid' | 'staggered-reveal' | 'floating-cards' | 'ken-burns'
         frame={frame}
         fps={fps}
         width={width}
@@ -370,6 +378,57 @@ const Tagline: React.FC = () => {
       <p className="website" style={{ opacity: line3Opacity, fontSize: websiteSize }}>
         bimtly.com
       </p>
+    </div>
+  );
+};
+
+const DeviceShowcaseSection: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps, width, height } = useVideoConfig();
+
+  // Fade in/out (600 frames total = 20s)
+  const opacity = interpolate(
+    frame,
+    [0, 30, 570, 600],
+    [0, 1, 1, 0],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+
+  // Entry scale
+  const entryScale = spring({
+    frame,
+    fps,
+    config: VIDEO.spring.gentle,
+  });
+
+  // Scale based on video dimensions
+  const deviceScale = Math.min(width, height) / 1800;
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity,
+      }}
+    >
+      <div style={{ transform: `scale(${entryScale})` }}>
+      <DeviceShowcase
+        desktopVideo={staticFile('videos/8520-macbook-pro-16.mp4')}
+        tabletVideo={staticFile('videos/8520-ipad-pro-12.mp4')}
+        mobileVideo={staticFile('videos/8520-iphone-15-pro.mp4')}
+        frameImages={{
+          imac: staticFile('mocks/imac.png'),
+          ipad: staticFile('mocks/ipadpro13.png'),
+          iphone: staticFile('mocks/iphone11.png'),
+        }}
+        layout="cascade"
+        scale={deviceScale}
+      />
+      </div>
     </div>
   );
 };
