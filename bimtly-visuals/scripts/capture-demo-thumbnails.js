@@ -5,21 +5,34 @@
  * Captures 3D viewer thumbnails for use in promotional videos/collages.
  *
  * Usage:
- *   node scripts/capture-demo-thumbnails.js [target] [resolution] [--fit]
+ *   node scripts/capture-demo-thumbnails.js [target] [resolution] [--fit] [--device <device>]
  *
  * Arguments:
  *   target      - Demo ID or "all" (default: all)
- *   resolution  - 1080p | 720p | 480p | 360p (default: 720p)
+ *   resolution  - 1080p | 720p | 480p | 360p (default: 720p, ignored if --device used)
  *   --fit       - Click "fit to screen" before capture (default: off)
+ *   --device    - Apple device preset or group (desktop|tablet|mobile|all|<device-name>)
  *
- * Examples:
+ * Resolution mode (legacy):
  *   node scripts/capture-demo-thumbnails.js all              # All demos at 720p
  *   node scripts/capture-demo-thumbnails.js all 1080p        # All demos at 1080p
  *   node scripts/capture-demo-thumbnails.js 4009 720p --fit  # Single demo with fit
- *   node scripts/capture-demo-thumbnails.js 8194             # Single demo at 720p
+ *
+ * Device mode (Apple presets):
+ *   node scripts/capture-demo-thumbnails.js all --device desktop   # MacBook Pro 16"
+ *   node scripts/capture-demo-thumbnails.js all --device tablet    # iPad Pro 12.9"
+ *   node scripts/capture-demo-thumbnails.js all --device mobile    # iPhone 15 Pro
+ *   node scripts/capture-demo-thumbnails.js all --device all       # All 3 devices
+ *   node scripts/capture-demo-thumbnails.js all --device ipad-air  # Specific device
+ *
+ * Available devices:
+ *   Desktop: macbook-pro-16, macbook-pro-14, imac-24
+ *   Tablet:  ipad-pro-12, ipad-pro-11, ipad-air, ipad-mini
+ *   Mobile:  iphone-15-pro-max, iphone-15-pro, iphone-15, iphone-se
  *
  * Output:
- *   Saves PNG files to public/thumbnails/{id}.png
+ *   Resolution mode: public/thumbnails/{id}.png
+ *   Device mode:     public/thumbnails/{id}-{device}.png
  *
  * npm script:
  *   npm run capture:thumbnails
@@ -41,7 +54,7 @@ if (!existsSync(outputDir)) {
 
 const BASE_URL = 'https://app.bimtly.com'
 
-// Resolution presets (16:9)
+// Resolution presets (16:9) - legacy behavior
 const RESOLUTIONS = {
   '1080p': { width: 1920, height: 1080 },
   '720p': { width: 1280, height: 720 },
@@ -49,6 +62,32 @@ const RESOLUTIONS = {
   '360p': { width: 640, height: 360 }
 }
 const DEFAULT_RESOLUTION = '720p'
+
+// Apple device presets
+const DEVICES = {
+  // Desktop
+  'macbook-pro-16': { width: 1728, height: 1117 },
+  'macbook-pro-14': { width: 1512, height: 982 },
+  'imac-24': { width: 2048, height: 1152 },
+  // Tablet
+  'ipad-pro-12': { width: 1024, height: 1366 },
+  'ipad-pro-11': { width: 834, height: 1194 },
+  'ipad-air': { width: 820, height: 1180 },
+  'ipad-mini': { width: 744, height: 1133 },
+  // Mobile
+  'iphone-15-pro-max': { width: 430, height: 932 },
+  'iphone-15-pro': { width: 393, height: 852 },
+  'iphone-15': { width: 393, height: 852 },
+  'iphone-se': { width: 375, height: 667 }
+}
+
+// Device group shortcuts
+const DEVICE_GROUPS = {
+  desktop: ['macbook-pro-16'],
+  tablet: ['ipad-pro-12'],
+  mobile: ['iphone-15-pro'],
+  all: ['macbook-pro-16', 'ipad-pro-12', 'iphone-15-pro']
+}
 
 // Authentication credentials
 const AUTH = {
@@ -78,6 +117,7 @@ const DEMOS = [
   { id: '8315', path: '/v/8315', name: 'modular-building', auth: null },
   { id: '8305', path: '/v/8305', name: 'tent-canopy', auth: null },
   { id: '8373', path: '/v/8373/metal-fence-sidewalk', name: 'metal-fence', auth: null },
+  { id: '8520', path: '/v/8520', name: '8520', auth: null },
   // Special demo URLs
   { id: 'pergola-config', path: '/demo/pergola', name: 'pergola-configurator', auth: null },
   { id: 'feal', path: '/embed/204', name: 'feal', auth: null }
@@ -108,7 +148,7 @@ async function login(page, authType) {
   await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 })
 
   // Wait a bit for React/client-side rendering
-  await new Promise(resolve => setTimeout(resolve, 2000))
+  await new Promise(resolve => setTimeout(resolve, 3000))
 
   // Wait for any input element to appear (login form)
   await page.waitForSelector('input', { timeout: 15000 })
@@ -170,19 +210,20 @@ async function login(page, authType) {
  * Captures a screenshot of a single demo page
  * @param {Browser} browser - Puppeteer browser instance
  * @param {Object} demo - Demo config { id, path, name, auth }
- * @param {Object} resolution - { width, height }
+ * @param {Object} viewport - { width, height }
  * @param {boolean} fitToScreen - Whether to click fit-to-screen button
+ * @param {string|null} deviceSuffix - Device name for filename suffix (null = no suffix)
  * @returns {Promise<boolean>} - Success status
  */
-async function captureDemo(browser, demo, resolution, fitToScreen) {
+async function captureDemo(browser, demo, viewport, fitToScreen, deviceSuffix = null) {
   const { id, path, name, auth } = demo
   const page = await browser.newPage()
 
   try {
-    // Set viewport to specified resolution
+    // Set viewport to specified size
     await page.setViewport({
-      width: resolution.width,
-      height: resolution.height,
+      width: viewport.width,
+      height: viewport.height,
       deviceScaleFactor: 1
     })
 
@@ -222,7 +263,7 @@ async function captureDemo(browser, demo, resolution, fitToScreen) {
     }
 
     // Take screenshot
-    const filename = `${id}.png`
+    const filename = deviceSuffix ? `${id}-${deviceSuffix}.png` : `${id}.png`
     const outputPath = join(outputDir, filename)
 
     await page.screenshot({
@@ -241,20 +282,71 @@ async function captureDemo(browser, demo, resolution, fitToScreen) {
 }
 
 /**
+ * Parses --device argument value
+ * @param {string[]} args - CLI arguments
+ * @returns {string|null} - Device value or null
+ */
+function parseDeviceArg(args) {
+  const idx = args.indexOf('--device')
+  if (idx === -1) return null
+  return args[idx + 1] || null
+}
+
+/**
+ * Gets list of devices to capture based on --device value
+ * @param {string} deviceArg - Device argument value
+ * @returns {string[]} - Array of device names
+ */
+function getDevicesToCapture(deviceArg) {
+  // Check if it's a group shortcut
+  if (DEVICE_GROUPS[deviceArg]) {
+    return DEVICE_GROUPS[deviceArg]
+  }
+  // Check if it's a specific device
+  if (DEVICES[deviceArg]) {
+    return [deviceArg]
+  }
+  return null
+}
+
+/**
  * Main entry point - parses CLI args and runs capture loop
  */
 async function main() {
   const args = process.argv.slice(2)
   const targetId = args[0]
-  const resArg = args[1] || DEFAULT_RESOLUTION
   const fitToScreen = args.includes('--fit')
+  const deviceArg = parseDeviceArg(args)
 
-  // Parse resolution
-  const resolution = RESOLUTIONS[resArg]
-  if (!resolution) {
-    console.error(`Unknown resolution: ${resArg}`)
-    console.log('Available resolutions:', Object.keys(RESOLUTIONS).join(', '))
-    process.exit(1)
+  // Determine capture mode: device presets or legacy resolution
+  let viewportsToCapture = []
+
+  if (deviceArg) {
+    // Device mode
+    const deviceNames = getDevicesToCapture(deviceArg)
+    if (!deviceNames) {
+      console.error(`Unknown device: ${deviceArg}`)
+      console.log('Available devices:', Object.keys(DEVICES).join(', '))
+      console.log('Shortcuts: desktop, tablet, mobile, all')
+      process.exit(1)
+    }
+    viewportsToCapture = deviceNames.map(name => ({
+      name,
+      ...DEVICES[name],
+      suffix: deviceNames.length > 1 || deviceArg !== 'desktop' ? name : null
+    }))
+    console.log(`Device mode: ${deviceArg} → ${deviceNames.join(', ')}`)
+  } else {
+    // Legacy resolution mode
+    const resArg = args[1] || DEFAULT_RESOLUTION
+    const resolution = RESOLUTIONS[resArg]
+    if (!resolution) {
+      console.error(`Unknown resolution: ${resArg}`)
+      console.log('Available resolutions:', Object.keys(RESOLUTIONS).join(', '))
+      process.exit(1)
+    }
+    viewportsToCapture = [{ name: resArg, ...resolution, suffix: null }]
+    console.log(`Resolution mode: ${resArg} (${resolution.width}x${resolution.height})`)
   }
 
   // Filter demos if specific ID provided
@@ -268,7 +360,8 @@ async function main() {
     }
   }
 
-  console.log(`Capturing ${demosToCapture.length} demo thumbnails at ${resArg} (${resolution.width}x${resolution.height})${fitToScreen ? ' with fit-to-screen' : ''}...`)
+  const totalCaptures = demosToCapture.length * viewportsToCapture.length
+  console.log(`Capturing ${demosToCapture.length} demos × ${viewportsToCapture.length} viewport(s) = ${totalCaptures} screenshots${fitToScreen ? ' with fit-to-screen' : ''}`)
   console.log(`Output directory: ${outputDir}\n`)
 
   const browser = await puppeteer.launch({
@@ -278,17 +371,22 @@ async function main() {
 
   let succeeded = 0
   let failed = 0
+  let current = 0
 
   for (const demo of demosToCapture) {
-    console.log(`[${succeeded + failed + 1}/${demosToCapture.length}] ${demo.name}`)
+    for (const viewport of viewportsToCapture) {
+      current++
+      const label = viewport.suffix ? `${demo.name} (${viewport.name})` : demo.name
+      console.log(`[${current}/${totalCaptures}] ${label}`)
 
-    const success = await captureDemo(browser, demo, resolution, fitToScreen)
-    if (success) {
-      succeeded++
-    } else {
-      failed++
+      const success = await captureDemo(browser, demo, viewport, fitToScreen, viewport.suffix)
+      if (success) {
+        succeeded++
+      } else {
+        failed++
+      }
+      console.log('')
     }
-    console.log('')
   }
 
   await browser.close()
