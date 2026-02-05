@@ -1,3 +1,30 @@
+/**
+ * capture-demo-thumbnails.js
+ *
+ * Automated screenshot capture for BIMTLY demo pages using Puppeteer.
+ * Captures 3D viewer thumbnails for use in promotional videos/collages.
+ *
+ * Usage:
+ *   node scripts/capture-demo-thumbnails.js [target] [resolution] [--fit]
+ *
+ * Arguments:
+ *   target      - Demo ID or "all" (default: all)
+ *   resolution  - 1080p | 720p | 480p | 360p (default: 720p)
+ *   --fit       - Click "fit to screen" before capture (default: off)
+ *
+ * Examples:
+ *   node scripts/capture-demo-thumbnails.js all              # All demos at 720p
+ *   node scripts/capture-demo-thumbnails.js all 1080p        # All demos at 1080p
+ *   node scripts/capture-demo-thumbnails.js 4009 720p --fit  # Single demo with fit
+ *   node scripts/capture-demo-thumbnails.js 8194             # Single demo at 720p
+ *
+ * Output:
+ *   Saves PNG files to public/thumbnails/{id}.png
+ *
+ * npm script:
+ *   npm run capture:thumbnails
+ */
+
 import puppeteer from 'puppeteer'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
@@ -56,9 +83,14 @@ const DEMOS = [
   { id: 'feal', path: '/embed/204', name: 'feal', auth: null }
 ]
 
-// Track logged in auth types
+// Track logged in auth types (session persists across page navigations)
 const loggedInAs = new Set()
 
+/**
+ * Logs into BIMTLY app with specified credentials
+ * @param {Page} page - Puppeteer page instance
+ * @param {string} authType - Auth key from AUTH object (e.g., 'test')
+ */
 async function login(page, authType) {
   if (loggedInAs.has(authType)) {
     return // Already logged in
@@ -134,6 +166,14 @@ async function login(page, authType) {
   console.log(`  ✓ Logged in as ${creds.user}`)
 }
 
+/**
+ * Captures a screenshot of a single demo page
+ * @param {Browser} browser - Puppeteer browser instance
+ * @param {Object} demo - Demo config { id, path, name, auth }
+ * @param {Object} resolution - { width, height }
+ * @param {boolean} fitToScreen - Whether to click fit-to-screen button
+ * @returns {Promise<boolean>} - Success status
+ */
 async function captureDemo(browser, demo, resolution, fitToScreen) {
   const { id, path, name, auth } = demo
   const page = await browser.newPage()
@@ -200,6 +240,9 @@ async function captureDemo(browser, demo, resolution, fitToScreen) {
   }
 }
 
+/**
+ * Main entry point - parses CLI args and runs capture loop
+ */
 async function main() {
   const args = process.argv.slice(2)
   const targetId = args[0]
