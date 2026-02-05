@@ -11,6 +11,7 @@ Automation scripts for generating promotional assets.
 | `generate-pdf.js` | `npm run build:pdf` | Generate PDF flyers/decks |
 | `generate-png.js` | `npm run build:png` | Generate PNG diagrams |
 | `capture-demo-thumbnails.js` | `npm run capture:thumbnails` | Capture demo screenshots |
+| `capture-demo-video.js` | - | Record demo videos cycling through views |
 
 ---
 
@@ -115,6 +116,85 @@ Edit `DEMOS` array in `scripts/capture-demo-thumbnails.js`:
 // or with auth:
 { id: 'unique-id', path: '/v/1234', name: 'demo-name', auth: 'test' }
 ```
+
+---
+
+## Demo Video Capture
+
+Records videos of BIMTLY 3D demos cycling through camera views using Puppeteer.
+
+### Quick Start
+
+```bash
+# Record single demo at default 1920x1080
+node scripts/capture-demo-video.js 8520
+
+# Record with all device sizes
+node scripts/capture-demo-video.js 8520 --device all
+```
+
+### Command Line Usage
+
+```
+node scripts/capture-demo-video.js <demo-id|all> [--duration <seconds>] [--device <device>]
+```
+
+| Argument | Values | Default | Description |
+|----------|--------|---------|-------------|
+| `demo-id` | Demo ID or `all` | required | Which demo(s) to record |
+| `--duration` | seconds | `2` | Duration per camera view |
+| `--device` | device name or group | none | Apple device viewport preset |
+
+### Examples
+
+```bash
+# Single demo, default viewport (1920x1080)
+node scripts/capture-demo-video.js 8520
+
+# Single demo, 3 seconds per view
+node scripts/capture-demo-video.js 8520 --duration 3
+
+# Single demo, mobile viewport
+node scripts/capture-demo-video.js 8520 --device mobile
+
+# Single demo, all 3 device sizes (creates 3 videos)
+node scripts/capture-demo-video.js 8520 --device all
+
+# All demos, desktop viewport
+node scripts/capture-demo-video.js all --device desktop
+
+# Specific Apple device
+node scripts/capture-demo-video.js 8520 --device ipad-air
+```
+
+### Output
+
+Videos are saved to `public/videos/`:
+- Default: `{id}.mp4`
+- With device: `{id}-{device}.mp4`
+
+### Device Presets
+
+| Shortcut | Device | Dimensions |
+|----------|--------|------------|
+| `desktop` | MacBook Pro 16" | 1728×1117 |
+| `tablet` | iPad Pro 12.9" | 1024×1366 |
+| `mobile` | iPhone 15 Pro | 393×852 |
+| `all` | All 3 above | - |
+
+**All available devices:**
+- Desktop: `macbook-pro-16`, `macbook-pro-14`, `imac-24`
+- Tablet: `ipad-pro-12`, `ipad-pro-11`, `ipad-air`, `ipad-mini`
+- Mobile: `iphone-15-pro-max`, `iphone-15-pro`, `iphone-15`, `iphone-se`
+
+### How It Works
+
+1. Opens demo page at specified viewport size
+2. Clicks "fit to screen" button
+3. Counts camera views by clicking "Next view" until cycling back
+4. Resets to first view
+5. Records video while cycling through all views (holding each for `--duration` seconds)
+6. Saves MP4 file
 
 ---
 
