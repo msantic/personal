@@ -2,3 +2,4 @@ node_modules
 dist
 bimtly-visuals/output
 .DS_Store
+*.mp4

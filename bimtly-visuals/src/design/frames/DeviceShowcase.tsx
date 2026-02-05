@@ -1,0 +1,160 @@
+/**
+ * DeviceShowcase - Displays iMac, iPad, and iPhone mockups together
+ *
+ * Arranges devices in a visually appealing layout to show
+ * the app running across different device types.
+ */
+
+import { CSSProperties } from 'react';
+import { DeviceMock } from './DeviceMock';
+
+interface DeviceShowcaseProps {
+  /** Video source for desktop (iMac) */
+  desktopVideo?: string;
+  /** Video source for tablet (iPad) */
+  tabletVideo?: string;
+  /** Video source for mobile (iPhone) */
+  mobileVideo?: string;
+  /** Overall scale (default: 0.5) */
+  scale?: number;
+  /** Gap between devices (default: 40) */
+  gap?: number;
+  /** Layout arrangement */
+  layout?: 'horizontal' | 'perspective' | 'stacked';
+  /** Additional styles */
+  style?: CSSProperties;
+  /** Additional class name */
+  className?: string;
+}
+
+export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
+  desktopVideo,
+  tabletVideo,
+  mobileVideo,
+  scale = 0.5,
+  gap = 40,
+  layout = 'horizontal',
+  style,
+  className,
+}) => {
+  if (layout === 'perspective') {
+    return (
+      <div
+        className={className}
+        style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          gap,
+          perspective: '1500px',
+          ...style,
+        }}
+      >
+        {/* iPad - left, rotated */}
+        {tabletVideo && (
+          <div
+            style={{
+              transform: 'rotateY(25deg)',
+              transformOrigin: 'right center',
+            }}
+          >
+            <DeviceMock device="ipad" videoSrc={tabletVideo} scale={scale * 0.8} />
+          </div>
+        )}
+
+        {/* iMac - center, front */}
+        {desktopVideo && (
+          <DeviceMock device="imac" videoSrc={desktopVideo} scale={scale} />
+        )}
+
+        {/* iPhone - right, rotated */}
+        {mobileVideo && (
+          <div
+            style={{
+              transform: 'rotateY(-25deg)',
+              transformOrigin: 'left center',
+            }}
+          >
+            <DeviceMock device="iphone" videoSrc={mobileVideo} scale={scale * 0.9} />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (layout === 'stacked') {
+    return (
+      <div
+        className={className}
+        style={{
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          ...style,
+        }}
+      >
+        {/* iMac - back center */}
+        {desktopVideo && (
+          <DeviceMock device="imac" videoSrc={desktopVideo} scale={scale} />
+        )}
+
+        {/* iPad - front left */}
+        {tabletVideo && (
+          <div
+            style={{
+              position: 'absolute',
+              left: '5%',
+              bottom: '5%',
+              transform: 'rotate(-5deg)',
+              zIndex: 1,
+            }}
+          >
+            <DeviceMock device="ipad" videoSrc={tabletVideo} scale={scale * 0.6} />
+          </div>
+        )}
+
+        {/* iPhone - front right */}
+        {mobileVideo && (
+          <div
+            style={{
+              position: 'absolute',
+              right: '10%',
+              bottom: '10%',
+              transform: 'rotate(5deg)',
+              zIndex: 2,
+            }}
+          >
+            <DeviceMock device="iphone" videoSrc={mobileVideo} scale={scale * 0.7} />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Default: horizontal layout
+  return (
+    <div
+      className={className}
+      style={{
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        gap,
+        ...style,
+      }}
+    >
+      {desktopVideo && (
+        <DeviceMock device="imac" videoSrc={desktopVideo} scale={scale} />
+      )}
+      {tabletVideo && (
+        <DeviceMock device="ipad" videoSrc={tabletVideo} scale={scale * 0.7} />
+      )}
+      {mobileVideo && (
+        <DeviceMock device="iphone" videoSrc={mobileVideo} scale={scale * 0.6} />
+      )}
+    </div>
+  );
+};
+
+export default DeviceShowcase;

@@ -9,6 +9,7 @@ const pages = [
   { path: '/connectivity', name: 'Digital Connectivity', description: 'Input/output integration flow diagram' },
   { path: '/hero-bg', name: 'Hero Background', description: 'Test page for reusable hero background component' },
   { path: '/showcase', name: 'Image Showcase', description: 'Animated image grid/collage demo with multiple styles' },
+  { path: '/devices', name: 'Device Mocks', description: 'Apple device mockups with video/image content' },
 ]
 
 export default function Home() {
