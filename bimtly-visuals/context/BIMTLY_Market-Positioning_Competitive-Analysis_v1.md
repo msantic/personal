@@ -408,3 +408,220 @@ The most valuable next step would be:
 3. Define your FIRST core use case
 
 **That locks the strategy.**
+
+---
+
+# 🎯 Phase 1 — Lock the Wedge (Most Important Step)
+
+Right now BIMTLY is:
+
+**A big platform idea.**
+
+It must become:
+
+**A very specific problem for a very specific user.**
+
+You need to decide 3 things:
+
+## 1) First industry (vertical)
+
+Pick ONE.
+
+Based on everything we discussed, the strongest candidates are:
+
+- Aluminum systems (facades, windows, FEAL-like)
+- Commercial equipment (kitchens, industrial layouts)
+- Modular construction
+- Industrial configurable products
+
+You already have natural gravity toward aluminum/facades.
+
+**That's a huge advantage.**
+
+## 2) First buyer
+
+This defines everything.
+
+Pick one primary customer:
+
+- Manufacturer sales teams
+- Dealers/installers
+- Architects/designers
+
+Each leads to a completely different product.
+
+Example:
+
+If you choose:
+
+- Manufacturers → focus on product digitization + quoting
+- Architects → focus on placement + BIM
+- Dealers → focus on sales + speed + layout
+
+**This is the most important decision in the entire strategy.**
+
+## 3) First core use case
+
+Not the platform.
+
+The single job:
+
+Examples:
+
+- "Create quotes from spatial layouts"
+- "Configure technical products visually"
+- "Turn product catalog into intelligent 3D components"
+- "Place products in space and auto-generate BOM"
+
+**One sentence.**
+
+---
+
+# 🧪 Phase 2 — Reality Check with the Market
+
+Before building more:
+
+**You need to validate pain.**
+
+Talk to 10–15 people from ONE vertical.
+
+Ask:
+
+- How do you quote today?
+- How long does it take?
+- Where do errors happen?
+- Where do you lose money?
+- What software do you hate?
+
+You're looking for:
+
+**Frustration + manual work + Excel + repeated mistakes**
+
+That's gold.
+
+---
+
+# 🧭 Phase 3 — Define the Positioning Statement
+
+You want a crisp line like:
+
+**BIMTLY is the fastest way for [WHO] to [DO WHAT] using [UNIQUE ANGLE].**
+
+Example directions:
+
+- "for manufacturers to generate quotes from spatial product layouts"
+- "for technical products to become interactive and configurable"
+- "for sales teams to turn complex products into visual offers"
+
+This becomes:
+
+- Website
+- Pitch
+- Product direction
+
+---
+
+# 🏗️ Phase 4 — Define V1 Scope (What NOT to Build)
+
+This is where most founders fail.
+
+You must decide what BIMTLY is NOT (yet).
+
+For example, V1 is NOT:
+
+- Full BIM platform
+- Full CAD replacement
+- Universal catalog system
+- Cross-industry from day 1
+
+V1 could be just:
+
+- Visual configurator
+- Simple spatial placement
+- Instant quote
+
+**That alone is valuable.**
+
+---
+
+# 🧱 Phase 5 — Identify the Defensible Core
+
+Ask yourself:
+
+**What becomes your moat?**
+
+Possible answers:
+
+- Product digitization pipeline
+- Parametric product engine
+- Spatial constraint intelligence
+- Cross-tool interoperability layer
+
+This matters long-term.
+
+---
+
+# 💰 Phase 6 — Revenue Reality
+
+Ask:
+
+**Who pays first?**
+
+Manufacturers are often best because:
+
+- They benefit from better sales
+- They already invest in catalogs
+- They have budgets
+
+Dealers often pay less.
+
+Architects are harder to monetize early.
+
+---
+
+# 🧠 Phase 7 — Strategic Clarity Exercise (You Should Do This Next)
+
+Answer these 5 questions:
+
+| Question | Answer |
+|----------|--------|
+| First vertical | ________ |
+| First buyer | ________ |
+| Core problem | ________ |
+| Why current tools fail | ________ |
+| Why BIMTLY wins | ________ |
+
+**This single page becomes your compass.**
+
+---
+
+# ⚠️ The Biggest Risk Right Now
+
+Not competition.
+
+Not tech.
+
+It's this:
+
+**Staying too broad too long.**
+
+Because your idea is naturally expansive.
+
+**You must compress it before scaling it.**
+
+---
+
+# 🏁 The Ideal Path (Realistic)
+
+**Year 1:**
+- Dominate one niche problem
+- One vertical
+- One persona
+
+**Year 2–3:**
+- Expand features
+- Expand roles
+- Expand adjacent verticals
+
+**Year 4+:**
+- Platform narrative becomes real
