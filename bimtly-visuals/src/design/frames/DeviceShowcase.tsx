@@ -27,6 +27,8 @@ interface DeviceShowcaseProps {
   gap?: number;
   /** Layout arrangement */
   layout?: 'horizontal' | 'perspective' | 'stacked' | 'cascade';
+  /** Use Remotion OffthreadVideo for frame-accurate rendering */
+  useRemotionVideo?: boolean;
   /** Additional styles */
   style?: CSSProperties;
   /** Additional class name */
@@ -41,6 +43,7 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
   scale = 0.5,
   gap = 40,
   layout = 'horizontal',
+  useRemotionVideo = false,
   style,
   className,
 }) => {
@@ -65,13 +68,13 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
               transformOrigin: 'right center',
             }}
           >
-            <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={scale * 0.8} />
+            <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={scale * 0.8} useRemotionVideo={useRemotionVideo} />
           </div>
         )}
 
         {/* iMac - center, front */}
         {desktopVideo && (
-          <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={scale} />
+          <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={scale} useRemotionVideo={useRemotionVideo} />
         )}
 
         {/* iPhone - right, rotated */}
@@ -82,7 +85,7 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
               transformOrigin: 'left center',
             }}
           >
-            <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={scale * 0.9} />
+            <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={scale * 0.9} useRemotionVideo={useRemotionVideo} />
           </div>
         )}
       </div>
@@ -103,7 +106,7 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
       >
         {/* iMac - back center */}
         {desktopVideo && (
-          <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={scale} />
+          <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={scale} useRemotionVideo={useRemotionVideo} />
         )}
 
         {/* iPad - front left */}
@@ -117,7 +120,7 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
               zIndex: 1,
             }}
           >
-            <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={scale * 0.6} />
+            <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={scale * 0.6} useRemotionVideo={useRemotionVideo} />
           </div>
         )}
 
@@ -132,7 +135,7 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
               zIndex: 2,
             }}
           >
-            <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={scale * 0.7} />
+            <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={scale * 0.7} useRemotionVideo={useRemotionVideo} />
           </div>
         )}
       </div>
@@ -177,21 +180,21 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
             transform: `scaleX(${imacScaleX}) scaleY(${imacScaleY})`,
             transformOrigin: 'top left',
           }}>
-            <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={s} objectFit="cover" />
+            <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={s} objectFit="cover" useRemotionVideo={useRemotionVideo} />
           </div>
         )}
 
         {/* iPad - front left, overlapping iMac */}
         {tabletVideo && (
           <div style={{ position: 'absolute', left: 0, bottom: 30 * s, zIndex: 2 }}>
-            <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={s * 0.65} objectFit="cover" />
+            <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={s * 0.65} objectFit="cover" useRemotionVideo={useRemotionVideo} />
           </div>
         )}
 
         {/* iPhone - front center-right */}
         {mobileVideo && (
           <div style={{ position: 'absolute', left: 500 * s, bottom: 0, zIndex: 3 }}>
-            <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={s * 0.5} objectFit="cover" />
+            <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={s * 0.5} objectFit="cover" useRemotionVideo={useRemotionVideo} />
           </div>
         )}
       </div>
@@ -211,13 +214,13 @@ export const DeviceShowcase: React.FC<DeviceShowcaseProps> = ({
       }}
     >
       {desktopVideo && (
-        <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={scale} />
+        <DeviceMock device="imac" videoSrc={desktopVideo} frameImage={frameImages?.imac} scale={scale} useRemotionVideo={useRemotionVideo} />
       )}
       {tabletVideo && (
-        <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={scale * 0.7} />
+        <DeviceMock device="ipad" videoSrc={tabletVideo} frameImage={frameImages?.ipad} scale={scale * 0.7} useRemotionVideo={useRemotionVideo} />
       )}
       {mobileVideo && (
-        <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={scale * 0.6} />
+        <DeviceMock device="iphone" videoSrc={mobileVideo} frameImage={frameImages?.iphone} scale={scale * 0.6} useRemotionVideo={useRemotionVideo} />
       )}
     </div>
   );

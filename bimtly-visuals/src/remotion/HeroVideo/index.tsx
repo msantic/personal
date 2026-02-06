@@ -520,6 +520,7 @@ const DeviceShowcaseSection: React.FC = () => {
         }}
         layout="cascade"
         scale={deviceScale}
+        useRemotionVideo
       />
       </div>
     </div>

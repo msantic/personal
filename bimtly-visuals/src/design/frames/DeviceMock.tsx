@@ -3,9 +3,13 @@
  *
  * Uses PNG device frames with transparent screen areas.
  * Video is positioned behind the frame at the correct screen coordinates.
+ *
+ * For Remotion rendering, set useRemotionVideo=true to use OffthreadVideo
+ * which renders frame-accurately during export.
  */
 
 import { CSSProperties } from 'react';
+import { OffthreadVideo } from 'remotion';
 
 // Screen area definitions for each device mockup
 // Coordinates are relative to the PNG dimensions (top, left, width, height)
@@ -64,6 +68,8 @@ interface DeviceMockProps {
   loop?: boolean;
   /** Whether video should be muted (default: true) */
   muted?: boolean;
+  /** Use Remotion OffthreadVideo for frame-accurate rendering (default: false) */
+  useRemotionVideo?: boolean;
   /** How content fits in screen area (default: 'contain') */
   objectFit?: 'contain' | 'cover' | 'fill';
   /** Additional styles for the container */
@@ -83,6 +89,7 @@ export const DeviceMock: React.FC<DeviceMockProps> = ({
   autoPlay = true,
   loop = true,
   muted = true,
+  useRemotionVideo = false,
   objectFit = 'contain',
   style,
   className,
@@ -118,7 +125,18 @@ export const DeviceMock: React.FC<DeviceMockProps> = ({
           borderRadius: device === 'iphone' ? 20 * scale : 0,
         }}
       >
-        {videoSrc && (
+        {videoSrc && useRemotionVideo && (
+          <OffthreadVideo
+            src={videoSrc}
+            muted={muted}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit,
+            }}
+          />
+        )}
+        {videoSrc && !useRemotionVideo && (
           <video
             src={videoSrc}
             autoPlay={autoPlay}
