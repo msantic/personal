@@ -1,275 +1,646 @@
-# Pricing Strategy
+https://chatgpt.com/c/698cb36e-0028-8386-a0f4-648b64514a05
+https://www.notion.so/Pricing-30467fbe99ee8077a1dfef1311ee8a17?source=copy_link
 
-## Intro
+# BIMTLY Pricing, Positioning & Revenue Model — Foundation Summary
 
-Dual-engine strategy:
+## 1. Big Picture: What We’re Building
 
-- **Engine A** → Self-serve long tail (distribution + lead gen)
-- **Engine B** → Serious B2B deals (revenue + stability)
+BIMTLY is not positioned as:
+- a 3D viewer
+- a designer toy
+- a CAD replacement
+- a Sketchfab clone
 
-Many of the biggest platforms in the world run exactly like this.
-The key is not choosing one — it's structuring pricing so the two layers don't conflict.
+It is positioned as:
 
-### Your Intuition is Correct (and Strategically Strong)
+> A unified platform that connects product data, 3D, documentation, and web presentation into a digital layer for physical products.
 
-You're trying to do 3 things at once:
+### Strategic evolution:
 
-1. Democratize 3D (Vectary/Sketchfab style)
-2. Still sell to real manufacturers
-3. Use low-tier users as lead funnel
+- **Now (Phase C):**
+  - Product digitalization platform
+  - 3D + structured data + documentation + web builder
+  - Accessible, self-serve, business-ready
 
-This is not confused thinking. This is exactly how **Figma**, **Notion**, **Webflow**, and **Airtable** grew — cheap self-serve entry, then expanded into B2B.
+- **Later (Phase B):**
+  - Sales infrastructure for manufacturers
+  - Configuration + quoting + automation
+  - CPQ-like capabilities
 
-### The Real Tension
-
-You're balancing two truths:
-
-**Truth A — Enterprise tools are overpriced**
-Correct. Many are legacy, heavy, consulting-driven.
-
-**Truth B — B2B buyers pay for outcomes**
-Also correct. They don't pay for features. They pay for:
-- Time saved
-- Sales speed
-- Fewer errors
-- Automation
-
-Both things can be true at the same time. Your strategy can use this.
-
-### The 3-Layer Pricing Architecture
-
-The right structure for BIMTLY:
-
-| Layer | Target | Purpose |
-|---|---|---|
-| Layer 1 | Self-serve (long tail) | Distribution + awareness |
-| Layer 2 | Pro teams | Core revenue |
-| Layer 3 | High-touch B2B | Serious deals |
-
-All in one system.
-
-### Why the Long Tail is Smart
-
-Not for money. For:
-- Distribution
-- Awareness
-- Content creation
-- Product testing
-- Organic discovery
-- Pipeline building
-
-And because you're multi-tenant + Stripe: **marginal cost ≈ zero**.
-
-### The Critical Mistake to Avoid
-
-**Do NOT mix the positioning.**
-
-You must avoid this outcome:
-
-> Manufacturer sees: *"$19/month"*
-> And thinks: → *"This is a toy."*
-
-That kills B2B credibility instantly.
-
-So the trick is not price — **it's packaging**.
+We are NOT entering as a CPQ competitor today.  
+We are building the foundation that naturally evolves into one.
 
 ---
 
-## Core Strategy
+## 2. Market Gap We Are Targeting
 
-### Identity (Now → Future)
+The current market is split into two extremes:
 
-**Now (C):** A platform that connects product data + 3D + documentation + web
+### Cheap / creator tools
+- Sketchfab
+- Vectary
+- Simple 3D hosting/viewers
 
-**Later (B):** A sales engine for manufacturers (CPQ direction)
+### Expensive enterprise systems
+- Threekit
+- Tacton
+- Configure One
+- Custom development (€50k–€500k)
 
-### Market Positioning Goal
+There is a major gap between:
+- basic visualization tools
+- enterprise product infrastructure
 
-- Democratize access to 3D/product digitalization
-- Be accessible to a wide audience
-- **Compete with:** Sketchfab, Vectary
-- **But NOT look like:** a toy, a hobby tool, a cheap viewer
-- **Instead:** *"Affordable, serious, business-ready alternative."*
+**BIMTLY sits in the middle.**
 
 ---
 
-## Pricing Model
+## 3. Core Positioning
 
-### Entry Tier
-- **~$25/month** / ~$250/year (2 months free)
+We are NOT trying to be:
+- the cheapest tool
+- a hobby platform
+- a 3D-only solution
+
+We ARE trying to be:
+
+> A professional, modern, affordable alternative to legacy product infrastructure.
+
+Perception target:
+
+- More structured than Sketchfab
+- More business-ready than Vectary
+- Simpler than Threekit
+- Far more accessible than enterprise CPQ
+
+---
+
+## 4. Target Early Users
+
+Primary early adopters:
+
+### B) Small manufacturers
+- €1M–€10M revenue
+- No CPQ
+- No structured product data
+- No digital product infrastructure
+- Real pain, real budget
+
+### C) Agencies
+- Build catalogs/sites for clients
+- Potential multipliers
+- Bring multiple customers over time
+
+These users:
+- Start self-serve
+- Grow into higher tiers
+- Convert into service projects
+
+---
+
+## 5. Core Product Identity (Today)
+
+We are selling:
+
+- Product organization
+- Product digitalization
+- Product visualization
+- Structured product data
+- Documentation integration
+- Web presentation layer
+
+We are NOT yet selling:
+- full enterprise CPQ replacement
+
+---
+
+## 6. Pricing Philosophy
+
+Primary goals:
+
+- Democratize access
+- Lower entry barrier
+- Capture wide audience
+- Build long-term upgrade path
+- Generate leads for services
+
+But we must avoid:
+
+- looking cheap
+- feeling like a toy
+- signaling low value
+
+Key concept:
+
+> Accessible ≠ cheap  
+> Affordable ≠ low quality
+
+---
+
+## 7. Entry Pricing Decision
+
+### Starter Plan
+- ~$25/month
+- ~$250/year (annual discount)
+- 14-day full-feature trial
 - No permanent free plan (initially)
-- 14-day full trial
 
-### Higher Tiers (Later)
-- Growth
-- Business
-- Enterprise
-
-### Real Money Comes From
-- Advanced features
-- Configurators
-- CPQ-like logic
-- Custom integrations
-- Implementation/services
-
-> This is a very strong hybrid SaaS + services model.
+Reasoning:
+- Low friction onboarding
+- Self-serve adoption
+- Affordable for small companies
+- Infrastructure costs remain controlled
 
 ---
 
-## Key Clarification
+## 8. Why No Permanent Free Tier (For Now)
 
-> *"Main goal is to make the platform widely available… but not a cheap toy."*
+3D platforms have real infrastructure cost:
+- storage
+- bandwidth
+- uploads
+- rendering
 
-You are **NOT** trying to be: **cheapest**
+Free tiers can cause:
+- high server load
+- low-value users
+- support noise
 
-You **ARE** trying to be: **most accessible serious tool**
-
-Those are very different.
-
-### Real Positioning (Best Version)
-
-> *"Professional product digitalization platform at a price normal companies can afford."*
-
-The market is currently split:
-
-| Cheap Tools | Expensive Tools |
-|---|---|
-| 3D viewers | CPQ |
-| Asset hosts | Enterprise configurators |
-| Design tools | Custom development |
-
-**You sit in the middle.** That's exactly where disruption happens.
+Safer launch:
+- 14-day trial
+- paid entry from day one
+- free tier can be added later if needed
 
 ---
 
-## Monetization Engine
+## 9. Revenue Model — Multi-Stream Strategy
 
-**NOT** primarily from: basic visualization, simple usage
+BIMTLY is NOT relying only on subscription revenue.
 
-**Primarily from:**
-- Advanced modules
-- Configurators
-- Digital catalogs
-- Quoting
-- Custom logic
-- Integrations
+We are building a hybrid model:
+
+- SaaS platform
+- Feature add-ons
+- Usage-based modules
 - Services
+- Custom development
 
-### Three-Layer Model
+This creates multiple income streams early.
 
-#### Layer 1 — Entry SaaS ($25/month)
-**Purpose:** Adoption, accessibility, product discovery, pipeline creation
+---
 
-This is your **distribution engine**.
+## 10. Core SaaS Revenue Layers
 
-#### Layer 2 — Advanced Modules ($99–$499/month)
-- Catalog system
-- Configurator logic
-- Quoting
-- Automation
-- Team workflows
+### Layer 1 — Entry Platform SaaS
+~$25/month
 
-#### Layer 3 — Services (Big Money Early)
-Critical for your stage. Revenue sources:
-- Setup
-- Product digitization
-- Data modeling
-- Custom configurators
+Purpose:
+- adoption
+- discovery
+- market penetration
+- lead generation
+
+---
+
+### Layer 2 — Growth / Business Tiers (Later Expansion)
+Future ranges:
+- $99–$499/month
+
+Includes:
+- advanced data usage
+- teams
+- more projects
+- workflow capabilities
+- early automation features
+
+---
+
+## 11. Feature-Based Recurring Revenue Streams
+
+### Web Visual Builder (Framer-like)
+- ~$30/month per published website
+
+Use cases:
+- product presentation sites
+- microsites
+- landing pages
+- catalogs
+- portals
+
+---
+
+### Customer Portal White-Labeling
+Starting at:
+- $500+/month
+
+Includes:
+- platform white-labeling
+- embedding directly into customer domain
+- hosted under client brand
+- dealer/client portals
+- private access environments
+
+Out-of-the-box included:
+- BIMTLY Drive (asset organization)
+- centralized project management
+- 3D visualization layer
+- structured product data access
+
+This positions BIMTLY as:
+- infrastructure, not just a tool
+
+---
+
+## 12. Project-Based Revenue Streams (High-Value)
+
+These will be major income drivers early.
+
+### Custom 3D Configurators
+Per-project pricing:
+- Based on complexity
+- Rules
+- Variants
+- Logic
 - Integrations
-- Consulting
-
-> This can easily become your primary income in early years.
 
 ---
 
-## Perception Rules
-
-You want people to think: *"Wow, this is surprisingly affordable."*
-
-**NOT:** *"Oh, this is a cheap tool."*
-
-How to avoid crossing that line:
-- Clean UI
-- Serious branding
-- Business-oriented messaging
-- Structured pricing tiers
-- No hobby language
-
-### Competitive Perception
-
-| vs. Competitor | Position |
-|---|---|
-| Sketchfab | More structured |
-| Vectary | More business-ready |
-| Threekit | Much cheaper |
-| Tacton | Much simpler |
+### Interactive Digital Catalogs
+Per-project pricing:
+- Product structuring
+- 3D integration
+- Documentation linking
+- Presentation layer
 
 ---
 
-## No Free Plan (Smart for Now)
-
-3D = infrastructure heavy (storage, bandwidth, processing, rendering). Free tier can explode costs fast.
-
-Starting with **14-day trial + $25 entry** is a sane and safe launch model.
-
-- You can always add free later
-- Much harder to *remove* free later
+### Product Digitization Services
+Examples:
+- data modeling
+- product structure setup
+- content organization
+- workflow design
 
 ---
 
-## Tier Naming Suggestion
-
-Instead of "Starter", consider:
-- **Solo**
-- **Core**
-- **Launch**
-- **Basic**
-
-Something that sounds useful, professional, not minimal.
+### Integration Services
+Examples:
+- ERP linking
+- CRM linking
+- custom automation
+- custom logic
 
 ---
 
-## Long-Term Evolution
+## 13. Strategic Insight
 
-**Year 1–2:**
-- Entry SaaS + services
-- Focus on adoption
+We are NOT monetizing mainly from:
+- simple visualization
 
-**Year 3–5:**
-- More advanced modules
-- Move upmarket
-- More automation
-- Begin CPQ territory
+We ARE monetizing from:
+- structure
+- complexity
+- business workflows
+- customization
+- transformation projects
 
-At that point: $25 entry still exists, but core revenue shifts upward.
-
----
-
-## Messaging Warning
-
-| Don't Say | Do Say |
-|---|---|
-| "We are cheap" | "We are affordable" |
-| | "We reduce cost dramatically" |
-| | "We make this accessible" |
-
-**Cheap** reduces trust. **Affordable** increases trust.
+This matches real B2B buying behavior.
 
 ---
 
-## Summary
+## 14. The C → B Evolution Model
 
-You're building:
-1. An accessible entry point
-2. For serious business software
-3. With upgrade path
-4. With services monetization
-5. With future move into sales infrastructure
+Phase 1:
+- product digitalization platform
 
-### Final Question for Pricing Page
+Phase 2:
+- product experience layer
+- configurators
+- variants
 
-**A)** *"Start for $25/month"* (price-first)
+Phase 3:
+- sales enablement
+- quoting
+- automation
 
-**B)** *"Professional platform for product digitalization"* then price below (value-first)
+Phase 4:
+- sales infrastructure
+- CPQ territory
 
-This choice changes perceived value significantly.
+Pricing expands naturally with product maturity.
+
+---
+
+## 15. Perception Rules (Critical)
+
+We want customers to think:
+
+> "This is surprisingly affordable."
+
+NOT:
+
+> "This is a cheap tool."
+
+How to maintain strong positioning:
+- serious branding
+- business language
+- structured pricing
+- professional UI/UX
+- no hobby positioning
+
+Avoid messaging like:
+- "cheap"
+- "low cost"
+- "budget tool"
+
+Use:
+- "accessible"
+- "affordable"
+- "modern alternative"
+
+---
+
+## 16. Competitive Strategy
+
+We aim to become:
+
+- More structured than Sketchfab
+- More business-ready than Vectary
+- More flexible than single-purpose tools
+- Much more accessible than enterprise systems
+
+---
+
+## 17. Launch Model (Clear & Simple)
+
+- 14-day free trial
+- ~$25/month entry plan
+- Annual discount option
+- Focus on adoption + learning
+- Early revenue from:
+  - services
+  - white-labeling
+  - configurators
+  - digital catalogs
+  - websites
+
+---
+
+## 18. Long-Term Identity
+
+BIMTLY is becoming:
+
+> The entry point into product digitalization for real-world companies.
+
+And later evolves into:
+
+> The infrastructure layer for how companies present, configure, and eventually sell physical products.
+
+
+
+
+
+
+
+
+
+# BIMTLY Pricing Matrix (Concept v1)
+
+Transparent, simple, and scalable pricing designed to support:
+- Easy self-serve entry
+- Growth for small companies
+- Serious usage for manufacturers
+- Enterprise expansion when BIMTLY becomes core infrastructure
+
+---
+
+# 🎯 Positioning Statement (to place above pricing)
+
+**Start small. Grow as your product complexity grows.**
+
+BIMTLY is an affordable, professional platform for structuring, visualizing, and presenting physical products — with the ability to evolve into full digital product infrastructure.
+
+---
+
+# 💳 Pricing Overview
+
+| Plan        | Starter | Growth | Business | Enterprise |
+|-------------|--------|--------|----------|------------|
+| Monthly     | $25/mo | $99/mo | $399/mo  | Contact us |
+| Annual      | ~$250/yr | ~$990/yr | ~$3,990/yr | Custom |
+| Trial       | 14 days free | 14 days free | 14 days free | Guided pilot |
+
+---
+
+# 🟢 STARTER — $25/month
+### For small teams, agencies, and early product digitization
+
+**Best for:**
+- Small manufacturers starting digital transformation
+- Agencies building first client projects
+- Companies exploring structured product presentation
+
+**Includes:**
+- BIMTLY Drive (asset organization)
+- 3D model upload & visualization
+- Basic product data collections
+- Project workspace
+- Basic web publishing
+- Public sharing
+- Limited storage & projects
+- Single workspace/team
+
+**Purpose:**
+- Low friction entry
+- Self-serve adoption
+- Discover platform value
+
+---
+
+# 🔵 GROWTH — $99/month
+### For growing teams building real product catalogs
+
+**Best for:**
+- Companies organizing product portfolios
+- Agencies managing multiple client projects
+- Early internal adoption
+
+**Everything in Starter +**
+
+- More storage & projects
+- Multiple product collections
+- Team collaboration
+- Role-based access
+- Structured product organization
+- Internal workflows
+- Priority support
+
+**Purpose:**
+- Move from experimentation → real usage
+
+---
+
+# 🟣 BUSINESS — $399/month
+### For companies making BIMTLY part of daily operations
+
+**Best for:**
+- €1M–€10M manufacturers
+- Product teams managing multiple product lines
+- Agencies scaling client infrastructure
+
+**Everything in Growth +**
+
+- Large-scale product catalogs
+- Advanced data structuring
+- Multi-team environments
+- Internal portals
+- Performance priority
+- Dedicated onboarding support
+
+**Purpose:**
+- Core product infrastructure layer
+
+---
+
+# 🟠 ENTERPRISE — Custom Pricing
+### When BIMTLY becomes core business infrastructure
+
+**Best for:**
+- Large manufacturers
+- Multi-brand companies
+- Companies needing deep customization
+
+**Includes:**
+- Platform white-labeling
+- Hosting on client domain
+- Customer/dealer portals
+- Advanced security & access control
+- Integration support (ERP/CRM)
+- Custom workflows
+- Dedicated support
+
+**Contact us for tailored deployment.**
+
+---
+
+# ➕ ADD-ON MODULES (Available on all paid plans)
+
+## 🌐 Web Visual Builder
+Framer-like site builder connected to product data
+
+- $30/month per website
+- Publish product sites, microsites, catalogs
+- Connect 3D + data + content
+
+---
+
+## 🏷️ White-Label Customer Portal
+Starting at $500+/month
+
+- Fully branded client environment
+- Embedded directly into customer domain
+- Serve as:
+  - Product portal
+  - Dealer portal
+  - Documentation hub
+  - Asset management space
+
+Includes:
+- BIMTLY Drive
+- Project management layer
+- 3D visualization environment
+- Structured product access
+
+---
+
+# 🧩 PROJECT-BASED SERVICES
+
+## Custom 3D Configurators
+Per-project pricing based on:
+- Complexity
+- Rules
+- Variants
+- Logic
+- Integrations
+
+---
+
+## Interactive Digital Catalogs
+Per-project pricing based on:
+- Product structuring
+- 3D integration
+- Documentation linking
+- Presentation setup
+
+---
+
+## Product Digitization Services
+Examples:
+- Data modeling
+- Product structure setup
+- Content organization
+- Workflow design
+
+---
+
+# 🧱 PROFESSIONAL SERVICES
+
+## 🎨 3D Modeling Services
+Custom creation and optimization of 3D assets
+
+Use cases:
+- Converting CAD → web-ready 3D
+- Creating product models from drawings/photos
+- Optimization for real-time performance
+- Variant model preparation
+- Materials & textures setup
+
+**Pricing:**
+- Per-project estimation  
+- Or hourly rate (depending on complexity)
+
+---
+
+## 💻 Custom Development
+Advanced feature development tailored to client needs
+
+Examples:
+- Custom logic
+- Advanced configurators
+- Integrations (ERP/CRM/API)
+- Custom workflows
+- Automation tools
+- Specialized UI modules
+
+**Pricing:**
+- Hourly rate (custom development)
+- Or project-based estimation
+
+---
+
+# 🧠 Strategic Notes (Internal Alignment)
+
+This model supports:
+
+- Wide accessibility ($25 entry)
+- Professional positioning (not a toy)
+- Natural upgrade path
+- Service-based revenue early
+- Enterprise expansion later
+
+Comparable structure to:
+- Vectary (low entry + enterprise)
+- Figma / Webflow growth models
+
+But tailored to:
+- Product-driven companies
+- Manufacturers
+- Agencies
+
+---
+
+# 🧭 Core Message to Communicate Publicly
+
+> Start for $25/month.  
+> Scale as your product ecosystem grows.  
+> Upgrade when BIMTLY becomes your product infrastructure.

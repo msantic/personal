@@ -1,5 +1,7 @@
 # BIMTLY Video Creation Guide
 
+Great example how simple but premiumm video can look like https://www.youtube.com/watch?v=dvdWpBqOUQM
+
 ## Overview
 
 This Remotion setup allows you to create one video composition and render it for multiple platforms with different aspect ratios and dimensions.
