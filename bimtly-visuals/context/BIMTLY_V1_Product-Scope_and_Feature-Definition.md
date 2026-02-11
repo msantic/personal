@@ -1,3 +1,5 @@
+Session https://chatgpt.com/c/6985cf44-b0e8-8385-9e00-bcf12e2d7fdc
+
 # 🎯 The Core Job BIMTLY Must Solve (V1)
 
 Before features, we define the job:

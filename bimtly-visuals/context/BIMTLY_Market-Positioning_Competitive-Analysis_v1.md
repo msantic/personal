@@ -1,3 +1,5 @@
+SESSION https://chatgpt.com/c/6985cf44-b0e8-8385-9e00-bcf12e2d7fdc
+
 # 🧭 1) Core Idea We Explored
 
 You're aiming to build a platform that combines:
