@@ -62,7 +62,7 @@ export const BimtlyLogo: React.FC<BimtlyLogoProps> = ({
       </div>
       {showSubtitle && (
         <p className="opening-subtitle" style={{ opacity: subtitleOpacity, fontSize: taglineSize, marginTop: logoSize * 0.14, textAlign: 'center' }}>
-          One Platform. Every Industry.
+          Show. Configure. Sell.
         </p>
       )}
     </>

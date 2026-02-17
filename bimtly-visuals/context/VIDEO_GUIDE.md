@@ -189,6 +189,53 @@ output/
 
 ---
 
+## Merging Intro Clip with Main Video
+
+The `merge-intro.js` script renders the `IntroClip` Remotion composition (OpeningTitle animation) and concatenates it in front of any main video using ffmpeg.
+
+### Typical workflow
+
+**First time (or after changing the intro animation):**
+```bash
+npm run merge:intro
+# → renders IntroClip from Remotion + merges with default studio video
+# → output/final-with-intro.mp4
+```
+
+**Iterating on the main video only (intro already rendered):**
+```bash
+node scripts/merge-intro.js --skip-render --main "output/my-new-video.mp4" --out "output/my-new-video-with-intro.mp4"
+# → skips Remotion render, re-uses existing output/intro-1920x1080.mp4
+# → much faster iteration
+```
+
+**When you have a new studio recording:**
+1. Normalize audio (see Audio Post-Processing section below)
+2. Place file in `output/`
+3. Run merge:
+```bash
+node scripts/merge-intro.js --skip-render --main "output/NEW FILE - normalized.mp4"
+```
+
+### All flags
+
+```
+--intro <path>    Intro clip path   (default: output/intro-1920x1080.mp4)
+--main  <path>    Main video path   (default: output/BIMTLY 3D STUDIO - normalized.mp4)
+--out   <path>    Output path       (default: output/final-with-intro.mp4)
+--skip-render     Skip Remotion render, reuse existing intro clip
+```
+
+### How it works
+
+1. Runs `remotion render IntroClip` → `output/intro-1920x1080.mp4` (unless `--skip-render`)
+2. Uses `ffmpeg -filter_complex` to normalize both clips to `30fps @ 1920×1080` before concat
+3. Re-encodes output as `h264 crf=18 + aac 192k`
+
+Handles mismatched source formats automatically — the studio video is `3446×1938 @ 60fps`, the intro is `1920×1080 @ 30fps`. Stream copy would cause double-speed playback; filter_complex normalizes both before joining.
+
+---
+
 ## Audio Post-Processing
 
 ### Fixing Quiet Audio (ffmpeg loudnorm)

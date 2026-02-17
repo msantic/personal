@@ -23,7 +23,11 @@
     "render:tiktok": "remotion render src/remotion/index.ts HeroVideo-TikTok output/hero-tiktok-1080x1920.mp4",
     "render:linkedin": "remotion render src/remotion/index.ts HeroVideo-LinkedIn output/hero-linkedin-1920x1080.mp4",
     "render:portrait": "remotion render src/remotion/index.ts HeroVideo-Portrait output/hero-portrait-1080x1350.mp4",
-    "render:all": "npm run render:web && npm run render:instagram && npm run render:reels && npm run render:linkedin"
+    "render:all": "npm run render:web && npm run render:instagram && npm run render:reels && npm run render:linkedin",
+    "render:intro": "remotion render src/remotion/index.ts IntroClip output/intro-1920x1080.mp4",
+    "render:outro": "remotion render src/remotion/index.ts OutroClip output/outro-1920x1080.mp4",
+    "render:clips": "npm run render:intro && npm run render:outro",
+    "merge:intro": "node scripts/merge-intro.js"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.417",

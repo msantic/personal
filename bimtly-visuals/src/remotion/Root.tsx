@@ -1,5 +1,7 @@
 import { Composition } from "remotion";
 import { HeroVideo } from "./HeroVideo";
+import { IntroClip } from "./IntroClip";
+import { OutroClip } from "./OutroClip";
 
 /**
  * Platform Video Configurations
@@ -28,6 +30,10 @@ const PLATFORMS = {
 
   // 4:5 Portrait (Instagram optimal)
   instagramPortrait: { width: 1080, height: 1350, fps: 30, duration: 38 },
+
+  // Standalone clips (YouTube 16:9)
+  introClip: { width: 1920, height: 1080, fps: 30, duration: 3 },    // 90 frames
+  outroClip: { width: 1920, height: 1080, fps: 30, duration: 4 },    // 120 frames
 };
 
 export const RemotionRoot: React.FC = () => {
@@ -139,6 +145,27 @@ export const RemotionRoot: React.FC = () => {
         fps={PLATFORMS.instagramPortrait.fps}
         width={PLATFORMS.instagramPortrait.width}
         height={PLATFORMS.instagramPortrait.height}
+      />
+      {/* ===== STANDALONE CLIPS ===== */}
+
+      {/* Intro Clip - Logo + subtitle animation */}
+      <Composition
+        id="IntroClip"
+        component={IntroClip}
+        durationInFrames={PLATFORMS.introClip.duration * PLATFORMS.introClip.fps}
+        fps={PLATFORMS.introClip.fps}
+        width={PLATFORMS.introClip.width}
+        height={PLATFORMS.introClip.height}
+      />
+
+      {/* Outro Clip - Tagline staggered reveal */}
+      <Composition
+        id="OutroClip"
+        component={OutroClip}
+        durationInFrames={PLATFORMS.outroClip.duration * PLATFORMS.outroClip.fps}
+        fps={PLATFORMS.outroClip.fps}
+        width={PLATFORMS.outroClip.width}
+        height={PLATFORMS.outroClip.height}
       />
     </>
   );
