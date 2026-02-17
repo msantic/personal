@@ -189,6 +189,59 @@ output/
 
 ---
 
+## Audio Post-Processing
+
+### Fixing Quiet Audio (ffmpeg loudnorm)
+
+If a video was recorded without a professional microphone, the audio may be too quiet. Use ffmpeg's `loudnorm` filter (EBU R128 standard) to normalize it.
+
+**Step 1: Analyze current levels**
+
+```bash
+ffmpeg -i "input.mp4" -af loudnorm=print_format=json -f null -
+```
+
+Look at the JSON output for `input_i` (integrated loudness in LUFS). Web/YouTube standard is **-14 LUFS**.
+
+**Step 2: Normalize with measured values**
+
+```bash
+ffmpeg -i "input.mp4" \
+  -af loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=<input_i>:measured_TP=<input_tp>:measured_LRA=<input_lra>:measured_thresh=<input_thresh>:linear=true \
+  -c:v copy \
+  -c:a aac -b:a 192k \
+  "output-normalized.mp4"
+```
+
+Replace `<input_i>`, `<input_tp>`, `<input_lra>`, `<input_thresh>` with values from Step 1.
+
+| Flag | Purpose |
+|------|---------|
+| `-c:v copy` | Copies video as-is (no re-encoding, fast) |
+| `linear=true` | Boosts volume while preserving dynamics |
+| `I=-14` | Target loudness: -14 LUFS (YouTube/web standard) |
+| `TP=-1.5` | True peak limit (prevents clipping) |
+| `-b:a 192k` | Audio bitrate |
+
+**Step 3: Verify**
+
+```bash
+ffmpeg -i "output-normalized.mp4" -af loudnorm=print_format=json -f null -
+```
+
+Confirm `input_i` is near -14 LUFS.
+
+### Loudness Reference
+
+| Target | LUFS | Use Case |
+|--------|------|----------|
+| YouTube | -14 | Standard web video |
+| Spotify | -14 | Music streaming |
+| Broadcast TV | -23 | EBU R128 standard |
+| Apple Podcasts | -16 | Podcast audio |
+
+---
+
 ## Inspiration & Tools
 
 ### AI Video Tools for Ideas
