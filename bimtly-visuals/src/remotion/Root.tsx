@@ -32,7 +32,7 @@ const PLATFORMS = {
   instagramPortrait: { width: 1080, height: 1350, fps: 30, duration: 38 },
 
   // Standalone clips (YouTube 16:9)
-  introClip: { width: 1920, height: 1080, fps: 30, duration: 3 },    // 90 frames
+  introClip: { width: 1920, height: 1080, fps: 30, duration: 5 },    // 150 frames
   outroClip: { width: 1920, height: 1080, fps: 30, duration: 4 },    // 120 frames
 };
 

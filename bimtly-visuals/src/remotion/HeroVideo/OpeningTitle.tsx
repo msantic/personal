@@ -10,41 +10,47 @@ export const OpeningTitle: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  const scale = spring({
+  // ── ENTRY ──────────────────────────────────────────────
+  const entryScale = spring({
     frame,
     fps,
     config: VIDEO.spring.snappy,
   });
 
-  const opacity = interpolate(frame, [0, 20], [0, 1], {
+  const fadeIn = interpolate(frame, [0, 20], [0, 1], {
     extrapolateRight: "clamp",
   });
 
-  // Fade out at end
-  const fadeOut = interpolate(frame, [60, 90], [1, 0], {
+  // Subtitle fades in delayed (last to arrive)
+  const subtitleEnter = interpolate(frame, [30, 50], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 1 staggered reveal
-  const line1Opacity = interpolate(frame, [15, 35], [0, 1], {
+  // ── EXIT — subtitle leaves first, logo leaves after ────
+  // Subtitle: opacity only, fully gone by frame 124
+  const subtitleExit = interpolate(frame, [110, 124], [1, 0], {
+    extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Line 2 staggered reveal (delayed after line 1)
-  const line2Opacity = interpolate(frame, [30, 50], [0, 1], {
+  // Logo/container: starts scaling AFTER subtitle is fully gone (frame 127+)
+  const containerExit = interpolate(frame, [127, 143], [1, 0], {
+    extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Responsive text sizes
-  const line1Size = Math.min(width, height) * 0.032;
+  // ── COMBINED ───────────────────────────────────────────
+  const scale = entryScale * containerExit;
+  const subtitleOpacity = subtitleEnter * subtitleExit;
+
   const line2Size = Math.min(width, height) * 0.020;
 
   return (
     <div
       className="opening-title"
       style={{
-        opacity: opacity * fadeOut,
+        opacity: fadeIn * containerExit,
         transform: `translate(-50%, -50%) scale(${scale})`,
         display: 'flex',
         flexDirection: 'column',
@@ -52,19 +58,9 @@ export const OpeningTitle: React.FC = () => {
         gap: height * 0.03,
       }}
     >
-      <BimtlyLogo frame={frame} fps={fps} width={width} height={height} />
-      {/* <p style={{
-        opacity: line1Opacity,
-        fontSize: line1Size,
-        fontWeight: 600,
-        color: '#4b5563',
-        margin: 0,
-        letterSpacing: '0.05em',
-      }}>
-        Show. Configure. Sell.
-      </p> */}
+      <BimtlyLogo frame={frame} fps={fps} width={width} height={height} subtitleExitOpacity={subtitleExit} />
       <p style={{
-        opacity: line2Opacity,
+        opacity: subtitleOpacity,
         fontSize: line2Size,
         fontWeight: 400,
         color: '#6b7280',

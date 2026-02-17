@@ -17,6 +17,8 @@ interface BimtlyLogoProps {
   showSubtitle?: boolean;
   /** Size as percentage of smaller dimension (0-1). Default 0.45 */
   sizeRatio?: number;
+  /** External multiplier for subtitle opacity (0-1). Use to drive exit animation from parent. */
+  subtitleExitOpacity?: number;
 }
 
 export const BimtlyLogo: React.FC<BimtlyLogoProps> = ({
@@ -26,6 +28,7 @@ export const BimtlyLogo: React.FC<BimtlyLogoProps> = ({
   height,
   showSubtitle = true,
   sizeRatio = 0.45,
+  subtitleExitOpacity = 1,
 }) => {
   // Animated glow intensity
   const glowIntensity = 0.3 + Math.sin(frame * 0.08) * 0.1;
@@ -39,9 +42,9 @@ export const BimtlyLogo: React.FC<BimtlyLogoProps> = ({
   const subtitleSize = logoSize * 0.11;  // ~24px at 220px logo
   const taglineSize = logoSize * 0.13;  // ~28px at 220px logo
 
-  // Subtitle fade in
+  // Subtitle fade in, multiplied by external exit control
   const subtitleOpacity = showSubtitle
-    ? interpolate(frame, [30, 50], [0, 1], { extrapolateRight: 'clamp' })
+    ? interpolate(frame, [30, 50], [0, 1], { extrapolateRight: 'clamp' }) * subtitleExitOpacity
     : 0;
 
   return (
