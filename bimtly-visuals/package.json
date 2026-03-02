@@ -25,9 +25,13 @@
     "render:portrait": "remotion render src/remotion/index.ts HeroVideo-Portrait output/hero-portrait-1080x1350.mp4",
     "render:all": "npm run render:web && npm run render:instagram && npm run render:reels && npm run render:linkedin",
     "render:intro": "remotion render src/remotion/index.ts IntroClip output/intro-1920x1080.mp4",
+    "render:intro:4k": "remotion render src/remotion/index.ts IntroClip-4K output/intro-3840x2160.mp4",
     "render:outro": "remotion render src/remotion/index.ts OutroClip output/outro-1920x1080.mp4",
+    "render:outro:4k": "remotion render src/remotion/index.ts OutroClip-4K output/outro-3840x2160.mp4",
     "render:clips": "npm run render:intro && npm run render:outro",
-    "merge:intro": "node scripts/merge-intro.js"
+    "render:clips:4k": "npm run render:intro:4k && npm run render:outro:4k",
+    "merge:intro": "node scripts/merge-intro.js",
+    "merge:intro:4k": "node scripts/merge-intro.js --4k"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.417",

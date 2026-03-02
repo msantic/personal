@@ -2,19 +2,23 @@
 /**
  * merge-intro.js
  *
- * Renders the IntroClip from Remotion and concatenates it with a main video.
+ * Renders the IntroClip (and optionally OutroClip) from Remotion and
+ * concatenates them with a main video: [intro] + [main] + [outro]
  *
  * Usage:
- *   node scripts/merge-intro.js
- *   node scripts/merge-intro.js --main "output/BIMTLY 3D STUDIO - normalized.mp4"
- *   node scripts/merge-intro.js --out "output/final.mp4"
- *   node scripts/merge-intro.js --skip-render   # reuse existing rendered intro
+ *   node scripts/merge-intro.js --main "output/video2.mp4"
+ *   node scripts/merge-intro.js --main "output/video2.mp4" --outro
+ *   node scripts/merge-intro.js --4k --outro --main "output/video2.mp4"
+ *   node scripts/merge-intro.js --skip-render --outro   # reuse existing clips
  *
  * Flags:
- *   --intro <path>     Intro clip output path (default: output/intro-1920x1080.mp4)
- *   --main  <path>     Main video to append after intro (default: output/BIMTLY 3D STUDIO - normalized.mp4)
+ *   --intro <path>     Intro clip output path (auto-set by --4k)
+ *   --main  <path>     Main video to append after intro
+ *   --outro-path <p>   Outro clip output path (auto-set by --4k)
  *   --out   <path>     Final merged output path (default: output/final-with-intro.mp4)
- *   --skip-render      Skip the Remotion render step and use an existing intro clip
+ *   --outro            Also append OutroClip after the main video
+ *   --skip-render      Skip Remotion render, reuse existing clips
+ *   --4k               Use 4K compositions (3840×2160)
  */
 
 import { execSync } from 'child_process';
@@ -32,61 +36,90 @@ const getArg = (flag, fallback) => {
   return i !== -1 && args[i + 1] ? args[i + 1] : fallback;
 };
 
-const INTRO_PATH  = getArg('--intro', 'output/intro-1920x1080.mp4');
+const IS_4K      = args.includes('--4k');
+const WITH_OUTRO = args.includes('--outro');
+const SKIP_RENDER = args.includes('--skip-render');
+
+const SCALE = IS_4K ? '3840:2160' : '1920:1080';
+
+const INTRO_COMP    = IS_4K ? 'IntroClip-4K' : 'IntroClip';
+const INTRO_DEFAULT = IS_4K ? 'output/intro-3840x2160.mp4' : 'output/intro-1920x1080.mp4';
+const INTRO_PATH    = getArg('--intro', INTRO_DEFAULT);
+
+const OUTRO_COMP    = IS_4K ? 'OutroClip-4K' : 'OutroClip';
+const OUTRO_DEFAULT = IS_4K ? 'output/outro-3840x2160.mp4' : 'output/outro-1920x1080.mp4';
+const OUTRO_PATH    = getArg('--outro-path', OUTRO_DEFAULT);
+
 const MAIN_PATH   = getArg('--main',  'output/BIMTLY 3D STUDIO - normalized.mp4');
 const OUTPUT_PATH = getArg('--out',   'output/final-with-intro.mp4');
-const SKIP_RENDER = args.includes('--skip-render');
 
 const introAbs  = resolve(ROOT, INTRO_PATH);
 const mainAbs   = resolve(ROOT, MAIN_PATH);
+const outroAbs  = resolve(ROOT, OUTRO_PATH);
 const outputAbs = resolve(ROOT, OUTPUT_PATH);
 
-// --- Step 1: Render IntroClip ---
+console.log(`\nMode: ${IS_4K ? '4K (3840×2160)' : '1080p (1920×1080)'}${WITH_OUTRO ? ' + outro' : ''}`);
+
+// --- Step 1: Render clips ---
 if (!SKIP_RENDER) {
-  console.log('\nRendering IntroClip from Remotion...');
+  console.log(`\nRendering ${INTRO_COMP}...`);
   execSync(
-    `npx remotion render src/remotion/index.ts IntroClip "${INTRO_PATH}"`,
+    `npx remotion render src/remotion/index.ts ${INTRO_COMP} "${INTRO_PATH}"`,
     { cwd: ROOT, stdio: 'inherit' }
   );
-  console.log('IntroClip rendered:', INTRO_PATH);
+  console.log(`${INTRO_COMP} rendered:`, INTRO_PATH);
+
+  if (WITH_OUTRO) {
+    console.log(`\nRendering ${OUTRO_COMP}...`);
+    execSync(
+      `npx remotion render src/remotion/index.ts ${OUTRO_COMP} "${OUTRO_PATH}"`,
+      { cwd: ROOT, stdio: 'inherit' }
+    );
+    console.log(`${OUTRO_COMP} rendered:`, OUTRO_PATH);
+  }
 } else {
-  console.log('Skipping render, using existing intro:', INTRO_PATH);
+  console.log('Skipping render, using existing clips');
 }
 
 // --- Validate inputs ---
-if (!existsSync(introAbs)) {
-  console.error('Intro clip not found:', introAbs);
-  process.exit(1);
-}
-if (!existsSync(mainAbs)) {
-  console.error('Main video not found:', mainAbs);
-  process.exit(1);
-}
+if (!existsSync(introAbs)) { console.error('Intro clip not found:', introAbs); process.exit(1); }
+if (!existsSync(mainAbs))  { console.error('Main video not found:', mainAbs);  process.exit(1); }
+if (WITH_OUTRO && !existsSync(outroAbs)) { console.error('Outro clip not found:', outroAbs); process.exit(1); }
 
 // --- Step 2: Concat with ffmpeg filter_complex ---
-// Uses filter_complex to normalize fps + resolution before concat.
-// This handles mismatches like 60fps studio video + 30fps intro clip.
-console.log('\nMerging intro + main video...');
+console.log('\nMerging clips...');
 console.log('  Intro:', INTRO_PATH);
 console.log('  Main: ', MAIN_PATH);
+if (WITH_OUTRO) console.log('  Outro:', OUTRO_PATH);
 console.log('  Out:  ', OUTPUT_PATH);
+console.log('  Scale:', SCALE);
 
-const filterComplex = [
-  '[0:v]fps=30,scale=1920:1080,setsar=1[v0]',
-  '[1:v]fps=30,scale=1920:1080,setsar=1[v1]',
-  '[1:a]aresample=async=1[a1]',
-  '[v0][0:a][v1][a1]concat=n=2:v=1:a=1[outv][outa]',
-].join('; ');
+let filterComplex;
+let inputArgs;
+
+if (WITH_OUTRO) {
+  // 3-way concat: intro(0) + main(1) + outro(2)
+  inputArgs = `-i "${introAbs}" -i "${mainAbs}" -i "${outroAbs}"`;
+  filterComplex = [
+    `[0:v]fps=30,scale=${SCALE},setsar=1[v0]`,
+    `[1:v]fps=30,scale=${SCALE},setsar=1[v1]`,
+    `[2:v]fps=30,scale=${SCALE},setsar=1[v2]`,
+    '[1:a]aresample=async=1[a1]',
+    '[v0][0:a][v1][a1][v2][2:a]concat=n=3:v=1:a=1[outv][outa]',
+  ].join('; ');
+} else {
+  // 2-way concat: intro(0) + main(1)
+  inputArgs = `-i "${introAbs}" -i "${mainAbs}"`;
+  filterComplex = [
+    `[0:v]fps=30,scale=${SCALE},setsar=1[v0]`,
+    `[1:v]fps=30,scale=${SCALE},setsar=1[v1]`,
+    '[1:a]aresample=async=1[a1]',
+    '[v0][0:a][v1][a1]concat=n=2:v=1:a=1[outv][outa]',
+  ].join('; ');
+}
 
 execSync(
-  `ffmpeg -y \
-    -i "${introAbs}" \
-    -i "${mainAbs}" \
-    -filter_complex "${filterComplex}" \
-    -map "[outv]" -map "[outa]" \
-    -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p \
-    -c:a aac -b:a 192k \
-    "${outputAbs}"`,
+  `ffmpeg -y ${inputArgs} -filter_complex "${filterComplex}" -map "[outv]" -map "[outa]" -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -c:a aac -b:a 192k "${outputAbs}"`,
   { cwd: ROOT, stdio: 'inherit' }
 );
 

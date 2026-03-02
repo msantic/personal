@@ -31,9 +31,13 @@ const PLATFORMS = {
   // 4:5 Portrait (Instagram optimal)
   instagramPortrait: { width: 1080, height: 1350, fps: 30, duration: 38 },
 
-  // Standalone clips (YouTube 16:9)
+  // Standalone clips — 1080p (default preview)
   introClip: { width: 1920, height: 1080, fps: 30, duration: 5 },    // 150 frames
   outroClip: { width: 1920, height: 1080, fps: 30, duration: 4 },    // 120 frames
+
+  // Standalone clips — 4K (for high-res renders)
+  introClip4K: { width: 3840, height: 2160, fps: 30, duration: 5 },  // 150 frames
+  outroClip4K: { width: 3840, height: 2160, fps: 30, duration: 4 },  // 120 frames
 };
 
 export const RemotionRoot: React.FC = () => {
@@ -166,6 +170,28 @@ export const RemotionRoot: React.FC = () => {
         fps={PLATFORMS.outroClip.fps}
         width={PLATFORMS.outroClip.width}
         height={PLATFORMS.outroClip.height}
+      />
+
+      {/* ===== 4K STANDALONE CLIPS ===== */}
+
+      {/* Intro Clip 4K */}
+      <Composition
+        id="IntroClip-4K"
+        component={IntroClip}
+        durationInFrames={PLATFORMS.introClip4K.duration * PLATFORMS.introClip4K.fps}
+        fps={PLATFORMS.introClip4K.fps}
+        width={PLATFORMS.introClip4K.width}
+        height={PLATFORMS.introClip4K.height}
+      />
+
+      {/* Outro Clip 4K */}
+      <Composition
+        id="OutroClip-4K"
+        component={OutroClip}
+        durationInFrames={PLATFORMS.outroClip4K.duration * PLATFORMS.outroClip4K.fps}
+        fps={PLATFORMS.outroClip4K.fps}
+        width={PLATFORMS.outroClip4K.width}
+        height={PLATFORMS.outroClip4K.height}
       />
     </>
   );

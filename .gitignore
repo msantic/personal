@@ -4,3 +4,4 @@ bimtly-visuals/output
 bimtly-visuals/out
 output/videos/*.mp4
 .DS_Store
+input
