@@ -5,3 +5,4 @@ bimtly-visuals/out
 output/videos/*.mp4
 .DS_Store
 input
+bimtly-visuals/public/videos/promo
