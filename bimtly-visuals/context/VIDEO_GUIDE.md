@@ -176,6 +176,7 @@ src/remotion/
 src/design/
 ├── tokens.ts                   # Design tokens (spring configs, timing, colors)
 ├── BimtlyLogo.tsx              # Animated logo component (used in intro)
+├── BrandingBadge.tsx           # Frosted-glass logo overlay (watermark/branding)
 ├── backgrounds.css             # Hero background styles (grid, flares, glow)
 ├── PromoMaterialCatalog/
 │   ├── index.tsx               # Promo composition (timeline + music)
@@ -389,6 +390,8 @@ Sections overlap by 1s for smooth crossfade transitions.
 
 **Audio:** Background music (`kornevmusic-upbeat-happy-corporate`) plays only during content clips (not intro/outro), with 1.5s fade in/out.
 
+**Branding overlay:** `BrandingBadge` (frosted-glass pill with white logo) positioned bottom-right during content clips. Covers Veo AI watermark on clips 3-4 and adds consistent branding across all clips.
+
 **Compositions:**
 | ID | Dimensions | Platform |
 |----|------------|----------|
@@ -420,6 +423,33 @@ src/remotion/PromoMaterialCatalog/
 - Screen recordings (.mov) must be transcoded to .mp4 — browser preview doesn't support HEVC
 
 **To add a new clip:** Edit `clips.ts`, adjust `durationInFrames` and `playbackRate`, and add the transcoded file to `public/videos/promo/`. The timeline positions are calculated automatically from the clip array.
+
+### BrandingBadge — Reusable Logo Overlay
+
+Frosted-glass pill with the white BIMTLY logo (`public/branding/logo_with_name_white.svg`), positioned bottom-right. Use it in any composition to add branding or cover watermarks.
+
+**Source:** [BrandingBadge.tsx](src/design/BrandingBadge.tsx)
+
+**Usage:**
+```tsx
+import { BrandingBadge } from "../../design/BrandingBadge";
+
+// Inside a <Sequence> that defines when the badge is visible:
+<Sequence from={contentStart} durationInFrames={contentDuration}>
+  <BrandingBadge durationInFrames={contentDuration} />
+</Sequence>
+```
+
+**Props:**
+| Prop | Default | Description |
+|------|---------|-------------|
+| `durationInFrames` | required | Total frames (used for fade-out timing) |
+| `fadeIn` | `true` | Fade in over 1s at start |
+| `fadeOut` | `true` | Fade out over 1s at end |
+| `sizeRatio` | `0.09` | Logo width as fraction of output width |
+| `paddingRatio` | `0.01` | Edge padding as fraction of output width |
+
+Scales proportionally to output width — works at any aspect ratio.
 
 **Resolution normalization:** Output at 1080p. 4K sources downscale cleanly; 720p sources upscale modestly (1.5x). All clips use `object-fit: cover` to fill the frame identically regardless of source resolution.
 

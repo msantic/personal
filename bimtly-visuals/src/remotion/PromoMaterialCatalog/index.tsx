@@ -6,6 +6,7 @@ import {
   staticFile,
   useCurrentFrame,
 } from "remotion";
+import { BrandingBadge } from "../../design/BrandingBadge";
 import { IntroClip } from "../IntroClip";
 import { OutroClip } from "../OutroClip";
 import { VideoClip } from "./VideoClip";
@@ -80,6 +81,11 @@ export const PromoMaterialCatalog: React.FC = () => {
       {/* ===== OUTRO ===== */}
       <Sequence from={outroStart} durationInFrames={OUTRO_DURATION}>
         <OutroClip />
+      </Sequence>
+
+      {/* ===== BRANDING OVERLAY (content clips only, covers Veo watermark) ===== */}
+      <Sequence from={musicStart} durationInFrames={musicDuration}>
+        <BrandingBadge durationInFrames={musicDuration} />
       </Sequence>
 
       {/* ===== BACKGROUND MUSIC (content clips only) ===== */}
