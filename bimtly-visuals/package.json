@@ -31,7 +31,12 @@
     "render:clips": "npm run render:intro && npm run render:outro",
     "render:clips:4k": "npm run render:intro:4k && npm run render:outro:4k",
     "merge:intro": "node scripts/merge-intro.js",
-    "merge:intro:4k": "node scripts/merge-intro.js --4k"
+    "merge:intro:4k": "node scripts/merge-intro.js --4k",
+    "render:promo": "remotion render src/remotion/index.ts PromoMaterialCatalog output/promo-material-catalog-1920x1080.mp4",
+    "render:promo:square": "remotion render src/remotion/index.ts PromoMaterialCatalog-Square output/promo-material-catalog-1080x1080.mp4",
+    "render:promo:vertical": "remotion render src/remotion/index.ts PromoMaterialCatalog-Vertical output/promo-material-catalog-1080x1920.mp4",
+    "render:promo:portrait": "remotion render src/remotion/index.ts PromoMaterialCatalog-Portrait output/promo-material-catalog-1080x1350.mp4",
+    "render:promo:all": "npm run render:promo && npm run render:promo:square && npm run render:promo:vertical && npm run render:promo:portrait"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.417",

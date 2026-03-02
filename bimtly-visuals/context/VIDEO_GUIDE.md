@@ -95,6 +95,10 @@ In Remotion Studio, you'll see these composition variants:
 | `OutroClip` | 1920×1080 | Standalone outro (Tagline) |
 | `IntroClip-4K` | 3840×2160 | Intro at 4K (for final publish) |
 | `OutroClip-4K` | 3840×2160 | Outro at 4K (for final publish) |
+| `PromoMaterialCatalog` | 1920×1080 | Material Catalog promo (16:9) |
+| `PromoMaterialCatalog-Square` | 1080×1080 | Material Catalog promo (1:1) |
+| `PromoMaterialCatalog-Vertical` | 1080×1920 | Material Catalog promo (9:16) |
+| `PromoMaterialCatalog-Portrait` | 1080×1350 | Material Catalog promo (4:5) |
 
 ---
 
@@ -123,6 +127,13 @@ npm run render:clips       # Both clips at 1080p
 npm run render:intro:4k    # IntroClip at 4K
 npm run render:outro:4k    # OutroClip at 4K
 npm run render:clips:4k    # Both clips at 4K
+
+# Render promo videos
+npm run render:promo           # 1920×1080
+npm run render:promo:square    # 1080×1080
+npm run render:promo:vertical  # 1080×1920
+npm run render:promo:portrait  # 1080×1350
+npm run render:promo:all       # All platforms
 
 # Merge intro with main video
 npm run merge:intro        # Render intro + merge at 1080p
@@ -166,11 +177,18 @@ src/design/
 ├── tokens.ts                   # Design tokens (spring configs, timing, colors)
 ├── BimtlyLogo.tsx              # Animated logo component (used in intro)
 ├── backgrounds.css             # Hero background styles (grid, flares, glow)
+├── PromoMaterialCatalog/
+│   ├── index.tsx               # Promo composition (timeline + music)
+│   ├── VideoClip.tsx           # Reusable clip wrapper (fade + scale)
+│   └── clips.ts                # Clip definitions (sources, timing)
 scripts/
 ├── merge-intro.js              # Pipeline: render clips + merge with ffmpeg
+input/
+├── material_catalog/           # Original source recordings (not used by Remotion)
 public/
 ├── hero-prefab.png             # Industry image 1
-└── hero-window.png             # Industry image 2
+├── hero-window.png             # Industry image 2
+└── videos/promo/               # Transcoded clips for Remotion (H.264 .mp4)
 ```
 
 ---
@@ -346,6 +364,64 @@ When you update the intro or outro animation:
 4. **Re-merge any videos** that need the updated clips using `--skip-render`
 
 The clips are decoupled from the main content — update once, apply everywhere.
+
+---
+
+## Promo Videos (Remotion Compositions)
+
+### PromoMaterialCatalog
+
+Self-contained promo video showcasing the Material Catalog feature. Includes intro, 4 content clips with crossfade transitions, background music, and outro — all orchestrated within a single Remotion composition.
+
+**Duration:** 42 seconds (1260 frames @ 30fps)
+
+**Timeline:**
+| Section | Time | Notes |
+|---------|------|-------|
+| Intro (OpeningTitle + SFX) | 0–5s | Reuses `IntroClip` component |
+| Cutlist Walkthrough | 4–19s | Screen recording, 2x speed |
+| Kitchen Area Web3D | 18–28s | Screen recording, 2x speed |
+| Catalog Rendering | 27–35s | AI-generated clip |
+| Material Catalog Gen | 34–39s | AI-generated, 5s hard stop |
+| Outro (Tagline + stinger) | 38–42s | Reuses `OutroClip` component |
+
+Sections overlap by 1s for smooth crossfade transitions.
+
+**Audio:** Background music (`kornevmusic-upbeat-happy-corporate`) plays only during content clips (not intro/outro), with 1.5s fade in/out.
+
+**Compositions:**
+| ID | Dimensions | Platform |
+|----|------------|----------|
+| `PromoMaterialCatalog` | 1920×1080 | Web, YouTube, LinkedIn |
+| `PromoMaterialCatalog-Square` | 1080×1080 | Instagram Feed, LinkedIn |
+| `PromoMaterialCatalog-Vertical` | 1080×1920 | Reels, TikTok, Shorts |
+| `PromoMaterialCatalog-Portrait` | 1080×1350 | Instagram (optimal) |
+
+**Render:**
+```bash
+npm run render:promo           # 16:9 landscape
+npm run render:promo:square    # 1:1
+npm run render:promo:vertical  # 9:16
+npm run render:promo:portrait  # 4:5
+npm run render:promo:all       # All platforms
+```
+
+**Source files:**
+```
+src/remotion/PromoMaterialCatalog/
+├── index.tsx       # Main composition (timeline, sequences, music)
+├── VideoClip.tsx   # Reusable clip wrapper (OffthreadVideo + fade + scale)
+├── clips.ts        # Clip definitions (sources, durations, playback rates)
+```
+
+**Input assets:**
+- Source files live in `input/material_catalog/` (original recordings)
+- Transcoded H.264 copies in `public/videos/promo/` (required by Remotion)
+- Screen recordings (.mov) must be transcoded to .mp4 — browser preview doesn't support HEVC
+
+**To add a new clip:** Edit `clips.ts`, adjust `durationInFrames` and `playbackRate`, and add the transcoded file to `public/videos/promo/`. The timeline positions are calculated automatically from the clip array.
+
+**Resolution normalization:** Output at 1080p. 4K sources downscale cleanly; 720p sources upscale modestly (1.5x). All clips use `object-fit: cover` to fill the frame identically regardless of source resolution.
 
 ---
 

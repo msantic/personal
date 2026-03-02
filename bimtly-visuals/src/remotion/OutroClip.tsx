@@ -1,7 +1,11 @@
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, Html5Audio, staticFile } from "remotion";
 import { BACKGROUNDS } from "../design";
 import { Tagline } from "./HeroVideo/Tagline";
 import "./HeroVideo/styles.css";
+
+const OUTRO_SFX = {
+  stinger: staticFile("audio/out/grumpynora-pleasing-5-sec-edit-stinger-467228.mp3"),
+};
 
 export const OutroClip: React.FC = () => {
   const heroVars = {
@@ -21,6 +25,9 @@ export const OutroClip: React.FC = () => {
       <AbsoluteFill className="hero-bg-content">
         <Tagline />
       </AbsoluteFill>
+
+      {/* Pleasing stinger — plays from start, matches tagline reveal */}
+      <Html5Audio src={OUTRO_SFX.stinger} volume={0.6} />
     </AbsoluteFill>
   );
 };

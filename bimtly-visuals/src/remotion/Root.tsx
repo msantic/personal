@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { HeroVideo } from "./HeroVideo";
 import { IntroClip } from "./IntroClip";
 import { OutroClip } from "./OutroClip";
+import { PromoMaterialCatalog } from "./PromoMaterialCatalog";
 
 /**
  * Platform Video Configurations
@@ -38,6 +39,12 @@ const PLATFORMS = {
   // Standalone clips — 4K (for high-res renders)
   introClip4K: { width: 3840, height: 2160, fps: 30, duration: 5 },  // 150 frames
   outroClip4K: { width: 3840, height: 2160, fps: 30, duration: 4 },  // 120 frames
+
+  // Promo: Material Catalog
+  promoWeb:      { width: 1920, height: 1080, fps: 30, duration: 42 },  // 16:9
+  promoSquare:   { width: 1080, height: 1080, fps: 30, duration: 42 },  // 1:1
+  promoVertical: { width: 1080, height: 1920, fps: 30, duration: 42 },  // 9:16
+  promoPortrait: { width: 1080, height: 1350, fps: 30, duration: 42 },  // 4:5
 };
 
 export const RemotionRoot: React.FC = () => {
@@ -192,6 +199,48 @@ export const RemotionRoot: React.FC = () => {
         fps={PLATFORMS.outroClip4K.fps}
         width={PLATFORMS.outroClip4K.width}
         height={PLATFORMS.outroClip4K.height}
+      />
+
+      {/* ===== PROMO: MATERIAL CATALOG ===== */}
+
+      {/* 16:9 Landscape (Web, YouTube, LinkedIn) */}
+      <Composition
+        id="PromoMaterialCatalog"
+        component={PromoMaterialCatalog}
+        durationInFrames={PLATFORMS.promoWeb.duration * PLATFORMS.promoWeb.fps}
+        fps={PLATFORMS.promoWeb.fps}
+        width={PLATFORMS.promoWeb.width}
+        height={PLATFORMS.promoWeb.height}
+      />
+
+      {/* 1:1 Square (Instagram Feed, LinkedIn) */}
+      <Composition
+        id="PromoMaterialCatalog-Square"
+        component={PromoMaterialCatalog}
+        durationInFrames={PLATFORMS.promoSquare.duration * PLATFORMS.promoSquare.fps}
+        fps={PLATFORMS.promoSquare.fps}
+        width={PLATFORMS.promoSquare.width}
+        height={PLATFORMS.promoSquare.height}
+      />
+
+      {/* 9:16 Vertical (Reels, TikTok, Shorts) */}
+      <Composition
+        id="PromoMaterialCatalog-Vertical"
+        component={PromoMaterialCatalog}
+        durationInFrames={PLATFORMS.promoVertical.duration * PLATFORMS.promoVertical.fps}
+        fps={PLATFORMS.promoVertical.fps}
+        width={PLATFORMS.promoVertical.width}
+        height={PLATFORMS.promoVertical.height}
+      />
+
+      {/* 4:5 Portrait (Instagram optimal) */}
+      <Composition
+        id="PromoMaterialCatalog-Portrait"
+        component={PromoMaterialCatalog}
+        durationInFrames={PLATFORMS.promoPortrait.duration * PLATFORMS.promoPortrait.fps}
+        fps={PLATFORMS.promoPortrait.fps}
+        width={PLATFORMS.promoPortrait.width}
+        height={PLATFORMS.promoPortrait.height}
       />
     </>
   );
