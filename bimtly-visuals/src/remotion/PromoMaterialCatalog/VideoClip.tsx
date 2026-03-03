@@ -12,6 +12,8 @@ interface VideoClipProps {
   durationInFrames: number;
   fadeIn?: boolean;
   fadeOut?: boolean;
+  /** How the video fills the frame. Default "cover" (crop to fill). Use "contain" to show full video. */
+  objectFit?: React.CSSProperties["objectFit"];
 }
 
 export const VideoClip: React.FC<VideoClipProps> = ({
@@ -20,6 +22,7 @@ export const VideoClip: React.FC<VideoClipProps> = ({
   durationInFrames,
   fadeIn = true,
   fadeOut = true,
+  objectFit = "cover",
 }) => {
   const frame = useCurrentFrame();
 
@@ -60,7 +63,7 @@ export const VideoClip: React.FC<VideoClipProps> = ({
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "cover",
+          objectFit,
         }}
       />
     </AbsoluteFill>

@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { HeroVideo } from "./HeroVideo";
 import { IntroClip } from "./IntroClip";
 import { OutroClip } from "./OutroClip";
+import { PromoCncDemo } from "./PromoCncDemo";
 import { PromoMaterialCatalog } from "./PromoMaterialCatalog";
 
 /**
@@ -45,6 +46,9 @@ const PLATFORMS = {
   promoSquare:   { width: 1080, height: 1080, fps: 30, duration: 42 },  // 1:1
   promoVertical: { width: 1080, height: 1920, fps: 30, duration: 42 },  // 9:16
   promoPortrait: { width: 1080, height: 1350, fps: 30, duration: 42 },  // 4:5
+
+  // Promo: CNC Demo
+  cncDemo4K: { width: 3840, height: 2160, fps: 30, durationInFrames: 1392 },  // 4K, 46.4s
 };
 
 export const RemotionRoot: React.FC = () => {
@@ -241,6 +245,17 @@ export const RemotionRoot: React.FC = () => {
         fps={PLATFORMS.promoPortrait.fps}
         width={PLATFORMS.promoPortrait.width}
         height={PLATFORMS.promoPortrait.height}
+      />
+      {/* ===== PROMO: CNC DEMO ===== */}
+
+      {/* 4K (primary output) */}
+      <Composition
+        id="PromoCncDemo"
+        component={PromoCncDemo}
+        durationInFrames={PLATFORMS.cncDemo4K.durationInFrames}
+        fps={PLATFORMS.cncDemo4K.fps}
+        width={PLATFORMS.cncDemo4K.width}
+        height={PLATFORMS.cncDemo4K.height}
       />
     </>
   );

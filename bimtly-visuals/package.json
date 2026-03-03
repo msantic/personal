@@ -36,7 +36,8 @@
     "render:promo:square": "remotion render src/remotion/index.ts PromoMaterialCatalog-Square output/promo-material-catalog-1080x1080.mp4",
     "render:promo:vertical": "remotion render src/remotion/index.ts PromoMaterialCatalog-Vertical output/promo-material-catalog-1080x1920.mp4",
     "render:promo:portrait": "remotion render src/remotion/index.ts PromoMaterialCatalog-Portrait output/promo-material-catalog-1080x1350.mp4",
-    "render:promo:all": "npm run render:promo && npm run render:promo:square && npm run render:promo:vertical && npm run render:promo:portrait"
+    "render:promo:all": "npm run render:promo && npm run render:promo:square && npm run render:promo:vertical && npm run render:promo:portrait",
+    "render:cnc-demo": "remotion render src/remotion/index.ts PromoCncDemo output/cnc-demo-3840x2160.mp4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.417",
