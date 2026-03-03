@@ -99,6 +99,7 @@ In Remotion Studio, you'll see these composition variants:
 | `PromoMaterialCatalog-Square` | 1080×1080 | Material Catalog promo (1:1) |
 | `PromoMaterialCatalog-Vertical` | 1080×1920 | Material Catalog promo (9:16) |
 | `PromoMaterialCatalog-Portrait` | 1080×1350 | Material Catalog promo (4:5) |
+| `PromoCncDemo` | 3840×2160 | CNC Demo promo (4K) |
 
 ---
 
@@ -134,6 +135,9 @@ npm run render:promo:square    # 1080×1080
 npm run render:promo:vertical  # 1080×1920
 npm run render:promo:portrait  # 1080×1350
 npm run render:promo:all       # All platforms
+
+# Render CNC Demo
+npm run render:cnc-demo        # 3840×2160 (4K)
 
 # Merge intro with main video
 npm run merge:intro        # Render intro + merge at 1080p
@@ -178,9 +182,11 @@ src/design/
 ├── BimtlyLogo.tsx              # Animated logo component (used in intro)
 ├── BrandingBadge.tsx           # Frosted-glass logo overlay (watermark/branding)
 ├── backgrounds.css             # Hero background styles (grid, flares, glow)
+├── PromoCncDemo/
+│   └── index.tsx               # CNC demo promo (timeline, overlays, music)
 ├── PromoMaterialCatalog/
 │   ├── index.tsx               # Promo composition (timeline + music)
-│   ├── VideoClip.tsx           # Reusable clip wrapper (fade + scale)
+│   ├── VideoClip.tsx           # Reusable clip wrapper (fade + scale, objectFit prop)
 │   └── clips.ts                # Clip definitions (sources, timing)
 scripts/
 ├── merge-intro.js              # Pipeline: render clips + merge with ffmpeg
@@ -423,6 +429,49 @@ src/remotion/PromoMaterialCatalog/
 - Screen recordings (.mov) must be transcoded to .mp4 — browser preview doesn't support HEVC
 
 **To add a new clip:** Edit `clips.ts`, adjust `durationInFrames` and `playbackRate`, and add the transcoded file to `public/videos/promo/`. The timeline positions are calculated automatically from the clip array.
+
+### PromoCncDemo
+
+Self-contained CNC machine demo promo at 4K (3840×2160). Two content clips at 2x speed with crossfade transitions, premium text overlays, background music, branding badge, and branded intro/outro.
+
+**Duration:** 46.4 seconds (1392 frames @ 30fps)
+
+**Timeline:**
+| Section | Time | Notes |
+|---------|------|-------|
+| Intro (OpeningTitle + SFX) | 0–5s | Reuses `IntroClip` component |
+| CNC Demo (full walkthrough) | 4–32s | Screen recording, 2x speed |
+| CNC Share/Explode/Data | 31–43.4s | Screen recording, 2x speed, `object-fit: contain` |
+| Outro (Tagline + stinger) | 42.4–46.4s | Reuses `OutroClip` component |
+
+Sections overlap by 1s for smooth crossfade transitions.
+
+**Text overlays:** Premium frosted-glass overlays in top-right corner with blur-in reveal animation. Dark theme overlays (gold `#FCD34D` headline, white subtitle) during clip 1, light theme (blue `#1d4ed8` headline, gray subtitle) during clip 2. Closing statement uses larger type with staggered tagline and brand-blue "get sold." accent.
+
+**Audio:** Background music plays only during content clips, with 1.5s fade in/out. Intro/outro have their own SFX.
+
+**Branding overlay:** `BrandingBadge` during content clips (covers Veo watermark).
+
+**Composition:**
+| ID | Dimensions | Platform |
+|----|------------|----------|
+| `PromoCncDemo` | 3840×2160 | 4K primary output |
+
+**Render:**
+```bash
+npm run render:cnc-demo        # 3840×2160 (4K)
+```
+
+**Source files:**
+```
+src/remotion/PromoCncDemo/
+├── index.tsx       # Composition (timeline, overlays, music, closing statement)
+```
+
+**Input assets:**
+- Source files in `input/cnc demo/` (original recordings)
+- Transcoded H.264 copies: `public/videos/cnc-demo.mp4`, `public/videos/cnc-demo-share.mp4`
+- Second clip (HEVC .mov) was transcoded to H.264 for browser compatibility
 
 ### BrandingBadge — Reusable Logo Overlay
 
