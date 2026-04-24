@@ -43,15 +43,15 @@ const SKIP_RENDER = args.includes('--skip-render');
 const SCALE = IS_4K ? '3840:2160' : '1920:1080';
 
 const INTRO_COMP    = IS_4K ? 'IntroClip-4K' : 'IntroClip';
-const INTRO_DEFAULT = IS_4K ? 'output/intro-3840x2160.mp4' : 'output/intro-1920x1080.mp4';
+const INTRO_DEFAULT = IS_4K ? 'output/clips/intro-3840x2160.mp4' : 'output/clips/intro-1920x1080.mp4';
 const INTRO_PATH    = getArg('--intro', INTRO_DEFAULT);
 
 const OUTRO_COMP    = IS_4K ? 'OutroClip-4K' : 'OutroClip';
-const OUTRO_DEFAULT = IS_4K ? 'output/outro-3840x2160.mp4' : 'output/outro-1920x1080.mp4';
+const OUTRO_DEFAULT = IS_4K ? 'output/clips/outro-3840x2160.mp4' : 'output/clips/outro-1920x1080.mp4';
 const OUTRO_PATH    = getArg('--outro-path', OUTRO_DEFAULT);
 
-const MAIN_PATH   = getArg('--main',  'output/BIMTLY 3D STUDIO - normalized.mp4');
-const OUTPUT_PATH = getArg('--out',   'output/final-with-intro.mp4');
+const MAIN_PATH   = getArg('--main',  'output/3dstudio/BIMTLY 3D STUDIO - normalized.mp4');
+const OUTPUT_PATH = getArg('--out',   'output/3dstudio/final-with-intro.mp4');
 
 const introAbs  = resolve(ROOT, INTRO_PATH);
 const mainAbs   = resolve(ROOT, MAIN_PATH);

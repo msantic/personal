@@ -4,31 +4,26 @@ import './image-showcase-demo.css';
 
 // All thumbnail images
 const THUMBNAILS = [
-  'thumbnails/1016.png',
-  'thumbnails/3576.png',
-  'thumbnails/4009.png',
-  'thumbnails/4657.png',
-  'thumbnails/467.png',
-  'thumbnails/585.png',
-  'thumbnails/4696.png',
+  'thumbnails/housevr.webp',
+  'thumbnails/engine.webp',
+  'thumbnails/cnc.webp',
+  'thumbnails/prefab.webp',
+  'thumbnails/knapp.webp',
+  'thumbnails/bedroom.webp',
+  'thumbnails/metal-construction.webp',
+  'thumbnails/wooden-house.webp',
+  'thumbnails/window.webp',
+  'thumbnails/roof-construction-details.webp',
+  'thumbnails/metal-fence-system.webp',
+  'thumbnails/chair.webp',
+  'thumbnails/family-house-frame-only.webp',
+  'thumbnails/6haus.webp',
+  'thumbnails/stone-cabin.webp',
+  'thumbnails/modularhouse.webp',
+  'thumbnails/container-paradise-cafe.webp',
   'thumbnails/4740.png',
-  'thumbnails/8190.png',
-  'thumbnails/8194.png',
-  'thumbnails/8201.png',
   'thumbnails/8232.png',
-  'thumbnails/8236.png',
-  'thumbnails/8267.png',
-  'thumbnails/8292.png',
   'thumbnails/8305.png',
-  'thumbnails/8315.png',
-  'thumbnails/8373.png',
-  'thumbnails/8434.png',
-  'thumbnails/8606.png',
-  'thumbnails/950.png',
-  'thumbnails/978.png',
-  'thumbnails/998.png',
-  'thumbnails/feal.png',
-  'thumbnails/pergola-config.png',
 ];
 
 const STYLES = [
@@ -43,19 +38,19 @@ const STYLES = [
 ];
 
 export default function ImageShowcaseDemo() {
-  const [style, setStyle] = useState('staggered-reveal');
+  const [style, setStyle] = useState('scrolling-grid');
   const [frame, setFrame] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [speed, setSpeed] = useState(1);
   const [fps] = useState(30);
-  const [durationInFrames] = useState(120);
+  const [durationInFrames] = useState(900);
 
   // Animation loop
   useEffect(() => {
     if (!isPlaying) return;
 
     const interval = setInterval(() => {
-      setFrame((f) => (f + 1) % durationInFrames);
+      setFrame((f) => f + 1);
     }, 1000 / (fps * speed));
 
     return () => clearInterval(interval);

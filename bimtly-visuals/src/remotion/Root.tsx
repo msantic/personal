@@ -4,6 +4,7 @@ import { IntroClip } from "./IntroClip";
 import { OutroClip } from "./OutroClip";
 import { PromoCncDemo } from "./PromoCncDemo";
 import { PromoMaterialCatalog } from "./PromoMaterialCatalog";
+import { ScrollingGridVideo, SCROLLING_GRID_LOOP_FRAMES } from "./ScrollingGridVideo";
 
 /**
  * Platform Video Configurations
@@ -49,6 +50,9 @@ const PLATFORMS = {
 
   // Promo: CNC Demo
   cncDemo4K: { width: 3840, height: 2160, fps: 30, durationInFrames: 1392 },  // 4K, 46.4s
+
+  // Scrolling Grid standalone (duration computed from grid geometry)
+  scrollingGrid: { width: 1920, height: 1080, fps: 30 },
 };
 
 export const RemotionRoot: React.FC = () => {
@@ -246,6 +250,17 @@ export const RemotionRoot: React.FC = () => {
         width={PLATFORMS.promoPortrait.width}
         height={PLATFORMS.promoPortrait.height}
       />
+      {/* ===== SCROLLING GRID ===== */}
+
+      <Composition
+        id="ScrollingGrid"
+        component={ScrollingGridVideo}
+        durationInFrames={SCROLLING_GRID_LOOP_FRAMES}
+        fps={PLATFORMS.scrollingGrid.fps}
+        width={PLATFORMS.scrollingGrid.width}
+        height={PLATFORMS.scrollingGrid.height}
+      />
+
       {/* ===== PROMO: CNC DEMO ===== */}
 
       {/* 4K (primary output) */}

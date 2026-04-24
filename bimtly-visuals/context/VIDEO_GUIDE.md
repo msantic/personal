@@ -614,3 +614,52 @@ Confirm `input_i` is near -14 LUFS.
 4. **Industry showcase** - Same platform, different verticals (current video)
 5. **Customer journey** - From upload to published web portal
 6. **Stats/Numbers** - "10x faster product launches" with animated counters
+
+---
+
+## WebM for Web: Chrome Color Metadata Gotcha
+
+### The problem
+
+Remotion 4.x exports VP9/WebM files with broken color metadata:
+
+- `color_space=bt470bg` (PAL SD) instead of `bt709` (HD)
+- `color_range=pc` (0-255) instead of `tv` (16-235)
+- `color_primaries=unknown`, `color_transfer=unknown`
+
+Chrome silently refuses to decode VP9 HD content flagged as PAL/full-range. The video loads `200 OK`, the `<video>` tag is correct, autoplay attributes are right — but the poster stays, no console error.
+
+Safari and Firefox are more lenient and will usually play the file anyway.
+
+### Diagnosis
+
+```bash
+ffprobe -v error -show_streams path/to/file.webm | grep color_
+```
+
+If you see `color_space=bt470bg` or `color_range=pc`, that's the issue.
+
+### Fix (single-pass)
+
+Re-encode the mp4 (not the broken webm) with explicit BT.709 flags:
+
+```bash
+ffmpeg -y -i input.mp4 -c:v libvpx-vp9 -b:v 1.6M -crf 32 \
+  -pix_fmt yuv420p -an -deadline good -cpu-used 2 \
+  -row-mt 1 -tile-columns 2 -threads 8 \
+  -colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv \
+  -vf "scale=in_color_matrix=bt709:out_color_matrix=bt709" \
+  -map_metadata -1 output.webm
+```
+
+After encoding, re-run `ffprobe | grep color_` to verify `color_range=tv` and `color_space=bt709`.
+
+### Where this is handled
+
+The `render:scrolling-grid` script in `package.json` chains to `webm:scrolling-grid` which runs the ffmpeg fix automatically. When adding new render scripts that need a browser-safe webm, follow the same pattern:
+
+```json
+"render:X": "remotion render ... output/X.mp4 && npm run webm:X",
+"webm:X": "ffmpeg -y -i output/X.mp4 ...BT.709 flags... output/X.webm"
+```
+

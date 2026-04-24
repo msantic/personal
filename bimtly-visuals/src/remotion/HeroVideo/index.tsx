@@ -21,31 +21,26 @@ const INDUSTRIES = [
 
 // Thumbnail images for showcase - real app screenshots
 const THUMBNAILS = [
-  'thumbnails/1016.png',
-  'thumbnails/3576.png',
-  'thumbnails/4009.png',
-  'thumbnails/4657.png',
-  'thumbnails/467.png',
-  'thumbnails/585.png',
-  'thumbnails/4696.png',
+  'thumbnails/housevr.webp',
+  'thumbnails/engine.webp',
+  'thumbnails/cnc.webp',
+  'thumbnails/prefab.webp',
+  'thumbnails/knapp.webp',
+  'thumbnails/bedroom.webp',
+  'thumbnails/metal-construction.webp',
+  'thumbnails/wooden-house.webp',
+  'thumbnails/window.webp',
+  'thumbnails/roof-construction-details.webp',
+  'thumbnails/metal-fence-system.webp',
+  'thumbnails/chair.webp',
+  'thumbnails/family-house-frame-only.webp',
+  'thumbnails/6haus.webp',
+  'thumbnails/stone-cabin.webp',
+  'thumbnails/modularhouse.webp',
+  'thumbnails/container-paradise-cafe.webp',
   'thumbnails/4740.png',
-  'thumbnails/8190.png',
-  'thumbnails/8194.png',
-  'thumbnails/8201.png',
   'thumbnails/8232.png',
-  'thumbnails/8236.png',
-  'thumbnails/8267.png',
-  'thumbnails/8292.png',
   'thumbnails/8305.png',
-  'thumbnails/8315.png',
-  'thumbnails/8373.png',
-  'thumbnails/8434.png',
-  'thumbnails/8606.png',
-  'thumbnails/950.png',
-  'thumbnails/978.png',
-  'thumbnails/998.png',
-  'thumbnails/feal.png',
-  'thumbnails/pergola-config.png',
 ];
 
 export const HeroVideo: React.FC = () => {
@@ -135,7 +130,7 @@ const ScreenshotShowcase: React.FC = () => {
     <div style={{ opacity }}>
       <ImageShowcase
         images={THUMBNAILS}
-        style="staggered-reveal"  // Easy to switch: 'scrolling-grid' | 'staggered-reveal' | 'floating-cards' | 'ken-burns'
+        style="scrolling-grid"  // Easy to switch: 'scrolling-grid' | 'staggered-reveal' | 'floating-cards' | 'ken-burns'
         frame={frame}
         fps={fps}
         width={width}

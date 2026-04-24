@@ -60,10 +60,11 @@ export const ImageShowcase: React.FC<ImageShowcaseProps> = ({
           frame={frame}
           width={width}
           height={height}
-          columns={4}
-          speed={1.5}
+          columns={5}
+          speed={1}
           direction="up"
-          gap={8}
+          gap={6}
+          aspectRatio={0.75}
         />
       );
 
